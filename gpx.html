@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+ <!--<head>-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>gpx下載</title>
+ </head>
+<body>
+<button onclick="merge()">合併下載</button>
+<div></div>
+<!--<script src="https://unpkg.com/crypto-js/crypto-js.js"></script>-->
+<script>
+
+function merge(){
+ var str2='',name='',arr=document.querySelectorAll('input[type="checkbox"]')
+ for(let i of arr){
+  if(i.checked){
+   name+=i.name+'、'
+   str2+=dataObj[i.name]
+  }
+ }
+ var data=str1+str2+str3
+ var blob=new Blob([data])
+ var a=document.createElement('a')
+ a.href=URL.createObjectURL(blob)
+ a.download=name.slice(0,-1)+'.gpx'
+ a.click()
+}
+
+var str1='<?xml version="1.0" encoding="UTF-8" standalone="no"?><gpx xmlns="http://www.topografix.com/GPX/1/1" creator="" version="1.1">'
+var dataObj={}
+var str3='</gpx>';
+(function(){
+ let xhr=new XMLHttpRequest()
+ xhr.open("POST","https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token")
+ xhr.setRequestHeader("content-type","application/x-www-form-urlencoded")
+ xhr.responseType='json'
+ xhr.send('grant_type=client_credentials&client_id=miinmail-b35bf1df-9982-4815&client_secret=5a34311a-712a-40c3-98bf-4f911b9eb70b')
+ xhr.onload=function(){token=xhr.response.access_token;console.log(token)
+  makeGPX1(0,'')//單車站1圖標
+  makeGPX2(0,'')//單車站2圖標
+  makeGPX3(0,'')//單車站3圖標
+  makeGPX4(0,'')//捷運站圖標
+  makeGPX5(0,'')//火車站圖標
+  makeGPX6()//公車站(分縣市)
+  makeGPX7(0,'')//高鐵站圖標
+ }
+})();
+
+function makeGPX1(n,str2)
+{
+ var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
+ var url=
+['https://call-oa.onrender.com/1']
+ xhr.open('GET',url[n],true)//預設就是true(異步)
+ xhr.send()
+ xhr.onload=function()
+ {
+  var obj=xhr.response
+  for(var i=0,L=obj.length;i<L;i++)
+  {
+   var pointName=obj[i].StationName.Zh_tw
+   var pointDes=obj[i].StationAddress.Zh_tw
+   pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
+   str2+=
+'<wpt lat="'+(obj[i].StationPosition.PositionLat-.0001)+'" lon="'+obj[i].StationPosition.PositionLon+'">'+//所有YouBike 1.0站點位置往南移，避免和2.0重疊顯示 2021/7/19加入
+'<name>'+pointName+'</name>'+
+'<cmt>'+pointDes+'</cmt>'+
+'<sym>Number 1, Red</sym>'+
+'</wpt>'
+  }
+  n++
+  if(n<url.length){makeGPX1(n,str2)}
+  else
+  {
+   var data=str1+str2+str3
+   var blob=new Blob([data])
+   var a=document.createElement('a')
+   a.innerHTML='單車站1.gpx'
+   a.href=URL.createObjectURL(blob)
+   a.download='單車站1.gpx'
+   document.body.appendChild(a);document.body.innerHTML+='<input type="checkbox" name="單車站1"><br>';dataObj.單車站1=str2
+  }
+ }
+}
+
+function makeGPX2(n,str2)
+{
+ var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
+ var url=
+['https://call-oa.onrender.com/2']
+ xhr.open('GET',url[n],true)//預設就是true(異步)
+ xhr.send()
+ xhr.onload=function()
+ {
+  var obj=xhr.response
+  for(var i=0,L=obj.length;i<L;i++)
+  {
+   var pointName=obj[i].StationName.Zh_tw
+   var pointDes=obj[i].StationAddress.Zh_tw
+   pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
+   str2+=
+'<wpt lat="'+obj[i].StationPosition.PositionLat+'" lon="'+obj[i].StationPosition.PositionLon+'">'+
+'<name>'+pointName+'.</name>'+//name增加一個點，以避免和單車站1的name重複
+'<cmt>'+pointDes+'</cmt>'+
+'<sym>Number 2, Green</sym>'+
+'</wpt>'
+  }
+  n++
+  if(n<url.length){makeGPX2(n,str2)}
+  else
+  {
+   var data=str1+str2+str3
+   var blob=new Blob([data])
+   var a=document.createElement('a')
+   a.innerHTML='單車站2.gpx'
+   a.href=URL.createObjectURL(blob)
+   a.download='單車站2.gpx'
+   document.body.appendChild(a);document.body.innerHTML+='<input type="checkbox" name="單車站2"><br>';dataObj.單車站2=str2
+  }
+ }
+}
+
+function makeGPX3(n,str2)
+{
+ var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
+ var url=
+['https://tdx.transportdata.tw/api/basic/v2/Bike/Station/City/KinmenCounty?$format=JSON']
+ xhr.open('GET',url[n],true)//預設就是true(異步)
+ xhr.setRequestHeader('authorization','Bearer '+token)
+ xhr.send()
+ xhr.onload=function()
+ {
+  var obj=xhr.response
+  for(var i=0,L=obj.length;i<L;i++)
+  {
+   var pointName=obj[i].StationName.Zh_tw
+   var pointDes=obj[i].StationAddress.Zh_tw
+   pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
+   str2+=
+'<wpt lat="'+obj[i].StationPosition.PositionLat+'" lon="'+obj[i].StationPosition.PositionLon+'">'+
+'<name>'+pointName+'</name>'+
+'<cmt>'+pointDes+'</cmt>'+
+'<sym>Number 3, Blue</sym>'+
+'</wpt>'
+  }
+  n++
+  if(n<url.length){makeGPX3(n,str2)}
+  else
+  {
+   var data=str1+str2+str3
+   var blob=new Blob([data])
+   var a=document.createElement('a')
+   a.innerHTML='單車站3.gpx'
+   a.href=URL.createObjectURL(blob)
+   a.download='單車站3.gpx'
+   document.body.appendChild(a);document.body.innerHTML+='<input type="checkbox" name="單車站3"><br>';dataObj.單車站3=str2
+  }
+ }
+}
+
+function makeGPX4(n,str2)
+{
+ var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
+ var url=
+['https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTALRT?$format=JSON',//安坑輕軌站
+ 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTDLRT?$format=JSON',//淡海輕軌站
+ 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/KLRT?$format=JSON',//高雄輕軌站
+ 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTCMG?$format=JSON',//貓空纜車
+ 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTC?$format=JSON',//台北捷運站
+ 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TYMC?$format=JSON',//桃園捷運站
+ 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/KRTC?$format=JSON',//高雄捷運站
+ 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TMRT?$format=JSON',//台中捷運站
+ 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/NTMC?$format=JSON'//新北捷運站
+]
+ xhr.open('GET',url[n],true)//預設就是true(異步)
+ xhr.setRequestHeader('authorization','Bearer '+token)
+ xhr.send()
+ xhr.onload=function()
+ {
+  var obj=xhr.response
+  for(var i=0,L=obj.length;i<L;i++)
+  {
+   let Lon,Lat
+   if(url[n].match(/LRT/)){var pointName=obj[i].StationName.Zh_tw;var pointDes=obj[i].StationAddress;Lon=obj[i].StationPosition.PositionLon;Lat=obj[i].StationPosition.PositionLat}//LRT:輕軌
+   else{var pointName=obj[i].ExitName.Zh_tw;var pointDes=obj[i].LocationDescription;Lon=obj[i].ExitPosition.PositionLon;Lat=obj[i].ExitPosition.PositionLat}
+   if(url[n].match(/TYMC/)){pointName=obj[i].StationName.Zh_tw+pointName}//TYMC:桃捷
+   pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
+str2+=
+'<wpt lat="'+Lat+'" lon="'+Lon+'">'+
+'<name>'+pointName+'</name>'+
+'<cmt>'+pointDes+'</cmt>'+
+'<sym>Letter A, Green</sym>'+
+'</wpt>'
+  }
+  n++
+  if(n<url.length){makeGPX4(n,str2)}
+  else
+  {
+   var data=str1+str2+str3
+   var blob=new Blob([data])
+   var a=document.createElement('a')
+   a.innerHTML='捷運站.gpx'
+   a.href=URL.createObjectURL(blob)
+   a.download='捷運站.gpx'
+   document.body.appendChild(a);document.body.innerHTML+='<input type="checkbox" name="捷運站"><br>';dataObj.捷運站=str2
+  }
+ }
+}
+
+function makeGPX5(n,str2)
+{
+ var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
+ var url=
+['https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/StationExit?$format=JSON',
+ 'https://tdx.transportdata.tw/api/basic/v3/Rail/AFR/Station?$format=JSON'//阿里山火車
+]
+ xhr.open('GET',url[n],true)//預設就是true(異步)
+ xhr.setRequestHeader('authorization','Bearer '+token)
+ xhr.send()
+ xhr.onload=function()
+ {
+  var obj=xhr.response
+  if(url[n].includes('AFR')){obj=obj.Stations}//AFR:阿里山火車
+  else{obj=obj.StationExits}
+  for(var i=0,L=obj.length;i<L;i++)
+  {
+   if(url[n].includes('AFR')){
+   var pointName=obj[i].StationName.Zh_tw
+   var pointDes=obj[i].StationAddress
+   pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
+   str2+=
+'<wpt lat="'+obj[i].StationPosition.PositionLat+'" lon="'+obj[i].StationPosition.PositionLon+'">'+
+'<name>'+pointName+'</name>'+
+'<cmt>'+pointDes+'</cmt>'+
+'<sym>Letter A, Blue</sym>'+
+'</wpt>'
+   continue}
+   for(var j in obj[i].Exits){
+   var pointName=obj[i].StationName.Zh_tw+obj[i].Exits[j].ExitName.Zh_tw
+   var pointDes=obj[i].Exits[j].LocationDescription
+   pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
+   str2+=
+'<wpt lat="'+obj[i].Exits[j].ExitPosition.PositionLat+'" lon="'+obj[i].Exits[j].ExitPosition.PositionLon+'">'+
+'<name>'+pointName+'</name>'+
+'<cmt>'+pointDes+'</cmt>'+
+'<sym>Letter A, Blue</sym>'+
+'</wpt>'
+                             }
+  }
+  n++
+  if(n<url.length){makeGPX5(n,str2)}
+  else
+  {
+   var data=str1+str2+str3
+   var blob=new Blob([data])
+   var a=document.createElement('a')
+   a.innerHTML='火車站.gpx'
+   a.href=URL.createObjectURL(blob)
+   a.download='火車站.gpx'
+   document.body.appendChild(a);document.body.innerHTML+='<input type="checkbox" name="火車站"><br>';dataObj.火車站=str2
+  }
+ }
+}
+
+function makeGPX6(){
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Keelung?$format=JSON','基隆市公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei?$format=JSON','台北市公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NewTaipei?$format=JSON','新北市公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taoyuan?$format=JSON','桃園市公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HsinchuCounty?$format=JSON','新竹縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Hsinchu?$format=JSON','新竹市公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/MiaoliCounty?$format=JSON','苗栗縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taichung?$format=JSON','台中市公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChanghuaCounty?$format=JSON','彰化縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NantouCounty?$format=JSON','南投縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YunlinCounty?$format=JSON','雲林縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChiayiCounty?$format=JSON','嘉義縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Chiayi?$format=JSON','嘉義市公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Tainan?$format=JSON','台南市公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Kaohsiung?$format=JSON','高雄市公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PingtungCounty?$format=JSON','屏東縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YilanCounty?$format=JSON','宜蘭縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HualienCounty?$format=JSON','花蓮縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/TaitungCounty?$format=JSON','台東縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/LienchiangCounty?$format=JSON','連江縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/KinmenCounty?$format=JSON','金門縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PenghuCounty?$format=JSON','澎湖縣公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/InterCity?$format=JSON','公路客運公車站','')
+ makeGPX('https://tdx.transportdata.tw/api/basic/v2/Tourism/Bus/StopOfRoute/TaiwanTrip?$format=JSON','台灣好行公車站','')
+function makeGPX(url,name,str2)
+{
+ var sym
+ if(name=='公路客運公車站')
+ {sym='Letter B, Blue'}
+ else if(name=='台灣好行公車站')
+ {sym='Letter B, Red'}
+ else{sym='Letter B, Green'}
+ var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
+ xhr.open('GET',url,true)//預設就是true(異步)
+ xhr.setRequestHeader('authorization','Bearer '+token)
+ xhr.send()
+ xhr.onload=function()
+ {
+  var obj=xhr.response,pointName='',pointDes=''
+  for(var i=0,L=obj.length;i<L;i++)
+  {//台灣好行的obj會有TaiwanTripName
+   if(name=='公路客運公車站'){pointName=obj[i].SubRouteName.Zh_tw.replace(/0$/,'')}//SubRouteName.Zh_tw尾端1字元若是0去除
+   else{
+   pointName=obj[i].TaiwanTripName?obj[i].TaiwanTripName.Zh_tw+','+obj[i].SubRouteName.Zh_tw.replace(/0$/,''):obj[i].RouteName.Zh_tw//SubRouteName.Zh_tw尾端1字元若是0去除
+       }
+   //pointName=obj[i].RouteName.Zh_tw
+   //if(pointName!=obj[i].SubRouteName.Zh_tw){console.log(pointName+','+obj[i].SubRouteName.Zh_tw+','+name)}
+   for(var j in obj[i].Stops){
+   pointDes=obj[i].Stops[j].StopName.Zh_tw+'('+name.replace('公車站','')+')'
+   str2+=
+'<wpt lat="'+obj[i].Stops[j].StopPosition.PositionLat+'" lon="'+obj[i].Stops[j].StopPosition.PositionLon+'">'+
+'<name>'+pointName+'.</name>'+//name增加一個點，以因應name重複，Mapsource會加編號
+'<cmt>'+pointDes+'</cmt>'+
+'<sym>'+sym+'</sym>'+
+'</wpt>'
+                             }
+  }
+   var data=str1+str2+str3
+   var blob=new Blob([data])
+   var a=document.createElement('a')
+   a.innerHTML=name+'.gpx'
+   a.href=URL.createObjectURL(blob)
+   a.download=name+'.gpx'
+   document.getElementsByTagName('div')[0].appendChild(a).innerHTML+='<input type="checkbox" name='+name+'><br>';dataObj[name]=str2
+ }
+}
+                   }
+function makeGPX7(n,str2)
+{
+ var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
+ var url=
+['https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/StationExit?$format=JSON']//高鐵站
+ xhr.open('GET',url[n],true)//預設就是true(異步)
+ xhr.setRequestHeader('authorization','Bearer '+token)
+ xhr.send()
+ xhr.onload=function()
+ {
+  var obj=xhr.response
+  for(var i=0,L=obj.length;i<L;i++)
+  {
+   var pointName=obj[i].ExitName.Zh_tw
+   var pointDes=obj[i].LocationDescription
+   pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
+str2+=
+'<wpt lat="'+obj[i].ExitPosition.PositionLat+'" lon="'+obj[i].ExitPosition.PositionLon+'">'+
+'<name>'+pointName+'</name>'+
+'<cmt>'+pointDes+'</cmt>'+
+'<sym>Letter C, Blue</sym>'+
+'</wpt>'
+  }
+  n++
+  if(n<url.length){makeGPX7(n,str2)}
+  else
+  {
+   var data=str1+str2+str3
+   var blob=new Blob([data])
+   var a=document.createElement('a')
+   a.innerHTML='高鐵站.gpx'
+   a.href=URL.createObjectURL(blob)
+   a.download='高鐵站.gpx'
+   document.body.appendChild(a);document.body.innerHTML+='<input type="checkbox" name="高鐵站"><br>';dataObj.高鐵站=str2
+  }
+ }
+}
+/*#customwpts.txt
+#Name of your custom wpt types.
+#All line starting with '#' character will be ignored.
+#List here the types (without '#' as first character); example:
+#car
+#bike
+#...
+#If the type name matches with the name of an icon (minus .png extension),
+#the icon will be used. Example, if there is an icon with name car.png inside
+#oruxmaps/customwpts/ folder, then that png will be used as icon for 'car' wpt type.
+#recommended size for mdpi devices: 32x40px, hdpi devices: 48x60px
+#share your set of icons at http://oruxmaps.foroactivo.net/
+#turn_right|Gira a la derecha
+#turn_left|Gira a la izquierda
+#continue|Continua recto
+
+#10000
+井號是註解，無井號的文字依序從id=10000開始，因此本行未註解是id=10000，單車站1的id=10001；若本行有註解則無id，改為單車站1的id=10000
+
+#10001
+單車站1
+
+#10002
+單車站2
+
+#10003
+單車站3
+
+#10004
+捷運站
+
+#10005
+火車站
+
+#10006
+bus_0000ff
+
+#10007
+bus_ffff00
+
+#10008
+bus_00ff00
+
+#10009
+高鐵站*/
+
+</script>
+<!--</body>-->
+</html>

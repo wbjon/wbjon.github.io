@@ -1,0 +1,92 @@
+<link rel='stylesheet' href='https://unpkg.com/maplibre-gl/dist/maplibre-gl.css'>
+<script src='https://unpkg.com/maplibre-gl/dist/maplibre-gl.js'></script>
+<style>
+ body{margin:0;padding:0}
+</style>
+<!--<div id="map" style="width:256px;height:256px"></div>-->
+<img id="img" style="width:256px;height:256px;border:1px solid red">
+<script>
+ const obj={
+  container:'map',
+  style:{
+  "version": 8,
+  "name": "MapLibre",
+  "sources": {
+    "contours": {
+      "type": "vector",
+      "tiles": ["https://wbjon.github.io/contours/{z}/{x}/{y}.txt"],
+      "minzoom": 9,
+      "maxzoom": 14
+    }
+  },
+  "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  "layers": [
+    {
+      "id": "contour-lines",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "contour",
+      "paint": {
+        "line-color": "Maroon",
+        "line-opacity": 0.5,
+        "line-width": ["match", ["get", "nth_line"], 10, 1.5, 5, 1, 0.5]
+      }
+    },
+    {
+      "id": "contour-labels",
+      "type": "symbol",
+      "source": "contours",
+      "source-layer": "contour",
+      "layout": {
+        "text-field": "{height}",
+        "text-size": 10,
+        "symbol-spacing": 120,
+        "symbol-placement": "line"
+      },
+      "paint": {"text-opacity": 0.8, "text-color": "#000000"}
+    }
+  ],
+  "id": "gekug9i"
+     },
+  center:[120.61052,24.12133],//starting position [lng,lat]
+  zoom:15,//starting zoom
+  attributionControl: false,
+  preserveDrawingBuffer:false//true:渲染完成(idle)繼續保留buffer，之後仍可讀取；預設false:idle(渲染完成)瞬間有buffer，接著清空以維效能
+ }
+
+var n=8,mapLoaded=0
+var map=[]
+for(let i=0;i<n;i++){
+ const mapDiv=document.createElement("div")
+ mapDiv.id=obj.container='map'+i
+ mapDiv.style.width=mapDiv.style.height="256px"
+ document.body.appendChild(mapDiv)
+ map[i]=new maplibregl.Map(obj)
+ map[i].canvas=map[i].getCanvas()
+ map[i].once('load',()=>mapLoaded++)
+}
+
+/*
+map.on('load',function(){
+ map.getCanvas().toBlob(function(blob){
+  var link=document.createElement('a')
+  link.download='map.png'
+  link.href=URL.createObjectURL(blob)
+  link.click()
+ })
+})
+*/
+
+/*
+map.on('load',function(){
+ map.getCanvas().toBlob(function(blob){document.getElementById("img").src=URL.createObjectURL(blob)},'image/png')
+})*/
+
+function setCenter(arr){
+ map[0].setCenter(arr)
+ map[0].once('idle',function(){
+  document.getElementById("img").src=map[0].canvas.toDataURL('image/png')
+ })
+}
+
+</script>
