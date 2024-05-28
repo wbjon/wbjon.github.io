@@ -13,7 +13,7 @@
             ],
             "minzoom": 0,
             "maxzoom": 15,
-            "attribution": "© GeoBasis-DE/LGB (2022): Georeferenzierte Adresse, dl-de/by-2-0"
+            "attribution": "free"
         }
     },
     "sprite": "",
