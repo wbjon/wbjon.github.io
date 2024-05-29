@@ -1,8 +1,9 @@
 {
     "version": 8,
-    "name": "MapLibre",
+    "id": "970403",
+    "name": "Julie",
     "metadata": {
-        "maputnik:renderer": "mlgljs"
+        "maputnik:renderer": "mbgljs"
     },
     "sources": {
         "contours": {
@@ -54,6 +55,5 @@
                 "text-color": "#000000"
             }
         }
-    ],
-    "id": "gekug9i"
+    ]
 }
