@@ -9,35 +9,12 @@
         "contours": {
             "type": "vector",
             "tiles": [
-                "https://hfs.github.io/brandenburg-addresses/tiles/{z}/{x}/{y}.mvt"
+                "https://wbjon.github.io/contours/contours/{z}/{x}/{y}.mvt"
             ],
             "minzoom": 0,
             "maxzoom": 14
         }
     },
-    "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
-    "layers": [
-        {
-            "id": "contour-lines",
-            "type": "line",
-            "source": "contours",
-            "source-layer": "contour",
-            "paint": {
-                "line-color": "Red",
-                "line-opacity": 0.5,
-                "line-width": [
-                    "match",
-                    [
-                        "get",
-                        "nth_line"
-                    ],
-                    10,
-                    1.5,
-                    5,
-                    1,
-                    0.5
-                ]
-            }
-        }
-    ]
+    "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf"
+
 }
