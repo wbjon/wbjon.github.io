@@ -3,7 +3,7 @@
     "id": "951209",
     "name": "Bowen",
     "metadata": {
-        "maputnik:renderer": "mbgljs"
+        "maputnik:renderer": "mlgljs"
     },
     "sources": {
         "geoadr": {
@@ -30,7 +30,7 @@
                 0
             ],
             "paint": {
-                "fill-color": "#00ff00"
+                "fill-color": "#0000ff"
             },
             "layout": {
                 "visibility": "visible"
