@@ -15,6 +15,6 @@
             "maxzoom": 14
         }
     },
-    "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf"
+    "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf"
 
 }
