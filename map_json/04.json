@@ -11,7 +11,7 @@
             "tiles": [
                 "https://wbjon.github.io/contours/contours/{z}/{x}/{y}.mvt"
             ],
-            "minzoom": 0,
+            "minzoom": 9,
             "maxzoom": 14
         }
     },
@@ -25,13 +25,7 @@
             "paint": {
                 "line-color": "Red",
                 "line-opacity": 0.5,
-                "line-width": [
-    "step",
-    ["get", "nth_line"],
-    0.5, 5,
-    1, 10,
-    1.5
-]
+                "line-width": 1
             }
         }]
 
