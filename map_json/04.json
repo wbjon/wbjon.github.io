@@ -6,12 +6,12 @@
         "maputnik:renderer": "mbgljs"
     },
     "sources": {
-        "contours": {
+        "geoadr": {
             "type": "vector",
             "tiles": [
                 "https://hfs.github.io/brandenburg-addresses/tiles/{z}/{x}/{y}.mvt"
             ],
-            "minzoom": 9,
+            "minzoom": 0,
             "maxzoom": 14
         }
     },
