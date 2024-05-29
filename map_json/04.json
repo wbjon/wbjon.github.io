@@ -25,18 +25,7 @@
             "paint": {
                 "line-color": "Red",
                 "line-opacity": 0.5,
-                "line-width": [
-                    "match",
-                    [
-                        "get",
-                        "nth_line"
-                    ],
-                    10,
-                    1.5,
-                    5,
-                    1,
-                    0.5
-                ]
+                "line-width": 1
             }
         }]
 
