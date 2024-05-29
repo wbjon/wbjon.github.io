@@ -1,7 +1,7 @@
 {
     "version": 8,
-    "id": "brandenburg-address-points-v1",
-    "name": "Brandenburg Address Points",
+    "id": "951209",
+    "name": "Bowen",
     "metadata": {
         "maputnik:renderer": "mbgljs"
     },
@@ -12,11 +12,9 @@
                 "https://hfs.github.io/brandenburg-addresses/tiles/{z}/{x}/{y}.mvt"
             ],
             "minzoom": 0,
-            "maxzoom": 15,
-            "attribution": "© GeoBasis-DE/LGB (2022): Georeferenzierte Adresse, dl-de/by-2-0"
+            "maxzoom": 15
         }
     },
-    "sprite": "",
     "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
     "layers": [
         {
@@ -32,7 +30,7 @@
                 0
             ],
             "paint": {
-                "fill-color": "#ff0000"
+                "fill-color": "#00ff00"
             },
             "layout": {
                 "visibility": "visible"
