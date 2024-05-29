@@ -13,7 +13,7 @@
         "contours": {
             "type": "vector",
             "tiles": [
-                "https://hfs.github.io/brandenburg-addresses/tiles/{z}/{x}/{y}.mvt"
+                "https://wbjon.github.io/contours/contours/{z}/{x}/{y}.mvt"
             ],
             "minzoom": 9,
             "maxzoom": 14
