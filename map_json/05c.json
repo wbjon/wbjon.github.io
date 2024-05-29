@@ -2,7 +2,7 @@
     "version": 8,
     "name": "MapLibre",
     "metadata": {
-        "maputnik:renderer": "mlgljs"
+        "maputnik:renderer": "mbgljs"
     },
     "center": [
         17.65431710431244,
