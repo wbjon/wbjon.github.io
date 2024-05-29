@@ -18,22 +18,25 @@
     "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
     "layers": [
         {
-            "id": "overview_0",
-            "type": "fill",
-            "source": "geoadr",
-            "source-layer": "default",
-            "minzoom": 0,
-            "maxzoom": 14,
-            "filter": [
-                "==",
-                "cluster",
-                0
-            ],
+            "id": "contour-lines",
+            "type": "line",
+            "source": "contours",
+            "source-layer": "contour",
             "paint": {
-                "fill-color": "#0000ff"
-            },
-            "layout": {
-                "visibility": "visible"
+                "line-color": "Red",
+                "line-opacity": 0.5,
+                "line-width": [
+                    "match",
+                    [
+                        "get",
+                        "nth_line"
+                    ],
+                    10,
+                    1.5,
+                    5,
+                    1,
+                    0.5
+                ]
             }
         }
     ]
