@@ -6,7 +6,7 @@
         "maputnik:renderer": "mbgljs"
     },
     "sources": {
-        "geoadr": {
+        "contours": {
             "type": "vector",
             "tiles": [
                 "https://hfs.github.io/brandenburg-addresses/tiles/{z}/{x}/{y}.mvt"
