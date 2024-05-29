@@ -15,6 +15,29 @@
             "maxzoom": 14
         }
     },
-    "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf"
+    "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+"layers": [
+        {
+            "id": "contour-lines",
+            "type": "line",
+            "source": "contours",
+            "source-layer": "contour",
+            "paint": {
+                "line-color": "Red",
+                "line-opacity": 0.5,
+                "line-width": [
+                    "match",
+                    [
+                        "get",
+                        "nth_line"
+                    ],
+                    10,
+                    1.5,
+                    5,
+                    1,
+                    0.5
+                ]
+            }
+        }]
 
 }
