@@ -3,7 +3,7 @@
     "id": "970403",
     "name": "Julie",
     "metadata": {
-        "maputnik:renderer": "mbgljs"
+        "maputnik:renderer": "mlgljs"
     },
     "sources": {
         "contours": {
