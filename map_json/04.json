@@ -13,7 +13,7 @@
         "contours": {
             "type": "vector",
             "tiles": [
-                "https://wbjon.github.io/contours/{z}/{x}/{y}.txt"
+                "http://127.0.0.1:8080/{z}/{x}/{y}.mvt"
             ],
             "minzoom": 9,
             "maxzoom": 14
