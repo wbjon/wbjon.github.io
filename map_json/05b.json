@@ -5,7 +5,7 @@
     "metadata": {
         "maputnik:renderer": "mlgljs"
     },
-     "sources": {
+    "sources": {
         "contours": {
             "type": "vector",
             "tiles": [
@@ -16,7 +16,7 @@
         }
     },
     "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
-     "layers": [
+    "layers": [
         {
             "id": "contour-lines",
             "type": "line",
