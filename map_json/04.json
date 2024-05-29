@@ -15,7 +15,7 @@
             "maxzoom": 14
         }
     },
-    "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+    "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
     "layers": [
         {
             "id": "contour-lines",
