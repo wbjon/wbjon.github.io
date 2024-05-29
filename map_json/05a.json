@@ -1,0 +1,40 @@
+{
+    "version": 8,
+    "id": "951209",
+    "name": "Bowen",
+    "metadata": {
+        "maputnik:renderer": "mlgljs"
+    },
+    "sources": {
+        "geoadr": {
+            "type": "vector",
+            "tiles": [
+                "https://hfs.github.io/brandenburg-addresses/tiles/{z}/{x}/{y}.mvt"
+            ],
+            "minzoom": 0,
+            "maxzoom": 15
+        }
+    },
+    "glyphs": "https://orangemug.github.io/font-glyphs/glyphs/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "overview_0",
+            "type": "fill",
+            "source": "geoadr",
+            "source-layer": "default",
+            "minzoom": 0,
+            "maxzoom": 14,
+            "filter": [
+                "==",
+                "cluster",
+                0
+            ],
+            "paint": {
+                "fill-color": "#0000ff"
+            },
+            "layout": {
+                "visibility": "visible"
+            }
+        }
+    ]
+}
