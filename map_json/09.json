@@ -67,7 +67,8 @@
       "minzoom": 6,
       "paint": {
         "line-color": "#00FFFF",
-        "line-width": 2
+        "line-width": 2,
+        "line-opacity": 0.2
       }
     },
     {
