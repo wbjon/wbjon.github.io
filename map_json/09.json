@@ -66,7 +66,7 @@
       "source-layer": "sequence",
       "minzoom": 6,
       "paint": {
-        "line-color": "#05CB63",
+        "line-color": "#00FFFF",
         "line-width": 2
       }
     },
