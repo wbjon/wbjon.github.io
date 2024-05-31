@@ -12,7 +12,7 @@
                 "https://wbjon.github.io/contours/contours/{z}/{x}/{y}.mvt"
             ],
             "minzoom": 9,
-            "maxzoom": 9
+            "maxzoom": 10
         }
     },
     "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
