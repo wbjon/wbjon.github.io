@@ -12,7 +12,7 @@
                 "https://wbjon.github.io/contours/contours/{z}/{x}/{y}.mvt"
             ],
             "minzoom": 9,
-            "maxzoom": 9
+            "maxzoom": 14
         }
     },
     "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
@@ -22,6 +22,8 @@
             "type": "line",
             "source": "contours",
             "source-layer": "contour",
+"maxzoom": 10,
+"minzoom": 10,
             "paint": {
                 "line-color": "Red",
                 "line-opacity": 0.5,
