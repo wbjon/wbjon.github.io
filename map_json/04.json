@@ -55,18 +55,85 @@
                 "line-opacity": 0.2,
                 "line-width": 1
             }
+        },
+        {
+            "id": "zoom13",
+            "type": "line",
+            "source": "contours",
+            "source-layer": "contour",
+            "minzoom":13,
+            "maxzoom":13,
+            "paint": {
+                "line-color": "Red",
+                "line-opacity": 0.2,
+                "line-width": 1
+            }
+        },
+        {
+            "id": "zoom14",
+            "type": "line",
+            "source": "contours",
+            "source-layer": "contour",
+            "minzoom":14,
+            "maxzoom":14,
+            "paint": {
+                "line-color": "Red",
+                "line-opacity": 0.2,
+                "line-width": 1
+            }
+        },
+        {
+            "id": "zoom15",
+            "type": "line",
+            "source": "contours",
+            "source-layer": "contour",
+            "minzoom":15,
+            "maxzoom":15,
+            "paint": {
+                "line-color": "Red",
+                "line-opacity": 0.2,
+                "line-width": 1
+            }
+        },
+        {
+            "id": "zoom16",
+            "type": "line",
+            "source": "contours",
+            "source-layer": "contour",
+            "minzoom":16,
+            "maxzoom":16,
+            "paint": {
+                "line-color": "Red",
+                "line-opacity": 0.2,
+                "line-width": 1
+            }
+        },
+        {
+            "id": "zoom17",
+            "type": "line",
+            "source": "contours",
+            "source-layer": "contour",
+            "minzoom":17,
+            "maxzoom":17,
+            "paint": {
+                "line-color": "Red",
+                "line-opacity": 0.2,
+                "line-width": 1
+            }
+        },
+        {
+            "id": "zoom18",
+            "type": "line",
+            "source": "contours",
+            "source-layer": "contour",
+            "minzoom":18,
+            "maxzoom":18,
+            "paint": {
+                "line-color": "Red",
+                "line-opacity": 0.2,
+                "line-width": 1
+            }
         }
-
-
-
-
-
-
-
-
-
-
-
 ]
 
 }
