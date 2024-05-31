@@ -23,7 +23,7 @@
             "source": "contours",
             "source-layer": "contour",
 "maxzoom": 9,
-"minzoom": 9,
+"minzoom": 10,
             "paint": {
                 "line-color": "Red",
                 "line-opacity": 0.2,
