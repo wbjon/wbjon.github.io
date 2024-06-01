@@ -11,25 +11,13 @@
             "tiles": [
                 "https://wbjon.github.io/contours/contours/{z}/{x}/{y}.mvt"
             ],
-            "minzoom": 9,
-            "maxzoom": 9
+            "minzoom": 10,
+            "maxzoom": 10
         }
     },
     "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
 "layers": [
-        {
-            "id": "zoom10",
-            "type": "line",
-            "source": "contours",
-            "source-layer": "contour",
-            "minzoom":10,
-            "maxzoom":10,
-            "paint": {
-                "line-color": "Red",
-                "line-opacity": 0.2,
-                "line-width": 1
-            }
-        },
+
         {
             "id": "zoom11",
             "type": "line",
