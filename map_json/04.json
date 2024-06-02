@@ -1,64 +1,36 @@
 {
     "version": 8,
-    "name": "MapLibre",
+    "id": "970403",
+    "name": "Julie",
     "metadata": {
         "maputnik:renderer": "mlgljs"
     },
-    "center": [
-        17.65431710431244,
-        32.954120326746775
-    ],
-    "zoom": 1,
     "sources": {
         "contours": {
             "type": "vector",
             "tiles": [
-                "http://localhost:8080/{z}/{x}/{y}.mvt"
+                "https://wbjon.github.io/contours/contours/{z}/{x}/{y}.mvt"
             ],
-            "minzoom": 9,
+            "minzoom": 14,
             "maxzoom": 14
         }
     },
     "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
-    "layers": [
+"layers": [
+
         {
-            "id": "contour-lines",
+            "id": "zoom15",
             "type": "line",
             "source": "contours",
             "source-layer": "contour",
+            "minzoom":15,
+            "maxzoom":20,
             "paint": {
                 "line-color": "Red",
-                "line-opacity": 0.5,
-                "line-width": [
-                    "match",
-                    [
-                        "get",
-                        "nth_line"
-                    ],
-                    10,
-                    1.5,
-                    5,
-                    1,
-                    0.5
-                ]
-            }
-        },
-        {
-            "id": "contour-labels",
-            "type": "symbol",
-            "source": "contours",
-            "source-layer": "contour",
-            "layout": {
-                "text-field": "{height}",
-                "text-size": 10,
-                "symbol-spacing": 120,
-                "symbol-placement": "line"
-            },
-            "paint": {
-                "text-opacity": 0.8,
-                "text-color": "#000000"
+                "line-opacity": 0.2,
+                "line-width": 1
             }
         }
-    ],
-    "id": "gekug9i"
+]
+
 }
