@@ -774,7 +774,7 @@
       "source": "contours",
       "source-layer": "contour",
       "paint": {
-        "line-color": "Red",
+        "line-color": "Maroon",
         "line-opacity": 0.5,
         "line-width": ["match", ["get", "nth_line"], 10, 1.5, 5, 1, 0.5]
       }
