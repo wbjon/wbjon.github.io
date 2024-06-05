@@ -26,7 +26,7 @@
             "minzoom":15,
             "maxzoom":20,
             "paint": {
-                "line-color": "Red",
+                "line-color": "Maroon",
                 "line-opacity": 0.2,
                 "line-width": 1
             }
