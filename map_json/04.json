@@ -17,20 +17,30 @@
     },
     "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
 "layers": [
-
-        {
-            "id": "zoom15",
-            "type": "line",
-            "source": "contours",
-            "source-layer": "contour",
-            "minzoom":15,
-            "maxzoom":20,
-            "paint": {
-                "line-color": "Maroon",
-                "line-opacity": 0.2,
-                "line-width": 1
-            }
-        }
+    {
+      "id": "contour-lines",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "contour",
+      "paint": {
+        "line-color": "Maroon",
+        "line-opacity": 0.5,
+        "line-width": ["match", ["get", "nth_line"], 10, 1.5, 5, 1, 0.5]
+      }
+    },
+    {
+      "id": "contour-labels",
+      "type": "symbol",
+      "source": "contours",
+      "source-layer": "contour",
+      "layout": {
+        "text-field": "{height}",
+        "text-size": 10,
+        "symbol-spacing": 120,
+        "symbol-placement": "line"
+      },
+      "paint": {"text-opacity": 0.8, "text-color": "#000000"}
+    }
 ]
 
 }
