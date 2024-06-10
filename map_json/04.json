@@ -9,9 +9,9 @@
         "contours": {
             "type": "vector",
             "tiles": [
-                "https://wbjon.github.io/contours/contours/{z}/{x}/{y}.mvt"
+                "https://wbjon.github.io/contours/contours/{z}/{x}/{y}.txt"
             ],
-            "minzoom": 14,
+            "minzoom": 9,
             "maxzoom": 14
         }
     },
