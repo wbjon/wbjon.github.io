@@ -405,7 +405,7 @@ function showLine(RouteUID,n)
  {
   console.log(i,linesJSON[RouteUID][n][i])
   L.marker(linesJSON[RouteUID][n][i].slice(0,2),{icon:new L.AwesomeNumberMarkers({number:Number(i)+1,markerColor:"blue"})}).addTo(markersLayer)
-   .bindPopup('Hello',{autoPan:false})
+   .bindPopup(linesJSON[RouteUID][n][i][2],{autoPan:false})
    .on('mouseover',function(){//{offset:[0,-30]} 2021/8/14加入，將數字marker的popup位置上移，解決發生over事件，馬上又out事件，造成地圖會閃爍！另外，一併解決數字marker被popup覆蓋
                               L.popup({autoPan:false,offset:[0,-30]}).setLatLng(this._latlng).setContent(this._popup._content).openOn(map)
                               //var tmp=map.getCenter();L.popup({offset:[0,-30]}).setLatLng(this._latlng).setContent(this._popup._content).openOn(map);map.setView(tmp)
