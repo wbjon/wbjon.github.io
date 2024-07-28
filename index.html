@@ -323,7 +323,7 @@ var extend=L.TileLayer.extend({options:{/*minZoom:16,minNativeZoom:16,*/maxNativ
   }
   map.createPane('top')
   map.getPane('top').style.zIndex=650//等高線置頂
-//map.getPane('top').style.pointerEvents='none'//若將圖塊放在其他地圖圖層之上，會造成圖塊將捕獲點擊和觸摸，可設定none避免
+  map.getPane('top').style.pointerEvents='none'//若將圖塊放在其他地圖圖層之上，會造成圖塊將捕獲點擊和觸摸，可設定none避免
 //資料來源：https://leafletjs.com/examples/map-panes/
   L.maplibreGL({
    pane:'top',
