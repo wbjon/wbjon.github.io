@@ -1,62 +1,45 @@
-<!DOCTYPE html>
-<html>
- <!--<head>-->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>kml下載</title>
- </head>
-<body>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>kml下載</title>
 <div></div>
-<!--<script src="https://unpkg.com/crypto-js/crypto-js.js"></script>-->
 <script>
 var str1='<?xml version="1.0" encoding="utf-8"?><kml><Document>'
-var str3='</Document></kml>';
-(function(){
-//  let xhr=new XMLHttpRequest()
-//  xhr.open("POST","https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token")
-//  xhr.setRequestHeader("content-type","application/x-www-form-urlencoded")
-//  xhr.responseType='json'
-//  xhr.send('grant_type=client_credentials&client_id=miinmail-b35bf1df-9982-4815&client_secret=5a34311a-712a-40c3-98bf-4f911b9eb70b')
-//  xhr.onload=function(){token=xhr.response.access_token;console.log(token)
-  makeKML1(0,'')//單車站1圖標
-  makeKML2(0,'')//單車站2圖標
-  //makeKML3(0,'')//單車站3圖標
-  makeKML4(0,'')//捷運站圖標
-  makeKML5(0,'')//火車站圖標
-  makeKML6()//公車站(分縣市)
-  makeKML7(0,'')//高鐵站圖標
-// }
-})();
+var str3='</Document></kml>'
+makeKML1(0,'')//單車站1圖標
+makeKML2(0,'')//單車站2圖標
+//makeKML3(0,'')//單車站3圖標
+makeKML4(0,'')//捷運站圖標
+makeKML5(0,'')//火車站圖標
+makeKML6()//公車站(分縣市)
+makeKML7(0,'')//高鐵站圖標
+//kml格式(精簡調適於各程式)(未加入kml名稱(夫妻檔)、未加入Style圖標格式)
+//<?xml version="1.0" encoding="utf-8"?>
+//<kml>
+//<Document>
 
-// kml格式(精簡調適於各程式)(未加入kml名稱(夫妻檔)、未加入Style圖標格式)
-// <?xml version="1.0" encoding="utf-8"?>
-// <kml>
-// <Document>
+//<!--<name>夫妻檔</name>-->
+//<!--<Style id="55"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/w_bici.png</href></Icon></IconStyle></Style>'--><!--適用於Oruxmaps的單車站圖標-->
 
-// <!--<name>夫妻檔</name>-->
-// <!--<Style id="55"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/w_bici.png</href></Icon></IconStyle></Style>'--><!--適用於Oruxmaps的單車站圖標-->
+//<Placemark>
+//<!--<styleUrl>#55</styleUrl>--><!--適用於Oruxmaps的單車站圖標-->
+//<name>何宏閔</name>
+//<description>去跑步</description>
+//<Point>
+//<coordinates>120.79,24.32</coordinates>
+//</Point>
+//</Placemark>
 
-// <Placemark>
-// <!--<styleUrl>#55</styleUrl>--><!--適用於Oruxmaps的單車站圖標-->
-// <name>何宏閔</name>
-// <description>去跑步</description>
-// <Point>
-// <coordinates>120.79,24.32</coordinates>
-// </Point>
-// </Placemark>
+//<Placemark>
+//<!--<styleUrl>#55</styleUrl>--><!--適用於Oruxmaps的單車站圖標-->
+//<name>姚惠文</name>
+//<description>來睡覺</description>
+//<Point>
+//<coordinates>120.76,24.33</coordinates>
+//</Point>
+//</Placemark>
 
-// <Placemark>
-// <!--<styleUrl>#55</styleUrl>--><!--適用於Oruxmaps的單車站圖標-->
-// <name>姚惠文</name>
-// <description>來睡覺</description>
-// <Point>
-// <coordinates>120.76,24.33</coordinates>
-// </Point>
-// </Placemark>
-
-// </Document>
-// </kml>
-
+//</Document>
+//</kml>
 
 function makeKML1(n,str2)
 {
