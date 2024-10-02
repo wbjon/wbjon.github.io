@@ -12,20 +12,20 @@
 var str1='<?xml version="1.0" encoding="utf-8"?><kml><Document>'
 var str3='</Document></kml>';
 (function(){
- let xhr=new XMLHttpRequest()
- xhr.open("POST","https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token")
- xhr.setRequestHeader("content-type","application/x-www-form-urlencoded")
- xhr.responseType='json'
- xhr.send('grant_type=client_credentials&client_id=miinmail-b35bf1df-9982-4815&client_secret=5a34311a-712a-40c3-98bf-4f911b9eb70b')
- xhr.onload=function(){token=xhr.response.access_token;console.log(token)
+//  let xhr=new XMLHttpRequest()
+//  xhr.open("POST","https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token")
+//  xhr.setRequestHeader("content-type","application/x-www-form-urlencoded")
+//  xhr.responseType='json'
+//  xhr.send('grant_type=client_credentials&client_id=miinmail-b35bf1df-9982-4815&client_secret=5a34311a-712a-40c3-98bf-4f911b9eb70b')
+//  xhr.onload=function(){token=xhr.response.access_token;console.log(token)
   makeKML1(0,'')//單車站1圖標
   makeKML2(0,'')//單車站2圖標
-  makeKML3(0,'')//單車站3圖標
+  //makeKML3(0,'')//單車站3圖標
   makeKML4(0,'')//捷運站圖標
   makeKML5(0,'')//火車站圖標
   makeKML6()//公車站(分縣市)
   makeKML7(0,'')//高鐵站圖標
- }
+// }
 })();
 /*kml格式(精簡調適於各程式)(未加入kml名稱(夫妻檔)、未加入Style圖標格式)
 <?xml version="1.0" encoding="utf-8"?>
@@ -149,7 +149,7 @@ function makeKML3(n,str2)
  var url=
  ['https://tdx.transportdata.tw/api/basic/v2/Bike/Station/City/KinmenCounty?$format=JSON']
  xhr.open('GET',url[n],true)//預設就是true(異步)
- xhr.setRequestHeader('authorization','Bearer '+token)
+ //xhr.setRequestHeader('authorization','Bearer '+token)
  xhr.send()
  xhr.onload=function()
  {
@@ -201,7 +201,7 @@ function makeKML4(n,str2)
  'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/NTMC?$format=JSON'//新北捷運站
 ]
  xhr.open('GET',url[n],true)//預設就是true(異步)
- xhr.setRequestHeader('authorization','Bearer '+token)
+ //xhr.setRequestHeader('authorization','Bearer '+token)
  xhr.send()
  xhr.onload=function()
  {
@@ -248,7 +248,7 @@ function makeKML5(n,str2)
  'https://tdx.transportdata.tw/api/basic/v3/Rail/AFR/Station?$format=JSON'//阿里山火車
 ]
  xhr.open('GET',url[n],true)//預設就是true(異步)
- xhr.setRequestHeader('authorization','Bearer '+token)
+ //xhr.setRequestHeader('authorization','Bearer '+token)
  xhr.send()
  xhr.onload=function()
  {
@@ -342,7 +342,7 @@ function makeKML(url,name,str2)
      }
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  xhr.open('GET',url,true)//預設就是true(異步)
- xhr.setRequestHeader('authorization','Bearer '+token)
+ //xhr.setRequestHeader('authorization','Bearer '+token)
  xhr.send()
  xhr.onload=function()
  {
@@ -385,7 +385,7 @@ function makeKML7(n,str2)
  var url=
  ['https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/StationExit?$format=JSON']//高鐵站
  xhr.open('GET',url[n],true)//預設就是true(異步)
- xhr.setRequestHeader('authorization','Bearer '+token)
+ //xhr.setRequestHeader('authorization','Bearer '+token)
  xhr.send()
  xhr.onload=function()
  {
