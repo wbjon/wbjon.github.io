@@ -3,9 +3,7 @@
 <title>gpx下載</title>
 <button onclick="merge()">合併下載</button>
 <div></div>
-<!--<script src="https://unpkg.com/crypto-js/crypto-js.js"></script>-->
 <script>
-
 function merge(){
  var str2='',name='',arr=document.querySelectorAll('input[type="checkbox"]')
  for(let i of arr){
@@ -24,23 +22,14 @@ function merge(){
 
 var str1='<?xml version="1.0" encoding="UTF-8" standalone="no"?><gpx xmlns="http://www.topografix.com/GPX/1/1" creator="" version="1.1">'
 var dataObj={}
-var str3='</gpx>';
-(function(){
- let xhr=new XMLHttpRequest()
- xhr.open("POST","https://tdx.transportdata.tw/auth/realms/TDXConnect/protocol/openid-connect/token")
- xhr.setRequestHeader("content-type","application/x-www-form-urlencoded")
- xhr.responseType='json'
- xhr.send('grant_type=client_credentials&client_id=miinmail-b35bf1df-9982-4815&client_secret=5a34311a-712a-40c3-98bf-4f911b9eb70b')
- xhr.onload=function(){token=xhr.response.access_token;console.log(token)
-  makeGPX1(0,'')//單車站1圖標
-  makeGPX2(0,'')//單車站2圖標
-  makeGPX3(0,'')//單車站3圖標
-  makeGPX4(0,'')//捷運站圖標
-  makeGPX5(0,'')//火車站圖標
-  makeGPX6()//公車站(分縣市)
-  makeGPX7(0,'')//高鐵站圖標
- }
-})();
+var str3='</gpx>'
+makeGPX1(0,'')//單車站1圖標
+makeGPX2(0,'')//單車站2圖標
+//makeGPX3(0,'')//單車站3圖標
+makeGPX4(0,'')//捷運站圖標
+makeGPX5(0,'')//火車站圖標
+makeGPX6()//公車站(分縣市)
+makeGPX7(0,'')//高鐵站圖標
 
 function makeGPX1(n,str2)
 {
