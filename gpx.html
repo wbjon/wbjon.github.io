@@ -147,18 +147,18 @@ function makeGPX4(n,str2)
 {
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  var url=
-['https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTALRT?$format=JSON',//安坑輕軌站
- 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTDLRT?$format=JSON',//淡海輕軌站
- 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/KLRT?$format=JSON',//高雄輕軌站
- 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTCMG?$format=JSON',//貓空纜車
- 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTC?$format=JSON',//台北捷運站
- 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TYMC?$format=JSON',//桃園捷運站
- 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/KRTC?$format=JSON',//高雄捷運站
- 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TMRT?$format=JSON',//台中捷運站
- 'https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/NTMC?$format=JSON'//新北捷運站
+['https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTALRT?$format=JSON',//安坑輕軌站
+ 'https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTDLRT?$format=JSON',//淡海輕軌站
+ 'https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/KLRT?$format=JSON',//高雄輕軌站
+ 'https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTCMG?$format=JSON',//貓空纜車
+ 'https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTC?$format=JSON',//台北捷運站
+ 'https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TYMC?$format=JSON',//桃園捷運站
+ 'https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/KRTC?$format=JSON',//高雄捷運站
+ 'https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TMRT?$format=JSON',//台中捷運站
+ 'https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/NTMC?$format=JSON'//新北捷運站
 ]
  xhr.open('GET',url[n],true)//預設就是true(異步)
- xhr.setRequestHeader('authorization','Bearer '+token)
+ //xhr.setRequestHeader('authorization','Bearer '+token)
  xhr.send()
  xhr.onload=function()
  {
@@ -196,11 +196,11 @@ function makeGPX5(n,str2)
 {
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  var url=
-['https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/StationExit?$format=JSON',
- 'https://tdx.transportdata.tw/api/basic/v3/Rail/AFR/Station?$format=JSON'//阿里山火車
+['https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/StationExit?$format=JSON',
+ 'https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v3/Rail/AFR/Station?$format=JSON'//阿里山火車
 ]
  xhr.open('GET',url[n],true)//預設就是true(異步)
- xhr.setRequestHeader('authorization','Bearer '+token)
+ //xhr.setRequestHeader('authorization','Bearer '+token)
  xhr.send()
  xhr.onload=function()
  {
@@ -248,30 +248,30 @@ function makeGPX5(n,str2)
 }
 
 function makeGPX6(){
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Keelung?$format=JSON','基隆市公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei?$format=JSON','台北市公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NewTaipei?$format=JSON','新北市公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taoyuan?$format=JSON','桃園市公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HsinchuCounty?$format=JSON','新竹縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Hsinchu?$format=JSON','新竹市公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/MiaoliCounty?$format=JSON','苗栗縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taichung?$format=JSON','台中市公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChanghuaCounty?$format=JSON','彰化縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NantouCounty?$format=JSON','南投縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YunlinCounty?$format=JSON','雲林縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChiayiCounty?$format=JSON','嘉義縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Chiayi?$format=JSON','嘉義市公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Tainan?$format=JSON','台南市公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Kaohsiung?$format=JSON','高雄市公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PingtungCounty?$format=JSON','屏東縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YilanCounty?$format=JSON','宜蘭縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HualienCounty?$format=JSON','花蓮縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/TaitungCounty?$format=JSON','台東縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/LienchiangCounty?$format=JSON','連江縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/KinmenCounty?$format=JSON','金門縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PenghuCounty?$format=JSON','澎湖縣公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/InterCity?$format=JSON','公路客運公車站','')
- makeGPX('https://tdx.transportdata.tw/api/basic/v2/Tourism/Bus/StopOfRoute/TaiwanTrip?$format=JSON','台灣好行公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Keelung?$format=JSON','基隆市公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei?$format=JSON','台北市公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NewTaipei?$format=JSON','新北市公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taoyuan?$format=JSON','桃園市公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HsinchuCounty?$format=JSON','新竹縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Hsinchu?$format=JSON','新竹市公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/MiaoliCounty?$format=JSON','苗栗縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taichung?$format=JSON','台中市公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChanghuaCounty?$format=JSON','彰化縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NantouCounty?$format=JSON','南投縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YunlinCounty?$format=JSON','雲林縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChiayiCounty?$format=JSON','嘉義縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Chiayi?$format=JSON','嘉義市公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Tainan?$format=JSON','台南市公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Kaohsiung?$format=JSON','高雄市公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PingtungCounty?$format=JSON','屏東縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YilanCounty?$format=JSON','宜蘭縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HualienCounty?$format=JSON','花蓮縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/TaitungCounty?$format=JSON','台東縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/LienchiangCounty?$format=JSON','連江縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/KinmenCounty?$format=JSON','金門縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PenghuCounty?$format=JSON','澎湖縣公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/InterCity?$format=JSON','公路客運公車站','')
+ makeGPX('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Tourism/Bus/StopOfRoute/TaiwanTrip?$format=JSON','台灣好行公車站','')
 function makeGPX(url,name,str2)
 {
  var sym
@@ -282,7 +282,7 @@ function makeGPX(url,name,str2)
  else{sym='Letter B, Green'}
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  xhr.open('GET',url,true)//預設就是true(異步)
- xhr.setRequestHeader('authorization','Bearer '+token)
+ //xhr.setRequestHeader('authorization','Bearer '+token)
  xhr.send()
  xhr.onload=function()
  {
@@ -319,9 +319,9 @@ function makeGPX7(n,str2)
 {
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  var url=
-['https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/StationExit?$format=JSON']//高鐵站
+['https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/StationExit?$format=JSON']//高鐵站
  xhr.open('GET',url[n],true)//預設就是true(異步)
- xhr.setRequestHeader('authorization','Bearer '+token)
+ //xhr.setRequestHeader('authorization','Bearer '+token)
  xhr.send()
  xhr.onload=function()
  {
