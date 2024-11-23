@@ -12,11 +12,11 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
- ({request})=>(request.destination==='manifest'||
+ ({request})=>((request.destination==='manifest'||
                request.destination==='style'||
                request.destination==='script'||
                request.destination==='document'||
-               request.url.endsWith('.pbf')&&
+               request.url.endsWith('.pbf'))&&
               !request.url.includes('/install.html'))
              //request.destination===''//for XMLHttpRequest()
  ,new workbox.strategies.CacheFirst({cacheName:'CacheFirst'})
