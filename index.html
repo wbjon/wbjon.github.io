@@ -435,7 +435,7 @@ function update(){
  }
 }
 
-function makeKML4(){console.log('makeKML4()')
+function makeKML4(){
 makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Keelung?$format=JSON','基隆市',0)
 makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei?$format=JSON','台北市',1)
 makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NewTaipei?$format=JSON','新北市',2)
@@ -511,6 +511,11 @@ function makeKML(url,name,index)
   if(xhr.status!=200){if(token&&token!=oldToken){makeKML(url,name,index)}else{token='';getToken(url,name,index,makeKML)}
                       return}
   var obj=xhr.response
+
+console.log(name)
+
+
+
   if(name=='火車站'){obj=obj.StationExits}
   else if(url.includes('AFR')){obj=obj.Stations}//AFR：阿里山火車
   for(var i in obj)
