@@ -505,7 +505,7 @@ function makeKML(url,name,index)
  },3000)//設定3秒為請求超時
  xhr.onreadystatechange=function(){if(xhr.readyState===2)clearTimeout(timer)}
 */
- setTimeout(()=>xhr.send(),100*index)
+ //setTimeout(()=>xhr.send(),100*index)
  xhr.onload=function()
  {
   if(xhr.status!=200){if(token&&token!=oldToken){makeKML(url,name,index)}else{token='';getToken(url,name,index,makeKML)}
