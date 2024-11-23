@@ -505,9 +505,9 @@ function makeKML(url,name,index)
  },3000)//設定3秒為請求超時
  xhr.onreadystatechange=function(){if(xhr.readyState===2)clearTimeout(timer)}
 */
- xhr.send()//setTimeout(()=>xhr.send(),100*index)
+ xhr.send()//setTimeout(()=>xhr.send(),100*index)//2024/11/24註解延遲
  xhr.onload=function()
- {
+ {console.log(xhr.status)
   if(xhr.status!=200){if(token&&token!=oldToken){makeKML(url,name,index)}else{token='';getToken(url,name,index,makeKML)}
                       return}
   var obj=xhr.response
