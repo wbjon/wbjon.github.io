@@ -562,7 +562,7 @@ function makeKML(url,name,index)
     arr[index].push(oneMark)//arr.push(oneMark)
    }
    else if(name.indexOf('單車站')!=-1)
-   {console.log(url,name,index)
+   {console.log(url,name)
     if(obj[i].E){var icon=L.icon({iconUrl:'單車站E.png',iconSize:[24,32],iconAnchor:[12,16]})}//2022/10/10加入，若該點位有電動車，則圖示為"單車站E.png"
     else{var icon=L.icon({iconUrl:name+'.png',iconSize:[24,32],iconAnchor:[12,16]})}
     pointName=obj[i].StationName.Zh_tw
