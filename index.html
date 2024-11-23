@@ -570,7 +570,7 @@ function makeKML(url,name,index)
     pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
     pointLat=obj[i].StationPosition.PositionLat
     pointLon=obj[i].StationPosition.PositionLon
-    if(name=='單車站1'){pointLat-=.0001;pointName='①'+pointName}//所有YouBike 1.0站點位置往南移，避免和2.0重疊顯示 2021/7/19加入
+    if(name=='單車站1'){/*pointLat-=.0001;*/pointName='①'+pointName}//所有YouBike 1.0站點位置往南移，避免和2.0重疊顯示 2021/7/19加入，2024/11/23撤銷南移
     else if(name=='單車站2'){pointName='②'+pointName}else{pointName='③'+pointName}//2023/6/22加入，讓Popup顯示圓圈１２３
     var oneMark=L.marker([pointLat,pointLon],{icon:icon,url:url.replace('Station','Availability')+"&$filter=StationUID%20eq%20%27"+obj[i].StationUID+"%27"})
                  .bindPopup('<b>'+pointName+'</b><br>'+pointDes,{autoPan:false})
