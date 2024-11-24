@@ -493,8 +493,8 @@ function makeKML(url,name,index)
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  //var GMTString=new Date().toGMTString()
  //var hash=CryptoJS.HmacSHA1("x-date: "+GMTString,"WkgNgfNV6MGI0QDKsnVySbECWF0").toString(CryptoJS.enc.Base64)
- if(index==24||index==25)xhr.open('GET',url.replace('call','md'),true)//2024/11/24加入，若是單車站1或單車站2，則改請求https://md-oa.onrender.com/以加速
- else xhr.open('GET',url,true)//預設就是true(異步)
+ if(index==24||index==25)url=url.replace('call','md')//2024/11/24加入，若是單車站1或單車站2，則改url為https://md-oa.onrender.com/以加速
+ xhr.open('GET',url,true)//預設就是true(異步)
  if(url.indexOf('onrender')==-1){
  //xhr.setRequestHeader('Authorization','hmac username="bf8cbf088c7a4473939368430b5fdb68", algorithm="hmac-sha1", headers="x-date", signature="'+hash+'"')
  //xhr.setRequestHeader('x-date',GMTString)
