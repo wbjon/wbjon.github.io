@@ -512,6 +512,11 @@ function makeKML(url,name,index)
   if(xhr.status!=200){if(token&&token!=oldToken){makeKML(url,name,index)}else{token='';getToken(url,name,index,makeKML)}
                       return}
   var obj=xhr.response
+
+if(index==24||index==25)console.log(obj)
+
+
+
   if(name=='火車站'){obj=obj.StationExits}
   else if(url.includes('AFR')){obj=obj.Stations}//AFR：阿里山火車
   for(var i in obj)
