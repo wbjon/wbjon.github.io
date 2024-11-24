@@ -493,7 +493,7 @@ function makeKML(url,name,index)
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  //var GMTString=new Date().toGMTString()
  //var hash=CryptoJS.HmacSHA1("x-date: "+GMTString,"WkgNgfNV6MGI0QDKsnVySbECWF0").toString(CryptoJS.enc.Base64)
- if(!!+url.split('/').pop())console.log(url)//2024/11/24加入，若url/最後是數字即單車站1或單車站2，則改url為原YouBike站以加速
+ if(index==24||index==25)console.log(url)//2024/11/24加入，若是單車站1或單車站2，則改url為原YouBike站以加速
  xhr.open('GET',url,true)//預設就是true(異步)
  if(url.indexOf('call')==-1){
  //xhr.setRequestHeader('Authorization','hmac username="bf8cbf088c7a4473939368430b5fdb68", algorithm="hmac-sha1", headers="x-date", signature="'+hash+'"')
