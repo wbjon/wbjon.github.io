@@ -88,7 +88,7 @@ function addOnHoverListener(data){
    //var GMTString=new Date().toGMTString()
    //var hash=CryptoJS.HmacSHA1("x-date: "+GMTString,"WkgNgfNV6MGI0QDKsnVySbECWF0").toString(CryptoJS.enc.Base64)
    xhr.open('GET',url,true)//預設就是true(異步)
-   if(url.indexOf('call')==-1){
+   if(url.indexOf('onrender')==-1){
     //xhr.setRequestHeader('Authorization','hmac username="bf8cbf088c7a4473939368430b5fdb68", algorithm="hmac-sha1", headers="x-date", signature="'+hash+'"')
     //xhr.setRequestHeader('x-date',GMTString)
     xhr.setRequestHeader('Authorization','Bearer '+token)
