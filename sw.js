@@ -7,7 +7,7 @@ workbox.routing.registerRoute(
 )
 
 workbox.routing.registerRoute(
- new RegExp('https://call-oa\\.onrender\\.com/[1-2]$'),
+ new RegExp('https://md-oa\\.onrender\\.com/[1-2]$'),//2024/11/24加入，若是單車站1或單車站2，則改https://call-oa.onrender.com/為https://md-oa.onrender.com/以加速
  new workbox.strategies.NetworkFirst({cacheName:'NetworkFirst'})
 )
 
