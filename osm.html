@@ -6,7 +6,7 @@
 var str1="<osm version='0.6'>"
 var str3="</osm>"
 makeOSM1(0,'')//單車站1圖標
-// makeOSM2(0,'')//單車站2圖標
+makeOSM2(0,'')//單車站2圖標
 //makeOSM3(0,'')//單車站3圖標
 // makeOSM4(0,'')//捷運站圖標
 // makeOSM5(0,'')//火車站圖標
@@ -54,38 +54,8 @@ function makeOSM1(n,str2)
  }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function makeOSM2(n,str2)
 {
- var title='<name>單車站2</name>'//適用於Oruxmaps的標題
- var Style='<Style id="10002"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂單車站2圖標
- var styleUrl='<styleUrl>#10002</styleUrl>'//適用於Oruxmaps的自訂單車站2圖標
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  var url=
 ['https://call-oa.onrender.com/2']
@@ -100,28 +70,46 @@ function makeOSM2(n,str2)
    var pointDes=obj[i].StationAddress.Zh_tw
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
-'<Placemark>'+
-styleUrl+
-'<name>'+pointName+'</name>'+
-'<description>'+pointDes+'</description>'+
-'<Point><coordinates>'+obj[i].StationPosition.PositionLon+','+obj[i].StationPosition.PositionLat+'</coordinates></Point>'+
-'</Placemark>'
+"<node id='"+(-i-1)+"' lat='"+obj[i].StationPosition.PositionLat+"' lon='"+obj[i].StationPosition.PositionLon+"'>"+
+"<tag k='YouBike2' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
   }
   n++
   if(n<url.length){makeOSM2(n,str2)}
   else
   {
-   var data=str1+title+Style+str2+str3
+   var data=str1+str2+str3
    var blob=new Blob([data])
    var a=document.createElement('a')
-   var name=title.replace(/<name>|<\/name>/g,'')
-   a.innerHTML=name+'.kml'
+   a.innerHTML="單車站2.osm"
    a.href=URL.createObjectURL(blob)
-   a.download=name+'.kml'
+   a.download="單車站2.osm"
    document.body.appendChild(a);document.body.innerHTML+='<br>'
   }
  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function makeOSM3(n,str2)
 {
