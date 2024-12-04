@@ -47,7 +47,7 @@ function makeGPX1(n,str2)
    var pointDes=obj[i].StationAddress.Zh_tw
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
-'<wpt lat="'+(obj[i].StationPosition.PositionLat-.0001)+'" lon="'+obj[i].StationPosition.PositionLon+'">'+//所有YouBike 1.0站點位置往南移，避免和2.0重疊顯示 2021/7/19加入
+'<wpt lat="'+(obj[i].StationPosition.PositionLat)+'" lon="'+obj[i].StationPosition.PositionLon+'">'+
 '<name>'+pointName+'</name>'+
 '<cmt>'+pointDes+'</cmt>'+
 '<sym>Number 1, Red</sym>'+

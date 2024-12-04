@@ -64,7 +64,7 @@ function makeKML1(n,str2)
 styleUrl+
 '<name>'+pointName+'</name>'+
 '<description>'+pointDes+'</description>'+
-'<Point><coordinates>'+obj[i].StationPosition.PositionLon+','+(obj[i].StationPosition.PositionLat-.0001)+'</coordinates></Point>'+//所有YouBike 1.0站點位置往南移，避免和2.0重疊顯示 2021/7/19加入
+'<Point><coordinates>'+obj[i].StationPosition.PositionLon+','+(obj[i].StationPosition.PositionLat)+'</coordinates></Point>'+
 '</Placemark>'
   }
   n++

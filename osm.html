@@ -3,47 +3,26 @@
 <title>osm下載</title>
 <div></div>
 <script>
-var str1='<?xml version="1.0" encoding="utf-8"?><kml><Document>'
-var str3='</Document></kml>'
-makeKML1(0,'')//單車站1圖標
-makeKML2(0,'')//單車站2圖標
-//makeKML3(0,'')//單車站3圖標
-makeKML4(0,'')//捷運站圖標
-makeKML5(0,'')//火車站圖標
-makeKML6()//公車站(分縣市)
-makeKML7(0,'')//高鐵站圖標
-//kml格式(精簡調適於各程式)(未加入kml名稱(夫妻檔)、未加入Style圖標格式)
-//<?xml version="1.0" encoding="utf-8"?>
-//<kml>
-//<Document>
+var str1="<osm version='0.6'>"
+var str3="</osm>"
+makeOSM1(0,'')//單車站1圖標
+// makeOSM2(0,'')//單車站2圖標
+//makeOSM3(0,'')//單車站3圖標
+// makeOSM4(0,'')//捷運站圖標
+// makeOSM5(0,'')//火車站圖標
+// makeOSM6()//公車站(分縣市)
+// makeOSM7(0,'')//高鐵站圖標
 
-//<!--<name>夫妻檔</name>-->
-//<!--<Style id="55"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/w_bici.png</href></Icon></IconStyle></Style>'--><!--適用於Oruxmaps的單車站圖標-->
+//osm格式
+//<osm version='0.6'>
+//<node id='-1' lat='24.1731449368' lon='120.52156444073'>
+//<tag k='YouBike2' v='烏溪站'/>
+//</node>
+//</osm>
 
-//<Placemark>
-//<!--<styleUrl>#55</styleUrl>--><!--適用於Oruxmaps的單車站圖標-->
-//<name>何宏閔</name>
-//<description>去跑步</description>
-//<Point>
-//<coordinates>120.79,24.32</coordinates>
-//</Point>
-//</Placemark>
-
-//<Placemark>
-//<!--<styleUrl>#55</styleUrl>--><!--適用於Oruxmaps的單車站圖標-->
-//<name>姚惠文</name>
-//<description>來睡覺</description>
-//<Point>
-//<coordinates>120.76,24.33</coordinates>
-//</Point>
-//</Placemark>
-
-//</Document>
-//</kml>
-
-function makeKML1(n,str2)
+function makeOSM1(n,str2)
 {
- var title='<name>單車站1</name>'//適用於Oruxmaps的標題
+ var title='<name>單車站1</name>'
  var Style='<Style id="10001"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂單車站1圖標
  var styleUrl='<styleUrl>#10001</styleUrl>'//適用於Oruxmaps的自訂單車站1圖標
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
@@ -54,21 +33,22 @@ function makeKML1(n,str2)
  xhr.onload=function()
  {
   var obj=xhr.response
-  for(var i=0,L=obj.length;i<L;i++)
+  for(let i=0,L=obj.length;i<L;i++)
   {
    var pointName=obj[i].StationName.Zh_tw
    var pointDes=obj[i].StationAddress.Zh_tw
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
-'<Placemark>'+
+"<node id='"+(-i-1)+"' lat='"
+
 styleUrl+
 '<name>'+pointName+'</name>'+
 '<description>'+pointDes+'</description>'+
-'<Point><coordinates>'+obj[i].StationPosition.PositionLon+','+(obj[i].StationPosition.PositionLat-.0001)+'</coordinates></Point>'+//所有YouBike 1.0站點位置往南移，避免和2.0重疊顯示 2021/7/19加入
+'<Point><coordinates>'+obj[i].StationPosition.PositionLon+','+(obj[i].StationPosition.PositionLat)+'</coordinates></Point>'+
 '</Placemark>'
   }
   n++
-  if(n<url.length){makeKML1(n,str2)}
+  if(n<url.length){makeOSM1(n,str2)}
   else
   {
    var data=str1+title+Style+str2+str3
@@ -83,7 +63,34 @@ styleUrl+
  }
 }
 
-function makeKML2(n,str2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function makeOSM2(n,str2)
 {
  var title='<name>單車站2</name>'//適用於Oruxmaps的標題
  var Style='<Style id="10002"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂單車站2圖標
@@ -110,7 +117,7 @@ styleUrl+
 '</Placemark>'
   }
   n++
-  if(n<url.length){makeKML2(n,str2)}
+  if(n<url.length){makeOSM2(n,str2)}
   else
   {
    var data=str1+title+Style+str2+str3
@@ -125,7 +132,7 @@ styleUrl+
  }
 }
 
-function makeKML3(n,str2)
+function makeOSM3(n,str2)
 {
  var title='<name>單車站3</name>'//適用於Oruxmaps的標題
  var Style='<Style id="10003"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂單車站3圖標
@@ -153,7 +160,7 @@ styleUrl+
 '</Placemark>'
   }
   n++
-  if(n<url.length){makeKML3(n,str2)}
+  if(n<url.length){makeOSM3(n,str2)}
   else
   {
    var data=str1+title+Style+str2+str3
@@ -168,7 +175,7 @@ styleUrl+
  }
 }
 
-function makeKML4(n,str2)
+function makeOSM4(n,str2)
 {
  var title='<name>捷運站</name>'//適用於Oruxmaps的標題
  var Style='<Style id="10004"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂捷運站圖標
@@ -207,7 +214,7 @@ styleUrl+
 '</Placemark>'
   }
   n++
-  if(n<url.length){makeKML4(n,str2)}
+  if(n<url.length){makeOSM4(n,str2)}
   else
   {
    var data=str1+title+Style+str2+str3
@@ -222,7 +229,7 @@ styleUrl+
  }
 }
 
-function makeKML5(n,str2)
+function makeOSM5(n,str2)
 {
  var title='<name>火車站</name>'//適用於Oruxmaps的標題
  var Style='<Style id="10005"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂火車站圖標
@@ -268,7 +275,7 @@ styleUrl+
                              }
   }
   n++
-  if(n<url.length){makeKML5(n,str2)}
+  if(n<url.length){makeOSM5(n,str2)}
   else
   {
    var data=str1+title+Style+str2+str3
@@ -283,32 +290,32 @@ styleUrl+
  }
 }
 
-function makeKML6(){
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Keelung?$format=JSON','基隆市公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei?$format=JSON','台北市公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NewTaipei?$format=JSON','新北市公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taoyuan?$format=JSON','桃園市公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HsinchuCounty?$format=JSON','新竹縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Hsinchu?$format=JSON','新竹市公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/MiaoliCounty?$format=JSON','苗栗縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taichung?$format=JSON','台中市公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChanghuaCounty?$format=JSON','彰化縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NantouCounty?$format=JSON','南投縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YunlinCounty?$format=JSON','雲林縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChiayiCounty?$format=JSON','嘉義縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Chiayi?$format=JSON','嘉義市公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Tainan?$format=JSON','台南市公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Kaohsiung?$format=JSON','高雄市公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PingtungCounty?$format=JSON','屏東縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YilanCounty?$format=JSON','宜蘭縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HualienCounty?$format=JSON','花蓮縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/TaitungCounty?$format=JSON','台東縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/LienchiangCounty?$format=JSON','連江縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/KinmenCounty?$format=JSON','金門縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PenghuCounty?$format=JSON','澎湖縣公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/InterCity?$format=JSON','公路客運公車站','')
- makeKML('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Tourism/Bus/StopOfRoute/TaiwanTrip?$format=JSON','台灣好行公車站','')
-function makeKML(url,name,str2)
+function makeOSM6(){
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Keelung?$format=JSON','基隆市公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei?$format=JSON','台北市公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NewTaipei?$format=JSON','新北市公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taoyuan?$format=JSON','桃園市公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HsinchuCounty?$format=JSON','新竹縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Hsinchu?$format=JSON','新竹市公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/MiaoliCounty?$format=JSON','苗栗縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taichung?$format=JSON','台中市公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChanghuaCounty?$format=JSON','彰化縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NantouCounty?$format=JSON','南投縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YunlinCounty?$format=JSON','雲林縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChiayiCounty?$format=JSON','嘉義縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Chiayi?$format=JSON','嘉義市公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Tainan?$format=JSON','台南市公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Kaohsiung?$format=JSON','高雄市公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PingtungCounty?$format=JSON','屏東縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YilanCounty?$format=JSON','宜蘭縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HualienCounty?$format=JSON','花蓮縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/TaitungCounty?$format=JSON','台東縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/LienchiangCounty?$format=JSON','連江縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/KinmenCounty?$format=JSON','金門縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PenghuCounty?$format=JSON','澎湖縣公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/InterCity?$format=JSON','公路客運公車站','')
+ makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Tourism/Bus/StopOfRoute/TaiwanTrip?$format=JSON','台灣好行公車站','')
+function makeOSM(url,name,str2)
 {
  var title='<name>'+name+'</name>'//適用於Oruxmaps的標題
  if(name=='公路客運公車站')
@@ -361,7 +368,7 @@ styleUrl+
  }
 }
                    }
-function makeKML7(n,str2)
+function makeOSM7(n,str2)
 {
  var title='<name>高鐵站</name>'//適用於Oruxmaps的標題
  var Style='<Style id="10009"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂捷運站圖標
@@ -389,7 +396,7 @@ styleUrl+
 '</Placemark>'
   }
   n++
-  if(n<url.length){makeKML7(n,str2)}
+  if(n<url.length){makeOSM7(n,str2)}
   else
   {
    var data=str1+title+Style+str2+str3
