@@ -39,18 +39,14 @@ function makeOSM1(n,str2)
    var pointDes=obj[i].StationAddress.Zh_tw
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
-"<node id='"+(-i-1)+"' lat='"
-
-styleUrl+
-'<name>'+pointName+'</name>'+
-'<description>'+pointDes+'</description>'+
-'<Point><coordinates>'+obj[i].StationPosition.PositionLon+','+(obj[i].StationPosition.PositionLat)+'</coordinates></Point>'+
-'</Placemark>'
+"<node id='"+(-i-1)+"' lat='"+obj[i].StationPosition.PositionLat+"' lon='"+obj[i].StationPosition.PositionLon+"'>"+
+"<tag k='YouBike1' v='"+pointName+"'/></node>"
   }
   n++
   if(n<url.length){makeOSM1(n,str2)}
   else
-  {
+  {console.log(str1+str2+str3)
+   /*
    var data=str1+title+Style+str2+str3
    var blob=new Blob([data])
    var a=document.createElement('a')
@@ -59,6 +55,7 @@ styleUrl+
    a.href=URL.createObjectURL(blob)
    a.download=name+'.kml'
    document.body.appendChild(a);document.body.innerHTML+='<br>'
+   */
   }
  }
 }
