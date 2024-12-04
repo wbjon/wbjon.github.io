@@ -45,17 +45,17 @@ function makeOSM1(n,str2)
   n++
   if(n<url.length){makeOSM1(n,str2)}
   else
-  {console.log(str1+str2+str3)
-   /*
-   var data=str1+title+Style+str2+str3
-   var blob=new Blob([data])
-   var a=document.createElement('a')
-   var name=title.replace(/<name>|<\/name>/g,'')
-   a.innerHTML=name+'.kml'
-   a.href=URL.createObjectURL(blob)
-   a.download=name+'.kml'
-   document.body.appendChild(a);document.body.innerHTML+='<br>'
-   */
+  {
+   var data=str1+str2+str3
+   console.log(data)
+   // var blob=new Blob([data])
+   // var a=document.createElement('a')
+   // var name=title.replace(/<name>|<\/name>/g,'')
+   // a.innerHTML=name+'.kml'
+   // a.href=URL.createObjectURL(blob)
+   // a.download=name+'.kml'
+   // document.body.appendChild(a);document.body.innerHTML+='<br>'
+
   }
  }
 }
