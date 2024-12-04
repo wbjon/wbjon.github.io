@@ -22,9 +22,6 @@ makeOSM1(0,'')//單車站1圖標
 
 function makeOSM1(n,str2)
 {
- var title='<name>單車站1</name>'
- var Style='<Style id="10001"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂單車站1圖標
- var styleUrl='<styleUrl>#10001</styleUrl>'//適用於Oruxmaps的自訂單車站1圖標
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  var url=
 ['https://call-oa.onrender.com/1']
@@ -48,14 +45,12 @@ function makeOSM1(n,str2)
   {
    var data=str1+str2+str3
    console.log(data)
-   //var blob=new Blob([data])
-   // var a=document.createElement('a')
-   // var name=title.replace(/<name>|<\/name>/g,'')
-   // a.innerHTML=name+'.kml'
-   // a.href=URL.createObjectURL(blob)
-   // a.download=name+'.kml'
-   // document.body.appendChild(a);document.body.innerHTML+='<br>'
-
+   var blob=new Blob([data])
+   var a=document.createElement('a')
+   a.innerHTML="單車站1.osm"
+   a.href=URL.createObjectURL(blob)
+   a.download="單車站1.osm"
+   document.body.appendChild(a);document.body.innerHTML+='<br>'
   }
  }
 }
