@@ -33,7 +33,7 @@ function makeOSM1(n,str2)
  xhr.onload=function()
  {
   var obj=xhr.response
-  for(let i=0,L=obj.length;i<L;i++)
+  for(let i=0,L=obj.length;i<3;i++)
   {
    var pointName=obj[i].StationName.Zh_tw
    var pointDes=obj[i].StationAddress.Zh_tw
