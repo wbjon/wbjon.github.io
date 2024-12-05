@@ -16,7 +16,7 @@ makeOSM2(0,'')//單車站2圖標
 //osm格式
 //<osm version='0.6'>
 //<node id='-1' lat='24.1731449368' lon='120.52156444073'>
-//<tag k='YouBike2' v='烏溪站'/>
+//<tag k='單車站2' v='烏溪站'/>
 //</node>
 //</osm>
 
@@ -37,7 +37,7 @@ function makeOSM1(n,str2)
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
 "<node id='"+(-i-1)+"' lat='"+obj[i].StationPosition.PositionLat+"' lon='"+obj[i].StationPosition.PositionLon+"'>"+
-"<tag k='YouBike1' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
+"<tag k='單車站1' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
   }
   n++
   if(n<url.length){makeOSM1(n,str2)}
@@ -71,7 +71,7 @@ function makeOSM2(n,str2)
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
 "<node id='"+(-i-1)+"' lat='"+obj[i].StationPosition.PositionLat+"' lon='"+obj[i].StationPosition.PositionLon+"'>"+
-"<tag k='YouBike2' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
+"<tag k='單車站2' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
   }
   n++
   if(n<url.length){makeOSM2(n,str2)}
