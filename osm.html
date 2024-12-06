@@ -133,9 +133,6 @@ styleUrl+
 
 function makeOSM4(n,str2)
 {
- var title='<name>捷運站</name>'//適用於Oruxmaps的標題
- var Style='<Style id="10004"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂捷運站圖標
- var styleUrl='<styleUrl>#10004</styleUrl>'//適用於Oruxmaps的自訂捷運站圖標
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  var url=
 ['https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTALRT?$format=JSON',//安坑輕軌站
@@ -162,24 +159,19 @@ function makeOSM4(n,str2)
    if(url[n].match(/TYMC/)){pointName=obj[i].StationName.Zh_tw+pointName}//TYMC:桃捷
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
-'<Placemark>'+
-styleUrl+
-'<name>'+pointName+'</name>'+
-'<description>'+pointDes+'</description>'+
-'<Point><coordinates>'+Lon+','+Lat+'</coordinates></Point>'+
-'</Placemark>'
+"<node id='"+(-i-1)+"' lat='"+Lat+"' lon='"+Lon+"'>"+
+"<tag k='metro' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
   }
   n++
   if(n<url.length){makeOSM4(n,str2)}
   else
   {
-   var data=str1+title+Style+str2+str3
+   var data=str1+str2+str3
    var blob=new Blob([data])
    var a=document.createElement('a')
-   var name=title.replace(/<name>|<\/name>/g,'')
-   a.innerHTML=name+'.kml'
+   a.innerHTML="捷運站.osm"
    a.href=URL.createObjectURL(blob)
-   a.download=name+'.kml'
+   a.download="捷運站.osm"
    document.body.appendChild(a);document.body.innerHTML+='<br>'
   }
  }
