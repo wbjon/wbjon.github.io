@@ -7,8 +7,8 @@ var str1="<osm version='0.6'>"
 var str3="</osm>"
 makeOSM1(0,'')//單車站1圖標
 makeOSM2(0,'')//單車站2圖標
-//makeOSM3(0,'')//單車站3圖標
-// makeOSM4(0,'')//捷運站圖標
+//makeKML3(0,'')//單車站3圖標
+makeOSM4(0,'')//捷運站圖標
 // makeOSM5(0,'')//火車站圖標
 // makeOSM6()//公車站(分縣市)
 // makeOSM7(0,'')//高鐵站圖標
@@ -16,7 +16,7 @@ makeOSM2(0,'')//單車站2圖標
 //osm格式
 //<osm version='0.6'>
 //<node id='-1' lat='24.1731449368' lon='120.52156444073'>
-//<tag k='單車站2' v='烏溪站'/>
+//<tag k='YouBike2' v='烏溪站'/>
 //</node>
 //</osm>
 
@@ -88,30 +88,7 @@ function makeOSM2(n,str2)
  }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function makeOSM3(n,str2)
+function makeKML3(n,str2)
 {
  var title='<name>單車站3</name>'//適用於Oruxmaps的標題
  var Style='<Style id="10003"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂單車站3圖標
@@ -139,7 +116,7 @@ styleUrl+
 '</Placemark>'
   }
   n++
-  if(n<url.length){makeOSM3(n,str2)}
+  if(n<url.length){makeKML3(n,str2)}
   else
   {
    var data=str1+title+Style+str2+str3
