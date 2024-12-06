@@ -8,7 +8,7 @@ var str3="</osm>"
 makeOSM1(0,'')//單車站1圖標
 makeOSM2(0,'')//單車站2圖標
 //makeKML3(0,'')//單車站3圖標
-makeOSM4(0,'')//捷運站圖標
+makeOSM4(0,'',-1)//捷運站圖標
 // makeOSM5(0,'')//火車站圖標
 // makeOSM6()//公車站(分縣市)
 // makeOSM7(0,'')//高鐵站圖標
@@ -131,7 +131,7 @@ styleUrl+
  }
 }
 
-function makeOSM4(n,str2)
+function makeOSM4(n,str2,id)
 {
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  var url=
@@ -159,11 +159,11 @@ function makeOSM4(n,str2)
    if(url[n].match(/TYMC/)){pointName=obj[i].StationName.Zh_tw+pointName}//TYMC:桃捷
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
-"<node id='"+(-i-1)+"' lat='"+Lat+"' lon='"+Lon+"'>"+
+"<node id='"+(id--)+"' lat='"+Lat+"' lon='"+Lon+"'>"+
 "<tag k='metro' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
   }
   n++
-  if(n<url.length){makeOSM4(n,str2)}
+  if(n<url.length){makeOSM4(n,str2,id)}
   else
   {
    var data=str1+str2+str3
