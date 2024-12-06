@@ -9,7 +9,7 @@ makeOSM1(0,'')//單車站1圖標
 makeOSM2(0,'')//單車站2圖標
 //makeKML3(0,'')//單車站3圖標
 makeOSM4(0,'',-1)//捷運站圖標
-// makeOSM5(0,'')//火車站圖標
+makeOSM5(0,'',-1)//火車站圖標
 // makeOSM6()//公車站(分縣市)
 // makeOSM7(0,'')//高鐵站圖標
 
@@ -177,11 +177,8 @@ function makeOSM4(n,str2,id)
  }
 }
 
-function makeOSM5(n,str2)
+function makeOSM5(n,str2,id)
 {
- var title='<name>火車站</name>'//適用於Oruxmaps的標題
- var Style='<Style id="10005"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂火車站圖標
- var styleUrl='<styleUrl>#10005</styleUrl>'//適用於Oruxmaps的自訂火車站圖標
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  var url=
 ['https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/StationExit?$format=JSON',
@@ -202,37 +199,29 @@ function makeOSM5(n,str2)
    var pointDes=obj[i].StationAddress
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
-'<Placemark>'+
-styleUrl+
-'<name>'+pointName+'</name>'+
-'<description>'+pointDes+'</description>'+
-'<Point><coordinates>'+obj[i].StationPosition.PositionLon+','+obj[i].StationPosition.PositionLat+'</coordinates></Point>'+
-'</Placemark>'
+"<node id='"+(id--)+"' lat='"+obj[i].StationPosition.PositionLat+"' lon='"+obj[i].StationPosition.PositionLon+"'>"+
+"<tag k='rail' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
    continue}
    for(var j in obj[i].Exits){
    var pointName=obj[i].StationName.Zh_tw+obj[i].Exits[j].ExitName.Zh_tw
    var pointDes=obj[i].Exits[j].LocationDescription
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
-'<Placemark>'+
-styleUrl+
-'<name>'+pointName+'</name>'+
-'<description>'+pointDes+'</description>'+
-'<Point><coordinates>'+obj[i].Exits[j].ExitPosition.PositionLon+','+obj[i].Exits[j].ExitPosition.PositionLat+'</coordinates></Point>'+
-'</Placemark>'
+"<node id='"+(id--)+"' lat='"+obj[i].Exits[j].ExitPosition.PositionLat+"' lon='"+obj[i].Exits[j].ExitPosition.PositionLon+"'>"+
+"<tag k='rail' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
                              }
   }
   n++
   if(n<url.length){makeOSM5(n,str2)}
   else
   {
-   var data=str1+title+Style+str2+str3
+   var data=str1+str2+str3
    var blob=new Blob([data])
    var a=document.createElement('a')
    var name=title.replace(/<name>|<\/name>/g,'')
-   a.innerHTML=name+'.kml'
+   a.innerHTML='火車站.osm'
    a.href=URL.createObjectURL(blob)
-   a.download=name+'.kml'
+   a.download='火車站.osm'
    document.body.appendChild(a);document.body.innerHTML+='<br>'
   }
  }
