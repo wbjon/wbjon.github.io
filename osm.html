@@ -218,7 +218,6 @@ function makeOSM5(n,str2,id)
    var data=str1+str2+str3
    var blob=new Blob([data])
    var a=document.createElement('a')
-   var name=title.replace(/<name>|<\/name>/g,'')
    a.innerHTML='火車站.osm'
    a.href=URL.createObjectURL(blob)
    a.download='火車站.osm'
