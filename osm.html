@@ -203,7 +203,7 @@ function makeOSM5(n,str2,id)
 "<tag k='rail' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
    continue}
    for(var j in obj[i].Exits){
-   var pointName=obj[i].StationName.Zh_tw+obj[i].Exits[j].ExitName.Zh_tw
+   var pointName=obj[i].StationName.Zh_tw+obj[i].Exits[j].ExitName.Zh_tw;if(j>0)console.log(j,pointName)
    var pointDes=obj[i].Exits[j].LocationDescription
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
