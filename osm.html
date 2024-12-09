@@ -317,7 +317,7 @@ function makeOSM7(n,str2)
   var obj=xhr.response
   for(var i=0,L=obj.length;i<L;i++)
   {
-   var pointName=obj[i].ExitName.Zh_tw
+   var pointName=obj[i].StationName.Zh_tw+obj[i].ExitName.Zh_tw
    var pointDes=obj[i].LocationDescription
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
