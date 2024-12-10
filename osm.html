@@ -10,7 +10,7 @@ makeOSM2(0,'')//單車站2圖標
 //makeKML3(0,'')//單車站3圖標
 makeOSM4(0,'',-1)//捷運站圖標
 makeOSM5(0,'',-1)//火車站圖標
-// makeOSM6()//公車站(分縣市)
+makeOSM6()//公車站(分縣市)
 makeOSM7(0,'')//高鐵站圖標
 
 //osm格式
@@ -253,21 +253,10 @@ function makeOSM6(){
  makeOSM('https://call-oa.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Tourism/Bus/StopOfRoute/TaiwanTrip?$format=JSON','台灣好行公車站','')
 function makeOSM(url,name,str2)
 {
- var title='<name>'+name+'</name>'//適用於Oruxmaps的標題
- if(name=='公路客運公車站')
- {
-  var Style='<Style id="10006"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂公車站圖標
-  var styleUrl='<styleUrl>#10006</styleUrl>'//適用於Oruxmaps的自訂公車站圖標
- }
- else if(name=='台灣好行公車站')
- {
-  var Style='<Style id="10007"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂公車站圖標
-  var styleUrl='<styleUrl>#10007</styleUrl>'//適用於Oruxmaps的自訂公車站圖標
- }
- else{
- var Style='<Style id="10008"><IconStyle><Icon><href>https://www.oruxmaps.com/iconos/wpts_pin1.png</href></Icon></IconStyle></Style>'//適用於Oruxmaps的自訂公車站圖標
- var styleUrl='<styleUrl>#10008</styleUrl>'//適用於Oruxmaps的自訂公車站圖標
-     }
+ var key,id=-1
+ if(name=='公路客運公車站')key='intercity'
+ else if(name=='台灣好行公車站')key='taiwantrip'
+ else key='city'
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  xhr.open('GET',url,true)//預設就是true(異步)
  //xhr.setRequestHeader('authorization','Bearer '+token)
@@ -279,31 +268,28 @@ function makeOSM(url,name,str2)
   {//台灣好行的obj會有TaiwanTripName
    if(name=='公路客運公車站'){pointName=obj[i].SubRouteName.Zh_tw.replace(/0$/,'')}//SubRouteName.Zh_tw尾端1字元若是0去除
    else{
-   pointName=obj[i].TaiwanTripName?obj[i].TaiwanTripName.Zh_tw+','+obj[i].SubRouteName.Zh_tw.replace(/0$/,''):obj[i].RouteName.Zh_tw//SubRouteName.Zh_tw尾端1字元若是0去除
-       }
+    pointName=obj[i].TaiwanTripName?obj[i].TaiwanTripName.Zh_tw+','+obj[i].SubRouteName.Zh_tw.replace(/0$/,''):obj[i].RouteName.Zh_tw//SubRouteName.Zh_tw尾端1字元若是0去除
+   }
    //pointName=obj[i].RouteName.Zh_tw
    //if(pointName!=obj[i].SubRouteName.Zh_tw){console.log(pointName+','+obj[i].SubRouteName.Zh_tw+','+name)}
    for(var j in obj[i].Stops){
    pointDes=obj[i].Stops[j].StopName.Zh_tw+'('+name.replace('公車站','')+')'
    str2+=
-'<Placemark>'+
-styleUrl+
-'<name>'+pointName+'</name>'+
-'<description>'+pointDes+'</description>'+
-'<Point><coordinates>'+obj[i].Stops[j].StopPosition.PositionLon+','+obj[i].Stops[j].StopPosition.PositionLat+'</coordinates></Point>'+
-'</Placemark>'
+"<node id='"+(id--)+"' lat='"+obj[i].Stops[j].StopPosition.PositionLat+"' lon='"+obj[i].Stops[j].StopPosition.PositionLon+"'>"+
+"<tag k='"+key+"' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
                              }
   }
-   var data=str1+title+Style+str2+str3
-   var blob=new Blob([data])
-   var a=document.createElement('a')
-   a.innerHTML=name+'.kml'
-   a.href=URL.createObjectURL(blob)
-   a.download=name+'.kml'
-   document.getElementsByTagName('div')[0].appendChild(a).innerHTML+='<br>'
+  var data=str1+str2+str3
+  var blob=new Blob([data])
+  var a=document.createElement('a')
+  a.innerHTML=name+'.osm'
+  a.href=URL.createObjectURL(blob)
+  a.download=name+'.osm'
+  document.getElementsByTagName('div')[0].appendChild(a).innerHTML+='<br>'
  }
 }
                    }
+
 function makeOSM7(n,str2)
 {
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
