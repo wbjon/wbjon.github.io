@@ -342,12 +342,14 @@ function makeKML(url,name,str2)
    //if(pointName!=obj[i].SubRouteName.Zh_tw){console.log(pointName+','+obj[i].SubRouteName.Zh_tw+','+name)}
    for(var j in obj[i].Stops){
    pointDes=obj[i].Stops[j].StopName.Zh_tw+'('+name.replace('公車站','')+')'
+   pointLat=Number(obj[i].Stops[j].StopPosition.PositionLat)+(Math.random()*2-1)*0.0001
+   pointLon=Number(obj[i].Stops[j].StopPosition.PositionLon)+(Math.random()*2-1)*0.0001
    str2+=
 '<Placemark>'+
 styleUrl+
 '<name>'+pointName+'</name>'+
 '<description>'+pointDes+'</description>'+
-'<Point><coordinates>'+obj[i].Stops[j].StopPosition.PositionLon+','+obj[i].Stops[j].StopPosition.PositionLat+'</coordinates></Point>'+
+'<Point><coordinates>'+pointLon+','+pointLat+'</coordinates></Point>'+
 '</Placemark>'
                              }
   }
