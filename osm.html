@@ -274,8 +274,10 @@ function makeOSM(url,name,str2)
    //if(pointName!=obj[i].SubRouteName.Zh_tw){console.log(pointName+','+obj[i].SubRouteName.Zh_tw+','+name)}
    for(var j in obj[i].Stops){
    pointDes=obj[i].Stops[j].StopName.Zh_tw+'('+name.replace('公車站','')+')'
+   pointLat=Number(obj[i].Stops[j].StopPosition.PositionLat)+(Math.random()*2-1)*0.0001
+   pointLon=Number(obj[i].Stops[j].StopPosition.PositionLon)+(Math.random()*2-1)*0.0001
    str2+=
-"<node id='"+(id--)+"' lat='"+obj[i].Stops[j].StopPosition.PositionLat+"' lon='"+obj[i].Stops[j].StopPosition.PositionLon+"'>"+
+"<node id='"+(id--)+"' lat='"+pointLat+"' lon='"+pointLon+"'>"+
 "<tag k='"+key+"' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
                              }
   }
