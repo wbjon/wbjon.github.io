@@ -35,6 +35,7 @@ function post(arr){
  const r=https.request('https://emap.pcsc.com.tw/EMapSDK.aspx',
          {method:'POST',headers:{/*'Content-Length':formData.length,*/'Content-Type':'application/x-www-form-urlencoded'}},//該伺服器可不需Content-Length請求頭，Buffer.byteLength(formData)較formData.length保險，因utf-8或中文字的關係
          function(response){num++
+          if(response.statusCode!=200)console.log('statusCode:',response.statusCode,formData)
           var chunks=[]
           response.on('data',chunk=>{chunks.push(chunk)})
           response.on('end',()=>{
