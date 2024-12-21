@@ -70,10 +70,11 @@ function push(arr){
   res.on('data',chunk=>chunks.push(chunk))
   res.on('end',()=>{
    try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取sha錯誤',e);return};if(!sha){console.log('無sha');return}
-   let str="<osm version='0.6'>"
-   arr.forEach((item,index)=>{index=-index-1
+   let str="<osm version='0.6'>",id=-1
+   arr.forEach((item,index)=>{
+    if(JSON.stringify(item)==JSON.stringify(arr[index-1]))return//加入重複點位的判斷
     str+=
-`<node id='${index}' lat='${item.Y}' lon='${item.X}'><tag k='Eleven-7' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
+`<node id='${id--}' lat='${item.Y}' lon='${item.X}'><tag k='Eleven-7' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
    })
    updateFile(str+"</osm>",sha)
   })
