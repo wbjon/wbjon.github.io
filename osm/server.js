@@ -56,7 +56,7 @@ function post(arr){
            }
            threads--
            if(!now){arr.shift();post(arr)}//arr.shift()去除陣列的第一個元素
-           if(!arr.length&&!threads){console.log(`7-Eleven共${result.length}家`);push(result)}
+           if(!arr.length&&!threads)push(result)
           })
          }).on('error',e=>console.log('POST請求7-Eleven失敗',e))
  r.write(formData)
@@ -70,18 +70,18 @@ function push(arr){
   res.on('data',chunk=>chunks.push(chunk))
   res.on('end',()=>{
    try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取sha錯誤',e);return};if(!sha){console.log('無sha');return}
-   let str="<osm version='0.6'>",id=-1
+   let str="<osm version='0.6'>",num=-1
    arr.forEach((item,index)=>{
     if(JSON.stringify(item)==JSON.stringify(arr[index-1]))return//加入重複點位的判斷
     str+=
-`<node id='${id--}' lat='${item.Y}' lon='${item.X}'><tag k='Eleven-7' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
+`<node id='${num--}' lat='${item.Y}' lon='${item.X}'><tag k='Eleven-7' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
    })
-   updateFile(str+"</osm>",sha)
+   console.log(`7-Eleven共${-num-1}家`);updateFile(str+"</osm>",sha)
   })
  }).on('error',e=>console.log('GET請求github_sha失敗',e))
 
  function updateFile(data,sha){
-  const requestData=JSON.stringify({message:'7-Eleven_'+`共${result.length}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(data).toString('base64'),sha:sha})
+  const requestData=JSON.stringify({message:'7-Eleven_'+`共${-num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(data).toString('base64'),sha:sha})
   const req=https.request(apiUrl,{method:'PUT',headers:{'User-Agent':'node.js',Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}}//Content-Type、Content-Length忽略無妨
                                 ,res=>console.log('github已更新，PUT請求碼:'+res.statusCode)
   ).on('error',e=>console.log('PUT請求github更新失敗',e))
