@@ -1,13 +1,12 @@
+//網址：https://hubpush.glitch.me/?token=金鑰
 var token,message="startTime:"+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'})
 const http=require('http'),https=require('https'),fs=require('fs')
 http.createServer((req,res)=>{
  if(req.url=="/"){res.writeHead(200,{'content-type':'text/plain;charset=utf-8','access-control-allow-origin':'*'});res.end(message);return}
- if(req.url=="/favicon.ico"){/*console.log('/favicon.ico_'+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}));*/res.end();return}
+ if(req.url=="/favicon.ico"){res.end();return}
  const tmp=req.url.match(/^\/\?token=(.+)/)
- if(tmp){token=tmp[1];res.end(token);return}
+ if(tmp){token=tmp[1];res.end(token);range(fs.readFileSync('All15.xy','utf-8').split('\n'));return}
  res.end('others')
- //range(fs.readFileSync('All15.xy','utf-8').split('\n'))
-
 }).listen(8080)
 
 function range(arr){//共30526個
@@ -51,7 +50,7 @@ function post(arr){
              })
              matches[index]=obj
             })
-          //console.log(`請求第${num}個圖磚`,matches)
+            console.log(`請求第${num}個圖磚`,matches)
             result.push(...matches)//使用擴展運算子展開matches並新增到result
            }
            threads--
