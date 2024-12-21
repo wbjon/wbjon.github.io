@@ -23,7 +23,7 @@ function range(arr){//共30526個
   arr[index]=str
  })
  console.log('全部圖磚'+arr.length+'個')
- post(arr)
+ post(arr.splice(0,200))
 }
 
 var num=0,result=[],threads=0
@@ -70,7 +70,7 @@ function push(arr){
   res.on('data',chunk=>chunks.push(chunk))
   res.on('end',()=>{
    try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取sha錯誤',e);return};if(!sha){console.log('無sha');return}
-   let str="<osm version='0.6'>",num=-1
+   let str="<osm version='0.6'>";num=-1
    arr.forEach((item,index)=>{
     if(JSON.stringify(item)==JSON.stringify(arr[index-1]))return//加入重複點位的判斷
     str+=
