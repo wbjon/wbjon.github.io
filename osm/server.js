@@ -23,7 +23,7 @@ function range(arr){//共30526個
   arr[index]=str
  })
  console.log('全部圖磚'+arr.length+'個')
- post(arr.splice(0,200))
+ post(arr)
 }
 
 var num=0,result=[],threads=0
