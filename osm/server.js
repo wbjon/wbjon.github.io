@@ -37,7 +37,7 @@ function post(arr){
          function(response){num++
           if(response.statusCode!=200)console.log('statusCode:',response.statusCode,formData)
           var chunks=[]
-          response.on('data',chunk=>{chunks.push(chunk)})
+          response.on('data',chunk=>chunks.push(chunk))
           response.on('end',()=>{
            const matches=Buffer.concat(chunks).toString('utf8').match(/<GeoPosition>[\s\S]*?<\/GeoPosition>/g)//?非貪婪，matches為null或1個以上陣列
            //\s匹配所有屬於空白類的字符、\S匹配所有屬於非空白類的字符，因此[\s\S]可以處理跨行的內容，較為保險
