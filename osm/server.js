@@ -1,11 +1,12 @@
 //網址：https://hubpush.glitch.me/?token=金鑰
 var token,message="startTime:"+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'})
+var num=0,result=[],threads=0
 const http=require('http'),https=require('https'),fs=require('fs')
 http.createServer((req,res)=>{
  if(req.url=="/"){res.writeHead(200,{'content-type':'text/plain;charset=utf-8','access-control-allow-origin':'*'});res.end(message);return}
  if(req.url=="/favicon.ico"){res.end();return}
  const tmp=req.url.match(/^\/\?token=(.+)/)
- if(tmp){token=tmp[1];res.end(token);range(fs.readFileSync('All15.xy','utf-8').split('\n'));return}
+ if(tmp&&num==0){token=tmp[1];res.end(token);range(fs.readFileSync('All15.xy','utf-8').split('\n'));return}
  res.end('others')
 }).listen(8080)
 
@@ -23,10 +24,9 @@ function range(arr){//共30526個
   arr[index]=str
  })
  console.log('全部圖磚'+arr.length+'個')
- post(arr)
+ result.length=0;post(arr)
 }
 
-var num=0,result=[],threads=0
 function post(arr){
  if(!arr.length)return
  threads++
@@ -83,7 +83,7 @@ function push(arr){
  function updateFile(data,sha){
   const requestData=JSON.stringify({message:'7-Eleven_'+`共${-num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(data).toString('base64'),sha:sha})
   const req=https.request(apiUrl,{method:'PUT',headers:{'User-Agent':'node.js',Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}}//Content-Type、Content-Length忽略無妨
-                                ,res=>console.log('github已更新，PUT請求碼:'+res.statusCode)
+                                ,res=>{console.log('github已更新，PUT請求碼:'+res.statusCode);num=0}
   ).on('error',e=>console.log('PUT請求github更新失敗',e))
   req.write(requestData)
   req.end()
