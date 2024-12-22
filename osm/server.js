@@ -1,4 +1,4 @@
-//網址：https://hubpush.glitch.me/?token=金鑰
+//網址：https://push-hub.onrender.com/?token=金鑰
 var token,message="startTime:"+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'})
 var num=0,result=[],threads=0
 const http=require('http'),https=require('https'),fs=require('fs')
