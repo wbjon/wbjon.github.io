@@ -72,7 +72,8 @@ function push(arr){
    try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取sha錯誤',e);return};if(!sha){console.log('無sha');return}
    let str="<osm version='0.6'>";num=-1
    arr.forEach((item,index)=>{
-    if(arr[index-1]&&item.POIName==arr[index-1].POIName)return//加入重複點位的判斷
+    if(arr.slice(0,index).find(prevItem=>prevItem.POIName==item.POIName))return//加入重複點位的判斷
+  //if(arr[index-1]&&item.POIName==arr[index-1].POIName)return
     str+=
 `<node id='${num--}' lat='${item.Y}' lon='${item.X}'><tag k='Eleven-7' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
    })
