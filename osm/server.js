@@ -75,7 +75,7 @@ function push(arr){
     if(arr.slice(0,index).find(prevItem=>prevItem.POIName==item.POIName)){console.log(item.POIName,'重複');return}//加入重複點位的判斷
   //if(arr[index-1]&&item.POIName==arr[index-1].POIName)return
     str+=
-`<node id='${num--}' lat='${item.Y}' lon='${item.X}'><tag k='Eleven-7' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
+`<node id='${num--}' lat='${item.Y}' lon='${item.X}'><tag k='seven-11' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
    })
    console.log(`7-Eleven共${-num-1}家`);updateFile(str+"</osm>",sha)
   })
