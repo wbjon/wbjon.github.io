@@ -94,7 +94,7 @@ function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
  function get(arr){
   if(!arr.length)return
   threads++
-  var now=false;if(threads<10){now=true;arr.shift();get(arr)}
+  var now=false;if(threads<1){now=true;arr.shift();get(arr)}
   https.get('https://api.map.com.tw/net/familyShop.aspx?l=9&searchType=ShowStore&type=&'+
             `vLeft=${arr[0].Left}&vRight=${arr[0].Right}&vTop=${arr[0].Top}&vBottom=${arr[0].Bottom}&fun=addSmallShop&key=6F30E8BF706D653965BDE302661D1241F8BE9EBC`,
             {headers:{referer:'https://www.family.com.tw/'}},
@@ -105,7 +105,7 @@ function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
    response.on('end',()=>{
     const tmp=Buffer.concat(chunks).toString('utf8').match(/addSmallShop\(([\s\S]+)\)/)//不匹配會null，匹配會至少兩個元素陣列
     const matches=tmp&&JSON.parse(tmp[1])
-    if(matches){//matches是null不處理
+    if(matches&&matches.length){//matches是null或[]不處理
      const tags=['NAME','px','py','TEL','addr']
      matches.forEach((item,index)=>{
       const obj={}
