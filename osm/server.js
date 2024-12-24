@@ -5,7 +5,7 @@ http.createServer((req,res)=>{
  if(req.url=="/"){res.writeHead(200,{'content-type':'text/plain;charset=utf-8','access-control-allow-origin':'*'});res.end(message);return}
  if(req.url=="/favicon.ico"){res.end();return}
  const tmp=req.url.match(/^\/\?token=(.+)/)
- if(tmp&&done==0){token=tmp[1];res.end(token);seven11(range);return}
+ if(tmp&&done==0){token=tmp[1];res.end(token);seven11(range);FamilyMart(range);return}
  res.end('others')
 }).listen(8080)
 
@@ -51,19 +51,19 @@ function seven11(Arr){done++;console.log('執行seven11()')
               })
               matches[index]=obj
              })
-             console.log(`請求第${num}個圖磚`,matches)
+           //console.log(`請求第${num}個圖磚`,matches)
              result.push(...matches)//使用擴展運算子展開matches並新增到result
             }
             threads--
             if(!now){arr.shift();post(arr)}//arr.shift()去除陣列的第一個元素
             if(!arr.length&&!threads)push(result)
            })
-          }).on('error',e=>console.log('POST請求7-Eleven失敗',e))
+          }).on('error',e=>console.log('POST請求seven11失敗',e))
   r.write(formData)
   r.end()
  }
  function push(arr){
-  const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/osm/7-Eleven.osm'
+  const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/osm/seven11.osm'
   https.get(apiUrl,{headers:{'User-Agent':'node.js'}},res=>{
    var chunks=[]
    res.on('data',chunk=>chunks.push(chunk))
@@ -74,12 +74,12 @@ function seven11(Arr){done++;console.log('執行seven11()')
      if(arr.slice(0,index).find(prevItem=>prevItem.POIName==item.POIName)){console.log(item.POIName,'重複');return}//加入重複點位的判斷
    //if(arr[index-1]&&item.POIName==arr[index-1].POIName)return
      str+=
-`<node id='${num--}' lat='${item.Y}' lon='${item.X}'><tag k='seven-11' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
+`<node id='${num--}' lat='${item.Y}' lon='${item.X}'><tag k='seven11' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
     })
-    console.log(`7-Eleven共${-num-1}家`)
-    const requestData=JSON.stringify({message:'7-Eleven'+`共${-num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(str+"</osm>").toString('base64'),sha:sha})
+    console.log(`seven11共${-num-1}家`)
+    const requestData=JSON.stringify({message:'seven11'+`共${-num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(str+"</osm>").toString('base64'),sha:sha})
     const req=https.request(apiUrl,{method:'PUT',headers:{'User-Agent':'node.js',Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}}//Content-Type、Content-Length忽略無妨
-                                  ,res=>{console.log('7-Eleven已更新，PUT請求碼:'+res.statusCode);done--}
+                                  ,res=>{console.log('seven11已更新，PUT請求碼:'+res.statusCode);done--}
     ).on('error',e=>console.log('PUT請求github更新失敗',e))
     req.write(requestData)
     req.end()
@@ -87,4 +87,10 @@ function seven11(Arr){done++;console.log('執行seven11()')
   }).on('error',e=>console.log('GET請求github_sha失敗',e))
  }
 }//seven11(Arr)
+
+function FamilyMart(){done++;console.log('執行FamilyMart()')
+ var num=0,threads=0,result=[]
+
+
+}//FamilyMart()
 
