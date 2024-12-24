@@ -5,7 +5,7 @@ http.createServer((req,res)=>{
  if(req.url=="/"){res.writeHead(200,{'content-type':'text/plain;charset=utf-8','access-control-allow-origin':'*'});res.end(message);return}
  if(req.url=="/favicon.ico"){res.end();return}
  const tmp=req.url.match(/^\/\?token=(.+)/)
- if(tmp&&done==0){token=tmp[1];res.end(token);seven11(range);FamilyMart(range);return}
+ if(tmp&&done==0){token=tmp[1];res.end(token);seven11(range);FamilyMart(range.slice(0,100));return}
  res.end('others')
 }).listen(8080)
 
@@ -104,6 +104,7 @@ function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
    response.on('data',chunk=>chunks.push(chunk))
    response.on('end',()=>{
     const tmp=Buffer.concat(chunks).toString('utf8').match(/addSmallShop\(([\s\S]+)\)/)//不匹配會null，匹配會至少兩個元素陣列
+    if(!tmp)console.log(`請求第${num}個圖磚null`,tmp)/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     const matches=tmp&&JSON.parse(tmp[1])
     if(matches&&matches.length){//matches是null或[]不處理
      const tags=['NAME','px','py','TEL','addr']
