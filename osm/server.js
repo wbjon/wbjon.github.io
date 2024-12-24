@@ -51,7 +51,7 @@ function seven11(Arr){done++;console.log('執行seven11()')
               })
               matches[index]=obj
              })
-             //console.log(`請求第${num}個圖磚`,matches)
+             console.log(`請求第${num}個圖磚`,matches)
              result.push(...matches)//使用擴展運算子展開matches並新增到result
             }
             threads--
