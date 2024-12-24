@@ -43,7 +43,7 @@ function seven11(Arr){done++;console.log('執行seven11()')
             //\s匹配所有屬於空白類的字符、\S匹配所有屬於非空白類的字符，因此[\s\S]可以處理跨行的內容，較為保險
             //const geoPositions=matches||[]//若matches是null則為[]
             if(matches){//matches是null不處理
-             const tags=['POIID','POIName','X','Y','TelNo','Address']
+             const tags=['POIName','X','Y','TelNo','Address']
              matches.forEach((item,index)=>{
               const obj={}
               tags.forEach(tag=>{
@@ -88,9 +88,39 @@ function seven11(Arr){done++;console.log('執行seven11()')
  }
 }//seven11(Arr)
 
-function FamilyMart(){done++;console.log('執行FamilyMart()')
+function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
  var num=0,threads=0,result=[]
-
+ get(Arr)
+ function get(arr){
+  if(!arr.length)return
+  threads++
+  var now=false;if(threads<10){now=true;arr.shift();get(arr)}
+  https.get('https://api.map.com.tw/net/familyShop.aspx?l=9&searchType=ShowStore&type=&'+
+            `vLeft=${arr[0].Left}&vRight=${arr[0].Right}&vTop=${arr[0].Top}&vBottom=${arr[0].Bottom}&fun=addSmallShop&key=6F30E8BF706D653965BDE302661D1241F8BE9EBC`,
+            {headers:{referer:'https://www.family.com.tw/'}},
+  function(response){num++
+   if(response.statusCode!=200)console.log('statusCode:',response.statusCode,arr[0])
+   var chunks=[]
+   response.on('data',chunk=>chunks.push(chunk))
+   response.on('end',()=>{
+    const tmp=Buffer.concat(chunks).toString('utf8').match(/addSmallShop\(([\s\S]+)\)/)//不匹配會null，匹配會至少兩個元素陣列
+    const matches=tmp&&JSON.parse(tmp[1])
+    if(matches){//matches是null不處理
+     const tags=['NAME','px','py','TEL','addr']
+     matches.forEach((item,index)=>{
+      const obj={}
+      tags.forEach(tag=>obj[tag]=item[tag])
+      matches[index]=obj
+     })
+     console.log(`請求第${num}個圖磚`,matches)
+     result.push(...matches)//使用擴展運算子展開matches並新增到result
+    }
+    threads--
+    if(!now){arr.shift();get(arr)}//arr.shift()去除陣列的第一個元素
+    if(!arr.length&&!threads)console.log('FamilyMart間數',result.length);done--//push(result)
+   })
+  }).on('error',e=>console.log('GET請求FamilyMart失敗',e))
+ }
 
 }//FamilyMart()
 
