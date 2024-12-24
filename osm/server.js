@@ -22,7 +22,7 @@ range.forEach((item,index)=>{
 })
 console.log('全部圖磚'+range.length+'個')
 
-function seven11(Arr){done++
+function seven11(Arr){done++;console.log('執行seven11()')
  var num=0,threads=0,result=[]
  post(Arr)
  function post(arr){
