@@ -5,7 +5,7 @@ http.createServer((req,res)=>{
  if(req.url=="/"){res.writeHead(200,{'content-type':'text/plain;charset=utf-8','access-control-allow-origin':'*'});res.end(message);return}
  if(req.url=="/favicon.ico"){res.end();return}
  const tmp=req.url.match(/^\/\?token=(.+)/)
- if(tmp&&done==0){token=tmp[1];res.end(token);seven11(range);FamilyMart(range.slice(0,100));return}
+ if(tmp&&done==0){token=tmp[1];res.end(token);seven11(range);/*FamilyMart(range.slice(0,100))*/;return}
  res.end('others')
 }).listen(8080)
 
@@ -23,7 +23,7 @@ range.forEach((item,index)=>{
 console.log('全部圖磚'+range.length+'個')
 
 function seven11(Arr){done++;console.log('執行seven11()')
- var num=0,threads=0,result=[]
+ var threads=0,result=[]
  post(Arr)
  function post(arr){
   if(!arr.length)return
@@ -31,10 +31,11 @@ function seven11(Arr){done++;console.log('執行seven11()')
   let str=`x1=${arr[0].Left}&y1=${arr[0].Bottom}&x2=${arr[0].Right}&y2=${arr[0].Top}`
   str=str.replace(/\./g,"")
   const formData="commandid=Search0007&"+str
+  var num=Arr.length-arr.length+1
   var now=false;if(threads<10){now=true;arr.shift();post(arr)}
   const r=https.request('https://emap.pcsc.com.tw/EMapSDK.aspx',
           {method:'POST',headers:{/*'Content-Length':formData.length,*/'Content-Type':'application/x-www-form-urlencoded'}},//該伺服器可不需Content-Length請求頭，Buffer.byteLength(formData)較formData.length保險，因utf-8或中文字的關係
-          function(response){num++
+          function(response){
            if(response.statusCode!=200)console.log('statusCode:',response.statusCode,formData)
            var chunks=[]
            response.on('data',chunk=>chunks.push(chunk))
@@ -51,7 +52,7 @@ function seven11(Arr){done++;console.log('執行seven11()')
               })
               matches[index]=obj
              })
-           //console.log(`請求第${num}個圖磚`,matches)
+             console.log(`請求第${num}個圖磚`,matches)
              result.push(...matches)//使用擴展運算子展開matches並新增到result
             }
             threads--
@@ -69,7 +70,7 @@ function seven11(Arr){done++;console.log('執行seven11()')
    res.on('data',chunk=>chunks.push(chunk))
    res.on('end',()=>{
     try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取sha錯誤',e);return};if(!sha){console.log('無sha');return}
-    let str="<osm version='0.6'>";num=-1
+    let str="<osm version='0.6'>",num=-1
     arr.forEach((item,index)=>{
      if(arr.slice(0,index).find(prevItem=>prevItem.POIName==item.POIName)){console.log(item.POIName,'重複');return}//加入重複點位的判斷
    //if(arr[index-1]&&item.POIName==arr[index-1].POIName)return
