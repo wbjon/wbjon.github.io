@@ -120,7 +120,7 @@ function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
     }
     threads--
     if(!now){arr.shift();get(arr)}//arr.shift()去除陣列的第一個元素
-    if(!arr.length&&!threads)console.log('FamilyMart間數',result.length);done--//push(result)
+    if(!arr.length&&!threads){console.log('FamilyMart間數',result.length);done--}//push(result)
    })
   }).on('error',e=>console.log('GET請求FamilyMart失敗',e))
  }
