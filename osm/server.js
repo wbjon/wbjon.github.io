@@ -5,7 +5,7 @@ http.createServer((req,res)=>{
  if(req.url=="/"){res.writeHead(200,{'content-type':'text/plain;charset=utf-8','access-control-allow-origin':'*'});res.end(message);return}
  if(req.url=="/favicon.ico"){res.end();return}
  const tmp=req.url.match(/^\/\?token=(.+)/)
- if(tmp&&done==0){token=tmp[1];res.end(token);seven11(range);/*FamilyMart(range.slice(0,100))*/;return}
+ if(tmp&&done==0){token=tmp[1];res.end(token);/*seven11(range)*/;FamilyMart(range.slice(0,100));return}
  res.end('others')
 }).listen(8080)
 
@@ -90,17 +90,18 @@ function seven11(Arr){done++;console.log('執行seven11()')
 }//seven11(Arr)
 
 function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
- var num=0,threads=0,result=[]
+ var Num=Arr.length,threads=0,result=[]
  get(Arr)
  function get(arr){
   if(!arr.length)return
   threads++
+  const str=`vLeft=${arr[0].Left}&vRight=${arr[0].Right}&vTop=${arr[0].Top}&vBottom=${arr[0].Bottom}`
+  var num=Num-arr.length+1
   var now=false;if(threads<1){now=true;arr.shift();get(arr)}
-  https.get('https://api.map.com.tw/net/familyShop.aspx?l=9&searchType=ShowStore&type=&'+
-            `vLeft=${arr[0].Left}&vRight=${arr[0].Right}&vTop=${arr[0].Top}&vBottom=${arr[0].Bottom}&fun=addSmallShop&key=6F30E8BF706D653965BDE302661D1241F8BE9EBC`,
+  https.get('https://api.map.com.tw/net/familyShop.aspx?l=9&searchType=ShowStore&type=&'+str+'&fun=addSmallShop&key=6F30E8BF706D653965BDE302661D1241F8BE9EBC',
             {headers:{referer:'https://www.family.com.tw/'}},
-  function(response){num++
-   if(response.statusCode!=200)console.log('statusCode:',response.statusCode,arr[0])
+  function(response){
+   if(response.statusCode!=200)console.log('statusCode:',response.statusCode,str)
    var chunks=[]
    response.on('data',chunk=>chunks.push(chunk))
    response.on('end',()=>{
