@@ -23,7 +23,7 @@ range.forEach((item,index)=>{
 console.log('全部圖磚'+range.length+'個')
 
 function seven11(Arr){done++;console.log('執行seven11()')
- var threads=0,result=[]
+ var Arr_length=Arr.length,threads=0,result=[]
  post(Arr)
  function post(arr){
   if(!arr.length)return
@@ -31,7 +31,7 @@ function seven11(Arr){done++;console.log('執行seven11()')
   let str=`x1=${arr[0].Left}&y1=${arr[0].Bottom}&x2=${arr[0].Right}&y2=${arr[0].Top}`
   str=str.replace(/\./g,"")
   const formData="commandid=Search0007&"+str
-  var num=Arr.length-arr.length+1
+  var num=Arr_length-arr.length+1;console.log(Arr_length,arr.length)
   var now=false;if(threads<10){now=true;arr.shift();post(arr)}
   const r=https.request('https://emap.pcsc.com.tw/EMapSDK.aspx',
           {method:'POST',headers:{/*'Content-Length':formData.length,*/'Content-Type':'application/x-www-form-urlencoded'}},//該伺服器可不需Content-Length請求頭，Buffer.byteLength(formData)較formData.length保險，因utf-8或中文字的關係
