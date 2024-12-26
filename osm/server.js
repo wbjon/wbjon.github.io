@@ -23,7 +23,7 @@ range.forEach((item,index)=>{
 console.log('全部圖磚'+range.length+'個')
 
 function seven11(Arr){done++;console.log('執行seven11()')
- var Arr_length=Arr.length,threads=0,result=[]
+ var Num=Arr.length,threads=0,result=[]
  post(Arr)
  function post(arr){
   if(!arr.length)return
@@ -31,7 +31,7 @@ function seven11(Arr){done++;console.log('執行seven11()')
   let str=`x1=${arr[0].Left}&y1=${arr[0].Bottom}&x2=${arr[0].Right}&y2=${arr[0].Top}`
   str=str.replace(/\./g,"")
   const formData="commandid=Search0007&"+str
-  var num=Arr_length-arr.length+1;console.log(Arr_length,arr.length)
+  var num=Num-arr.length+1
   var now=false;if(threads<10){now=true;arr.shift();post(arr)}
   const r=https.request('https://emap.pcsc.com.tw/EMapSDK.aspx',
           {method:'POST',headers:{/*'Content-Length':formData.length,*/'Content-Type':'application/x-www-form-urlencoded'}},//該伺服器可不需Content-Length請求頭，Buffer.byteLength(formData)較formData.length保險，因utf-8或中文字的關係
@@ -70,15 +70,15 @@ function seven11(Arr){done++;console.log('執行seven11()')
    res.on('data',chunk=>chunks.push(chunk))
    res.on('end',()=>{
     try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取sha錯誤',e);return};if(!sha){console.log('無sha');return}
-    let str="<osm version='0.6'>",num=-1
+    let str="<osm version='0.6'>";Num=-1
     arr.forEach((item,index)=>{
      if(arr.slice(0,index).find(prevItem=>prevItem.POIName==item.POIName)){console.log(item.POIName,'重複');return}//加入重複點位的判斷
    //if(arr[index-1]&&item.POIName==arr[index-1].POIName)return
      str+=
-`<node id='${num--}' lat='${item.Y}' lon='${item.X}'><tag k='seven11' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
+`<node id='${Num--}' lat='${item.Y}' lon='${item.X}'><tag k='seven11' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
     })
-    console.log(`seven11共${-num-1}家`)
-    const requestData=JSON.stringify({message:'seven11'+`共${-num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(str+"</osm>").toString('base64'),sha:sha})
+    console.log(`seven11共${-Num-1}家`)
+    const requestData=JSON.stringify({message:'seven11'+`共${-Num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(str+"</osm>").toString('base64'),sha:sha})
     const req=https.request(apiUrl,{method:'PUT',headers:{'User-Agent':'node.js',Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}}//Content-Type、Content-Length忽略無妨
                                   ,res=>{console.log('seven11已更新，PUT請求碼:'+res.statusCode);done--}
     ).on('error',e=>console.log('PUT請求github更新失敗',e))
