@@ -18,25 +18,25 @@ range.forEach((item,index)=>{
  let n
  n=Math.PI*(1-2*y/power2);const lat_max=Math.atan((Math.exp(n)-Math.exp(-n))/2)*180/Math.PI
  n=Math.PI*(1-2*(y+1)/power2);const lat_min=Math.atan((Math.exp(n)-Math.exp(-n))/2)*180/Math.PI
- range[index]={Left:lon_min.toFixed(6),Bottom:lat_min.toFixed(6),Right:lon_max.toFixed(6),Top:lat_max.toFixed(6)}
+ range[index]={Index:index,Left:lon_min.toFixed(6),Bottom:lat_min.toFixed(6),Right:lon_max.toFixed(6),Top:lat_max.toFixed(6)}
 })
 console.log('全部圖磚'+range.length+'個')
 
 function seven11(Arr){done++;console.log('執行seven11()')
- var Num=Arr.length,threads=0,result=[]
+ var threads=0,result=[]
  post(Arr)
  function post(arr){
   if(!arr.length)return
+  const obj=arr[0]
   threads++
-  let str=`x1=${arr[0].Left}&y1=${arr[0].Bottom}&x2=${arr[0].Right}&y2=${arr[0].Top}`
+  let str=`x1=${obj.Left}&y1=${obj.Bottom}&x2=${obj.Right}&y2=${obj.Top}`
   str=str.replace(/\./g,"")
   const formData="commandid=Search0007&"+str
-  var num=Num-arr.length+1
   var now=false;if(threads<10){now=true;arr.shift();post(arr)}
   const r=https.request('https://emap.pcsc.com.tw/EMapSDK.aspx',
           {method:'POST',headers:{/*'Content-Length':formData.length,*/'Content-Type':'application/x-www-form-urlencoded'}},//該伺服器可不需Content-Length請求頭，Buffer.byteLength(formData)較formData.length保險，因utf-8或中文字的關係
           function(response){
-           if(response.statusCode!=200)console.log('statusCode:',response.statusCode,formData)
+           if(response.statusCode!=200){console.log('statusCode:',response.statusCode,formData);arr.push(obj)}
            var chunks=[]
            response.on('data',chunk=>chunks.push(chunk))
            response.on('end',()=>{
@@ -46,13 +46,13 @@ function seven11(Arr){done++;console.log('執行seven11()')
             if(matches){//matches是null不處理
              const tags=['POIName','X','Y','TelNo','Address']
              matches.forEach((item,index)=>{
-              const obj={}
+              const json={}
               tags.forEach(tag=>{
-               try{obj[tag]=item.split(`<${tag}>`)[1].split(`</${tag}>`)[0].trim()}catch(e){obj[tag]=''}
+               try{json[tag]=item.split(`<${tag}>`)[1].split(`</${tag}>`)[0].trim()}catch(e){json[tag]=''}
               })
-              matches[index]=obj
+              matches[index]=json
              })
-             console.log(`請求第${num}個圖磚`,matches)
+             console.log(`請求第${obj.Index}個圖磚`,matches)
              result.push(...matches)//使用擴展運算子展開matches並新增到result
             }
             threads--
@@ -70,15 +70,15 @@ function seven11(Arr){done++;console.log('執行seven11()')
    res.on('data',chunk=>chunks.push(chunk))
    res.on('end',()=>{
     try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取sha錯誤',e);return};if(!sha){console.log('無sha');return}
-    let str="<osm version='0.6'>";Num=-1
+    let str="<osm version='0.6'>",num=-1
     arr.forEach((item,index)=>{
      if(arr.slice(0,index).find(prevItem=>prevItem.POIName==item.POIName)){console.log(item.POIName,'重複');return}//加入重複點位的判斷
    //if(arr[index-1]&&item.POIName==arr[index-1].POIName)return
      str+=
-`<node id='${Num--}' lat='${item.Y}' lon='${item.X}'><tag k='seven11' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
+`<node id='${num--}' lat='${item.Y}' lon='${item.X}'><tag k='seven11' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
     })
-    console.log(`seven11共${-Num-1}家`)
-    const requestData=JSON.stringify({message:'seven11'+`共${-Num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(str+"</osm>").toString('base64'),sha:sha})
+    console.log(`seven11共${-num-1}家`)
+    const requestData=JSON.stringify({message:'seven11'+`共${-num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(str+"</osm>").toString('base64'),sha:sha})
     const req=https.request(apiUrl,{method:'PUT',headers:{'User-Agent':'node.js',Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}}//Content-Type、Content-Length忽略無妨
                                   ,res=>{console.log('seven11已更新，PUT請求碼:'+res.statusCode);done--}
     ).on('error',e=>console.log('PUT請求github更新失敗',e))
@@ -90,32 +90,30 @@ function seven11(Arr){done++;console.log('執行seven11()')
 }//seven11(Arr)
 
 function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
- var Num=Arr.length,threads=0,result=[]
+ var threads=0,result=[]
  get(Arr)
  function get(arr){
   if(!arr.length)return
+  const obj=arr[0]
   threads++
-  const str=`vLeft=${arr[0].Left}&vRight=${arr[0].Right}&vTop=${arr[0].Top}&vBottom=${arr[0].Bottom}`
-  var num=Num-arr.length+1
   var now=false;if(threads<1){now=true;arr.shift();get(arr)}
-  https.get('https://api.map.com.tw/net/familyShop.aspx?l=9&searchType=ShowStore&type=&'+str+'&fun=addSmallShop&key=6F30E8BF706D653965BDE302661D1241F8BE9EBC',
+  https.get(`https://api.map.com.tw/net/familyShop.aspx?l=9&searchType=ShowStore&type=&vLeft=${obj.Left}&vRight=${obj.Right}&vTop=${obj.Top}&vBottom=${obj.Bottom}&fun=addSmallShop&key=6F30E8BF706D653965BDE302661D1241F8BE9EBC`,
             {headers:{referer:'https://www.family.com.tw/'}},
   function(response){
-   if(response.statusCode!=200)console.log('statusCode:',response.statusCode,str)
+   if(response.statusCode!=200){console.log(`請求第${obj.Index}個圖磚`,'statusCode:',response.statusCode,obj);arr.push(obj)}
    var chunks=[]
    response.on('data',chunk=>chunks.push(chunk))
    response.on('end',()=>{
     const tmp=Buffer.concat(chunks).toString('utf8').match(/addSmallShop\(([\s\S]+)\)/)//不匹配會null，匹配會至少兩個元素陣列
-    if(!tmp)console.log(`請求第${num}個圖磚null`,tmp)/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     const matches=tmp&&JSON.parse(tmp[1])
     if(matches&&matches.length){//matches是null或[]不處理
      const tags=['NAME','px','py','TEL','addr']
      matches.forEach((item,index)=>{
-      const obj={}
-      tags.forEach(tag=>obj[tag]=item[tag])
-      matches[index]=obj
+      const json={}
+      tags.forEach(tag=>json[tag]=item[tag])
+      matches[index]=json
      })
-     console.log(`請求第${num}個圖磚`,matches)
+     console.log(`請求第${obj.Index}個圖磚`,matches)
      result.push(...matches)//使用擴展運算子展開matches並新增到result
     }
     threads--
