@@ -5,7 +5,7 @@ http.createServer((req,res)=>{
  if(req.url=="/"){res.writeHead(200,{'content-type':'text/plain;charset=utf-8','access-control-allow-origin':'*'});res.end(message);return}
  if(req.url=="/favicon.ico"){res.end();return}
  const tmp=req.url.match(/^\/\?token=(.+)/)
- if(tmp&&done==0){token=tmp[1];res.end(token);/*seven11(range)*/;FamilyMart(range.slice(0,100));return}
+ if(tmp&&done==0){token=tmp[1];res.end(token);/*seven11(range)*/;FamilyMart(range);return}
  res.end('others')
 }).listen(8080)
 
