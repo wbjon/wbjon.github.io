@@ -96,7 +96,7 @@ function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
   if(!arr.length)return
   const obj=arr[0]
   threads++
-  var now=false;if(threads<5){now=true;arr.shift();get(arr)}
+  var now=false;if(threads<1){now=true;arr.shift();get(arr)}
   https.get(`https://api.map.com.tw/net/familyShop.aspx?l=9&searchType=ShowStore&type=&vLeft=${obj.Left}&vRight=${obj.Right}&vTop=${obj.Top}&vBottom=${obj.Bottom}&fun=addSmallShop&key=6F30E8BF706D653965BDE302661D1241F8BE9EBC`,
             {headers:{referer:'https://www.family.com.tw/'}},
   function(response){
