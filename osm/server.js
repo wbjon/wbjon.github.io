@@ -36,7 +36,7 @@ function seven11(Arr){done++;console.log('執行seven11()')
   const r=https.request('https://emap.pcsc.com.tw/EMapSDK.aspx',
           {method:'POST',headers:{/*'Content-Length':formData.length,*/'Content-Type':'application/x-www-form-urlencoded'}},//該伺服器可不需Content-Length請求頭，Buffer.byteLength(formData)較formData.length保險，因utf-8或中文字的關係
           function(response){
-           if(response.statusCode!=200){console.log('statusCode:',response.statusCode,formData);arr.push(obj)}
+           if(response.statusCode!=200){console.log(`請求第${obj.Index}個圖磚`,'statusCode:',response.statusCode,formData);arr.push(obj)}
            var chunks=[]
            response.on('data',chunk=>chunks.push(chunk))
            response.on('end',()=>{
@@ -69,10 +69,10 @@ function seven11(Arr){done++;console.log('執行seven11()')
    var chunks=[]
    res.on('data',chunk=>chunks.push(chunk))
    res.on('end',()=>{
-    try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取sha錯誤',e);return};if(!sha){console.log('無sha');return}
+    try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取seven11.osm的sha錯誤',e);return};if(!sha){console.log('無seven11.osm的sha');return}
     let str="<osm version='0.6'>",num=-1
     arr.forEach((item,index)=>{
-     if(arr.slice(0,index).find(prevItem=>prevItem.POIName==item.POIName)){console.log(item.POIName,'重複');return}//加入重複點位的判斷
+     if(arr.slice(0,index).find(prevItem=>prevItem.POIName==item.POIName)){console.log(item.POIName,'重複seven11');return}//加入重複點位的判斷
    //if(arr[index-1]&&item.POIName==arr[index-1].POIName)return
      str+=
 `<node id='${num--}' lat='${item.Y}' lon='${item.X}'><tag k='seven11' v='${item.POIName}'/><tag k='TelNo' v='${item.TelNo}'/><tag k='Address' v='${item.Address}'/></node>`
@@ -81,11 +81,11 @@ function seven11(Arr){done++;console.log('執行seven11()')
     const requestData=JSON.stringify({message:'seven11'+`共${-num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(str+"</osm>").toString('base64'),sha:sha})
     const req=https.request(apiUrl,{method:'PUT',headers:{'User-Agent':'node.js',Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}}//Content-Type、Content-Length忽略無妨
                                   ,res=>{console.log('seven11已更新，PUT請求碼:'+res.statusCode);done--}
-    ).on('error',e=>console.log('PUT請求github更新失敗',e))
+    ).on('error',e=>console.log('PUT請求github更新seven11失敗',e))
     req.write(requestData)
     req.end()
    })
-  }).on('error',e=>console.log('GET請求github_sha失敗',e))
+  }).on('error',e=>console.log('GET請求github_seven11_sha失敗',e))
  }
 }//seven11(Arr)
 
@@ -110,7 +110,7 @@ function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
      const tags=['NAME','px','py','TEL','addr']
      matches.forEach((item,index)=>{
       const json={}
-      tags.forEach(tag=>json[tag]=item[tag])
+      tags.forEach(tag=>{if(tag=='NAME')json[tag]=item[tag].replace(/全家|店/g,'');else json[tag]=item[tag]})
       matches[index]=json
      })
      console.log(`請求第${obj.Index}個圖磚`,matches)
@@ -118,10 +118,33 @@ function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
     }
     threads--
     if(!now){arr.shift();get(arr)}//arr.shift()去除陣列的第一個元素
-    if(!arr.length&&!threads){console.log('FamilyMart間數',result.length);done--}//push(result)
+    if(!arr.length&&!threads)push(result)
    })
   }).on('error',e=>console.log('GET請求FamilyMart失敗',e))
  }
-
+ function push(arr){
+  const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/osm/FamilyMart.osm'
+  https.get(apiUrl,{headers:{'User-Agent':'node.js'}},res=>{
+   var chunks=[]
+   res.on('data',chunk=>chunks.push(chunk))
+   res.on('end',()=>{
+    try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取FamilyMart.osm的sha錯誤',e);return};if(!sha){console.log('無FamilyMart.osm的sha');return}
+    let str="<osm version='0.6'>",num=-1
+    arr.forEach((item,index)=>{
+     if(arr.slice(0,index).find(prevItem=>prevItem.NAME==item.NAME)){console.log(item.NAME,'重複FamilyMart');return}//加入重複點位的判斷
+   //if(arr[index-1]&&item.NAME==arr[index-1].NAME)return
+     str+=
+`<node id='${num--}' lat='${item.py}' lon='${item.px}'><tag k='FamilyMart' v='${item.NAME}'/><tag k='TEL' v='${item.TEL}'/><tag k='addr' v='${item.addr}'/></node>`
+    })
+    console.log(`FamilyMart共${-num-1}家`)
+    const requestData=JSON.stringify({message:'FamilyMart'+`共${-num-1}家_`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:Buffer.from(str+"</osm>").toString('base64'),sha:sha})
+    const req=https.request(apiUrl,{method:'PUT',headers:{'User-Agent':'node.js',Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}}//Content-Type、Content-Length忽略無妨
+                                  ,res=>{console.log('FamilyMart已更新，PUT請求碼:'+res.statusCode);done--}
+    ).on('error',e=>console.log('PUT請求github更新FamilyMart失敗',e))
+    req.write(requestData)
+    req.end()
+   })
+  }).on('error',e=>console.log('GET請求github_FamilyMart_sha失敗',e))
+ }
 }//FamilyMart()
 
