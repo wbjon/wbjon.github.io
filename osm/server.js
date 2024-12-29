@@ -20,7 +20,7 @@ range.forEach((item,index)=>{
  n=Math.PI*(1-2*(y+1)/power2);const lat_min=Math.atan((Math.exp(n)-Math.exp(-n))/2)*180/Math.PI
  range[index]={Index:index,Left:lon_min.toFixed(6),Bottom:lat_min.toFixed(6),Right:lon_max.toFixed(6),Top:lat_max.toFixed(6)}
 })
-console.log('全部圖磚'+range.length+'個')
+console.log('全部圖磚'+range.length+'個')//30526個
 
 function seven11(Arr){done++;console.log('執行seven11()')
  var threads=0,result=[]
