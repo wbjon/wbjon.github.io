@@ -5,7 +5,7 @@ http.createServer((req,res)=>{
  if(req.url=="/"){res.writeHead(200,{'content-type':'text/plain;charset=utf-8','access-control-allow-origin':'*'});res.end(message);return}
  if(req.url=="/favicon.ico"){res.end();return}
  const tmp=req.url.match(/^\/\?token=(.+)/)
- if(tmp&&done==0){token=tmp[1];res.end(token);/*seven11([...range])*/;FamilyMart([...range]);return}//進行淺複製使原始range不被影響：[...range]等同[].concat(range)等同range.concat()
+ if(tmp&&done==0){token=tmp[1];res.end(token);seven11([...range]);FamilyMart([...range]);return}//進行淺複製使原始range不被影響：[...range]等同[].concat(range)等同range.concat()
  res.end('others')
 }).listen(8080)
 
@@ -52,7 +52,7 @@ function seven11(Arr){done++;console.log('執行seven11()')
               })
               matches[index]=json
              })
-             console.log(`請求第${obj.Index}個圖磚`,matches)
+             //console.log(`請求第${obj.Index}個圖磚`,matches)
              result.push(...matches)//使用擴展運算子展開matches並新增到result
             }
             threads--
@@ -113,7 +113,7 @@ function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
       tags.forEach(tag=>{if(tag=='NAME')json[tag]=item[tag].replace(/全家|店/g,'');else json[tag]=item[tag]})
       matches[index]=json
      })
-     console.log(`請求第${obj.Index}個圖磚`,matches)
+     //console.log(`請求第${obj.Index}個圖磚`,matches)
      result.push(...matches)//使用擴展運算子展開matches並新增到result
     }
     threads--
