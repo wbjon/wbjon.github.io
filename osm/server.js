@@ -131,6 +131,10 @@ function FamilyMart(Arr){done++;console.log('執行FamilyMart()')
     try{var sha=JSON.parse(Buffer.concat(chunks).toString('utf8')).sha}catch(e){console.log('獲取FamilyMart.osm的sha錯誤',e);return};if(!sha){console.log('無FamilyMart.osm的sha');return}
     let str="<osm version='0.6'>",num=-1
     arr.forEach((item,index)=>{
+
+if(item.NAME=='新竹鐵道')console.log(item)
+
+
      if(arr.slice(0,index).find(prevItem=>prevItem.NAME==item.NAME)){console.log(item.NAME,'重複FamilyMart');return}//加入重複點位的判斷
    //if(arr[index-1]&&item.NAME==arr[index-1].NAME)return
      str+=
