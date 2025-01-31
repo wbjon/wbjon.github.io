@@ -14,7 +14,7 @@
   <link crossorigin="anonymous" rel="stylesheet" href="./leaflet_awesome_number_markers.css">
 
   <link crossorigin="anonymous" rel='stylesheet' href="https://unpkg.com/maplibre-gl/dist/maplibre-gl.css">
-  <script crossorigin="anonymous" src="https://unpkg.com/maplibre-gl@5.0.0-pre.1/dist/maplibre-gl.js"></script>
+  <script crossorigin="anonymous" src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script><!--2025.1.31降為4.7.1，因5.0.0以上版本會造成等高線無法拖曳-->
   <script crossorigin="anonymous" src="https://unpkg.com/@maplibre/maplibre-gl-leaflet/leaflet-maplibre-gl.js"></script>
 
   <style>
@@ -322,16 +322,11 @@ var extend=L.TileLayer.extend({options:{/*minZoom:16,minNativeZoom:16,*/maxNativ
    auth=(await res.text()).split('\n')[1]
   }
   map.createPane('top')
-  map.getPane('top').style.zIndex=1000//等高線置頂
-  map.getPane('top').style.pointerEvents='auto'//若將圖塊放在其他地圖圖層之上，會造成圖塊將捕獲點擊和觸摸，可設定none避免，並解決showLine時，滑鼠靠近不能顯示各站訊息
+  map.getPane('top').style.zIndex=650//等高線置頂
+  map.getPane('top').style.pointerEvents='none'//若將圖塊放在其他地圖圖層之上，會造成圖塊將捕獲點擊和觸摸，可設定none避免，並解決showLine時，滑鼠靠近不能顯示各站訊息
 //資料來源：https://leafletjs.com/examples/map-panes/
-map.dragPan.enable();
   L.maplibreGL({
-dragPan: true,  // 确保启用拖动
-  scrollZoom: true,  // 需要时启用滚轮缩放
-  touchZoomRotate: true,  // 启用触摸缩放与旋转
    pane:'top',
- projection: 'mercator',
    style:{
   "version": 8,
   "name": "MapLibre",
