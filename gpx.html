@@ -24,7 +24,7 @@ function merge(){
 var str1='<?xml version="1.0" encoding="UTF-8" standalone="no"?><gpx xmlns="http://www.topografix.com/GPX/1/1" creator="" version="1.1">'
 var dataObj={}
 var str3='</gpx>'
-makeGPX1(0,'')//單車站1圖標
+//makeGPX1(0,'')//單車站1圖標
 makeGPX2(0,'')//單車站2圖標
 //makeGPX3(0,'')//單車站3圖標
 makeGPX4(0,'')//捷運站圖標
@@ -73,7 +73,7 @@ function makeGPX2(n,str2)
 {
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  var url=
-['https://call-oa.onrender.com/2']
+['https://md-oa.onrender.com/2']
  xhr.open('GET',url[n],true)//預設就是true(異步)
  xhr.send()
  xhr.onload=function()
