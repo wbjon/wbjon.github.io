@@ -3767,7 +3767,7 @@ BR.layerIndex = {
       "icon": "https://static.waymarkedtrails.org/img/map_cycling.png",
       "id": "Waymarked_Trails-Cycling",
       "max_zoom": 18,
-      "name": "Hello Waymarked Trails: Cycling",
+      "name": "Waymarked Trails: Cycling",
       "overlay": true,
       "type": "tms",
       "url": "https://tile.waymarkedtrails.org/cycling/{zoom}/{x}/{y}.png",
