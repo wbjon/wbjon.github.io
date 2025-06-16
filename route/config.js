@@ -26,7 +26,7 @@
         // local web server with the profiles in a subdirectory or allowing file access
         // in the Browser (security!), see
         // https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally
-        BR.conf.profilesUrl = origin+'/wbjon'+'/route/profiles2/';
+        BR.conf.profilesUrl=window.location.href.replace(/[^/]*$/,'')+'route/profiles2/'
         //BR.conf.profilesUrl = 'file://YOUR_PATH_TO/profiles2/';
     }
 
