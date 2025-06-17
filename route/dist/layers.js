@@ -12255,7 +12255,7 @@ BR.layerIndex = {
       "dem": {
         "type": "raster-dem",
         "tiles": [
-          "https://tw.iqiq.cc/{z}/{x}/{y}.png"
+          "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
         ],
         "encoding": "terrarium",
         "tileSize": 256,
