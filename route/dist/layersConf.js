@@ -21,8 +21,8 @@ BR.confLayers.defaultOverlays =  [
 ];
 
 BR.confLayers.legacyNameToIdMap = {
-    'OpenStreetMap': 'standard',
-    'OpenStreetMap.de': 'osm-mapnik-german_style',
+    'OpenStreetMap123': 'standard',
+    'OpenStreetMap.de456': 'osm-mapnik-german_style',
     'OpenTopoMap': 'OpenTopoMap',
     'Esri World Imagery': 'Esri.WorldImagery',
     'Cycling (Waymarked Trails)': 'Waymarked_Trails-Cycling',
@@ -1921,7 +1921,7 @@ BR.confLayers.switzerlandPadded = {
     ]
 };
 
-// osmapa.pl (1017): manually derived from z9-z11, no worldwide tiles >z13, 
+// osmapa.pl (1017): manually derived from z9-z11, no worldwide tiles >z13,
 // but unclear because of general issues at z14+z15 as of 06/2019
 BR.confLayers.osmapaPl = {
     "type": "Polygon",
