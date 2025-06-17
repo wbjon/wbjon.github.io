@@ -12257,7 +12257,7 @@ BR.layerIndex = {
         "tiles": [
           "https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png"
         ],
-        
+        "encoding": "terrarium",
         "tileSize": 256,
         "maxzoom": 15
       }
