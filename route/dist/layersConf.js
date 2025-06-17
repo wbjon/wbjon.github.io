@@ -21,9 +21,9 @@ BR.confLayers.defaultOverlays =  [
 ];
 
 BR.confLayers.legacyNameToIdMap = {
-    'OpenStreetMap123': 'standard',
-    'OpenStreetMap.de456': 'osm-mapnik-german_style',
-    'OpenTopoMap789': 'OpenTopoMap',
+    'OpenStreetMap': 'standard',
+    'OpenStreetMap.de': 'osm-mapnik-german_style',
+    'OpenTopoMap': 'OpenTopoMap',
     'Esri World Imagery': 'Esri.WorldImagery',
     'Cycling (Waymarked Trails)': 'Waymarked_Trails-Cycling',
     'Hiking (Waymarked Trails)': 'Waymarked_Trails-Hiking',
