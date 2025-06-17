@@ -3749,7 +3749,7 @@ BR.layerIndex = {
       "min_zoom": 3,
       "name": "OpenTopoMap",
       "type": "tms",
-      "url": "https://{switch:a,b,c}.tile.opentopomap.org/{zoom}/{x}/{y}.png",
+      "url": "https://{switch:grmn,rmng,mngr,ngrm,rgmn}.onrender.com/{zoom}/{x}/{y}.pbf",
       "valid-georeference": true,
       "dataSource": "JOSM"
     },
@@ -10491,6 +10491,7 @@ BR.layerIndex = {
     "type": "Feature"
   },
   "standard": {
+
     "geometry": null,
     "properties": {
       "attribution": {
