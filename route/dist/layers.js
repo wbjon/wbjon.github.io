@@ -10554,6 +10554,7 @@ BR.layerIndex = {
     "properties": {
       "id": "terrarium-hillshading",
       "overlay": true,
+      "max_zoom": 18,
       "type": "tms",
       "url": "https://tw.iqiq.cc/{z}/{x}/{y}.png",
       "mapUrl": "https://registry.opendata.aws/terrain-tiles/",
