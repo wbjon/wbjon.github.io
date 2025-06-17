@@ -10491,7 +10491,6 @@ BR.layerIndex = {
     "type": "Feature"
   },
   "standard": {
-
     "geometry": null,
     "properties": {
       "attribution": {
