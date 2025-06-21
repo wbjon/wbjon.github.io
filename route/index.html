@@ -1280,7 +1280,7 @@
   const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/route/route.osm'
   fetch(apiUrl).then(res=>res.json()).then(obj=>{
    const sha=obj.sha
-   if(!sha)throw new Error("無sha")
+   if(!sha)throw new Error("無sha");conso(54654563)
    upload(sha)
   }).catch(e=>console.log('GET route.osm的sha錯誤',e))
 
@@ -1288,9 +1288,9 @@
    let str1="<osm version='0.6'>",str2="<way id='-1'>"
    New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`).forEach((item,index)=>{
     str1+=item;str2+=`<nd ref='-${index+2}'/>`
-   })
-   const requestData=JSON.stringify({message:`共${New.length}點`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:btoA(str1+str2+"</way></osm>"),sha})
-   fetch(apiUrl,{method:'PUT'
+   });aler('bfgbgf')
+   const requestData=JSON.stringify({message:`共${New.length}點`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:btoa(str1+str2+"</way></osm>"),sha})
+   fetch(apiUrl.slice(1),{method:'PUT'
                 ,headers:{Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}//Content-Type、Content-Length忽略無妨
                 ,body:requestData})
    .then(res=>{if(!res.ok)throw new Error(`PUT錯誤，請求碼:${res.status}`);serverExport.previousElementSibling.click()})
