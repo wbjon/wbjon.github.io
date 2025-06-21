@@ -1259,7 +1259,7 @@
             else if(NewLast.lat==OldFirst.lat&&NewLast.lng==OldFirst.lng){Old[i].shift();New.push(...Old[i]);Old.splice(i,1);break}
            }
            if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
-          };return New
+          };return New.map(item=>`lat='${item.lat}' lon='${item.lng}'`)
          }
         </script>
 
