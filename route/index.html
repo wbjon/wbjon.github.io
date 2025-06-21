@@ -1296,7 +1296,7 @@
    console.log(str1+str2+"</way></osm>")
    const requestData=JSON.stringify({message:`共${New.length}點`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:btoa(str1+str2+"</way></osm>"),sha})
    fetch(apiUrl,{method:'PUT'
-                ,headers:{Authorization:'token 123'/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}//Content-Type、Content-Length忽略無妨
+                ,headers:{Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}//Content-Type、Content-Length忽略無妨
                 ,body:requestData})
    .then(res=>{if(!res.ok)throw new Error(`PUT錯誤，請求碼:${res.status}`)})
    .catch(e=>console.error('PUT route.osm錯誤',e))
