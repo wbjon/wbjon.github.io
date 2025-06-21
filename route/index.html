@@ -1248,7 +1248,19 @@
             console.log(
                 '\r\n###\r\n###  BRouter-Web\r\n###\r\n###  Please note that the routing API used here is not public!\r\n###\r\n'
             );
-         const test=()=>{alert('Hello')}
+         const pushOsm=()=>{
+          const Old=window.routingPathQuality.segments.map(item=>item._latlngs)
+          const New=[]
+          while(Old.length){
+           const NewFirst=New.at(0)||{},NewLast=New.at(-1)||{},Old_length=Old.length
+           for(const i in Old){
+            const OldFirst=Old[i].at(0),OldLast=Old[i].at(-1)
+            if(NewFirst.lat==OldLast.lat&&NewFirst.lng==OldLast.lng){Old[i].pop();New.unshift(...Old[i]);Old.splice(i,1);break}
+            else if(NewLast.lat==OldFirst.lat&&NewLast.lng==OldFirst.lng){Old[i].shift();New.push(...Old[i]);Old.splice(i,1);break}
+           }
+           if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
+          };return New
+         }
         </script>
 
         <script src="dist/core-js-bundle.min.js"></script>
