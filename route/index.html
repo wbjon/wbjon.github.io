@@ -1281,7 +1281,14 @@
   console.log(New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`))
   const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/route/route.osm'
   fetch(apiUrl).then(res=>res.json()).then(obj=>console.log(obj.sha)).catch(e=>console.log('GET route.osm的sha錯誤',e))
-
+  let str="<osm version='0.6'>"
+  New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`).forEach((item,index)=>{
+console.log(index,item)
+     //if(arr.slice(0,index).find(prevItem=>prevItem.NAME==item.NAME)){console.log(item.NAME,'重複FamilyMart');return}//加入重複點位的判斷
+   //if(arr[index-1]&&item.NAME==arr[index-1].NAME)return
+     //str+=
+//`<node id='${num--}' lat='${item.py}' lon='${item.px}'><tag k='FamilyMart' v='${item.NAME}'/><tag k='TEL' v='${item.TEL}'/><tag k='addr' v='${item.addr}'/></node>`
+    })
 
 
 
