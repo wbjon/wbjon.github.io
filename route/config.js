@@ -150,6 +150,3 @@
     // File size limit in kb for loading tracks
     BR.conf.trackSizeLimit = 1024 * 10;
 })();
-
-
-console.log(document.getElementById('serverExport').onclick)
