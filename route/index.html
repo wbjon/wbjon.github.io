@@ -1305,6 +1305,14 @@
 
  }
  const Id=setInterval(()=>{const serverExport=document.getElementById('serverExport');if(serverExport.onclick){clearInterval(Id);serverExport.onclick=pushOsm}},1000)
+ var token=localStorage.getItem('token')
+ ;(function setToken(){
+  if(!token){
+   const value=prompt('請輸入token：','ghp_BwbM9FnPtO8wUqRQ4SuWer83nRT7Lj49d')
+   if(value.length!=40)setToken();else localStorage.setItem('token',value)
+  }
+ })()
+
 </script>
     </body>
 </html>
