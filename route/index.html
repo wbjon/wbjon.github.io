@@ -1265,20 +1265,21 @@
         <script src="dist/brouter-web.js"></script>
         <!-- endinject -->
 <script>
-const pushOsm=()=>{
-          const Old=(window.routingPathQuality.segments||[]).map(item=>item._latlngs)
-          const New=[]
-          while(Old.length){
-           const NewFirst=New.at(0)||{},NewLast=New.at(-1)||{},Old_length=Old.length
-           for(const i in Old){
-            const OldFirst=Old[i].at(0),OldLast=Old[i].at(-1)
-            if(NewFirst.lat==OldLast.lat&&NewFirst.lng==OldLast.lng){Old[i].pop();New.unshift(...Old[i]);Old.splice(i,1);break}
-            else if(NewLast.lat==OldFirst.lat&&NewLast.lng==OldFirst.lng){Old[i].shift();New.push(...Old[i]);Old.splice(i,1);break}
-           }
-           if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
-          };return New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`)
-         }
-         const intervalId=setInterval(()=>{console.log(document.getElementById('serverExport').onclick)},1000)
+ const pushOsm=()=>{
+  const Old=(window.routingPathQuality.segments||[]).map(item=>item._latlngs)
+  const New=[]
+  while(Old.length){
+   const NewFirst=New.at(0)||{},NewLast=New.at(-1)||{},Old_length=Old.length
+   for(const i in Old){
+    const OldFirst=Old[i].at(0),OldLast=Old[i].at(-1)
+    if(NewFirst.lat==OldLast.lat&&NewFirst.lng==OldLast.lng){Old[i].pop();New.unshift(...Old[i]);Old.splice(i,1);break}
+    else if(NewLast.lat==OldFirst.lat&&NewLast.lng==OldFirst.lng){Old[i].shift();New.push(...Old[i]);Old.splice(i,1);break}
+   }
+   if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
+  }
+  return New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`)
+ }
+ console.log(document.getElementById('serverExport').onclick)
 </script>
     </body>
 </html>
