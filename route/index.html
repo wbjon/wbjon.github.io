@@ -1308,8 +1308,8 @@
  var token=localStorage.getItem('token')
  ;(function setToken(){
   if(!token){
-   const value=prompt('請輸入token：','ghp_BwbM9FnPtO8wUqRQ4SuWer83nRT7Lj49d')
-   if(value.length!=40)setToken();else localStorage.setItem('token',value)
+   token=prompt('請輸入token：','ghp_BwbM9FnPtO8wUqRQ4SuWer83nRT7Lj49d')
+   if(token.length!=40){token=null;setToken()}else localStorage.setItem('token',token)
   }
  })()
 
