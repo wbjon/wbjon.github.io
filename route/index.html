@@ -1249,7 +1249,7 @@
                 '\r\n###\r\n###  BRouter-Web\r\n###\r\n###  Please note that the routing API used here is not public!\r\n###\r\n'
             );
          const pushOsm=()=>{
-          const Old=window.routingPathQuality.segments.map(item=>item._latlngs)
+          const Old=(window.routingPathQuality.segments||[]).map(item=>item._latlngs)
           const New=[]
           while(Old.length){
            const NewFirst=New.at(0)||{},NewLast=New.at(-1)||{},Old_length=Old.length
