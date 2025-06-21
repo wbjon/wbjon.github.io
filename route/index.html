@@ -1277,6 +1277,13 @@
    }
    if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
   }
+
+  fetch('https://hubgit.glitch.me/world')
+
+
+
+
+
   const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/route/route.osm'
   fetch(apiUrl).then(res=>res.json()).then(obj=>{
    const sha=obj.sha
@@ -1290,14 +1297,12 @@
     str1+=item;str2+=`<nd ref='-${index+2}'/>`
    })
    const requestData=JSON.stringify({message:`共${New.length}點`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:btoa(str1+str2+"</way></osm>"),sha})
-   fetch(apiUrl.slice(1),{method:'PUT'
+   fetch(apiUrl,{method:'PUT'
                 ,headers:{Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}//Content-Type、Content-Length忽略無妨
                 ,body:requestData})
    .then(res=>{if(!res.ok)throw new Error(`PUT錯誤，請求碼:${res.status}`);serverExport.previousElementSibling.click()})
-   //.catch(e=>console.error('PUT route.osm錯誤',e))
-
+   .catch(e=>console.error('PUT route.osm錯誤',e))
   }
-
  }
  var token=localStorage.getItem('token'),serverExport
  const Id=setInterval(()=>{serverExport=document.getElementById('serverExport');if(serverExport.onclick){clearInterval(Id);serverExport.onclick=pushOsm}},1000)
