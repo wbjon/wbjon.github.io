@@ -1280,7 +1280,7 @@
   //return New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`)
   console.log(New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`))
   const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/route/route.osm'
-  fetch(apiUrl).then(res=>res.json()).then(obj=>console.log(obj))
+  fetch(apiUrl).then(res=>res.json()).then(obj=>console.log(obj.sha)).catch(e=>console.log('GET route.osm的sha錯誤',e))
 
 
 
