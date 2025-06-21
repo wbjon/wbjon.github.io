@@ -1261,6 +1261,7 @@
            if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
           };return New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`)
          }
+         console.log(document.getElementById('serverExport').onclick)
         </script>
 
         <script src="dist/core-js-bundle.min.js"></script>
