@@ -10551,7 +10551,7 @@ BR.layerIndex = {
   "terrarium-hillshading": {
     "geometry": null,
     "properties": {
-      
+      "id": "terrarium-hillshading",
       "overlay": true,
       "max_zoom": 18,
       "type": "tms",
