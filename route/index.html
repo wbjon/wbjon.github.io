@@ -1277,7 +1277,8 @@
    }
    if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
   }
-  return New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`)
+  //return New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`)
+  console.log(New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`))
  }
  const Id=setInterval(()=>{const serverExport=document.getElementById('serverExport');if(serverExport.onclick){clearInterval(Id);serverExport.onclick=pushOsm}},1000)
 </script>
