@@ -12277,5 +12277,3 @@ BR.layerIndex = {
     ]
   }
 };
-
-console.log(document.getElementById('serverExport').onclick)
