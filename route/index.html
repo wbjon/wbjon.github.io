@@ -1279,7 +1279,7 @@
   }
   return New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`)
  }
- const intervalId=setInterval(()=>{const serverExport=document.getElementById('serverExport').onclick;console.log(serverExport);if(serverExport)clearInterval(intervalId)},0)
+ const intervalId=setInterval(()=>{const serverExport=document.getElementById('serverExport').onclick;console.log(serverExport);if(serverExport)clearInterval(intervalId)},1000)
  //console.log(document.getElementById('serverExport').onclick)
 </script>
     </body>
