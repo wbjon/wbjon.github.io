@@ -1278,7 +1278,7 @@
    if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
   }
 
-  fetch('https://hubgit.glitch.me/',{method:'PUT'})
+  fetch('https://hubgit.glitch.me/',{method:'PUT',body:`!@#$%^&*()_-+={}[]:;"'|<,>.?/宏閔廍子`})
 
 
 
@@ -1296,7 +1296,7 @@
    New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`).forEach((item,index)=>{
     str1+=item;str2+=`<nd ref='-${index+2}'/>`
    })
-   const requestData=JSON.stringify({message:`共${New.length}點`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:btoa(unescape(encodeURIComponent(`!@#$%^&*()_-+={}[]:;"'|<,>.?/宏閔廍子`+str1+str2+"</way></osm>"))),sha})
+   const requestData=JSON.stringify({message:`共${New.length}點`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:btoa(unescape(encodeURIComponent(str1+str2+"</way></osm>"))),sha})
    fetch(apiUrl,{method:'PUT'
                 ,headers:{Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}//Content-Type、Content-Length忽略無妨
                 ,body:requestData})
