@@ -1261,7 +1261,7 @@
            if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
           };return New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`)
          }
-         //const intervalId=setInterval(()=>{document.getElementById('serverExport').onclick},1000)
+         const intervalId=setInterval(()=>{console.log(document.getElementById('serverExport').onclick)},1000)
         </script>
 
 
