@@ -1280,7 +1280,7 @@
   const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/route/route.osm'
   fetch(apiUrl).then(res=>res.json()).then(obj=>{
    const sha=obj.sha
-   if(!sha)throw new Error("無sha");conso(54654563)
+   if(!sha)throw new Error("無sha")
    upload(sha)
   }).catch(e=>console.log('GET route.osm的sha錯誤',e))
 
