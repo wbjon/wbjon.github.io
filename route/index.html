@@ -1283,7 +1283,7 @@
   });str2+="</way>"
   const POIid=-New.length-2
   decodeURIComponent(window.params.pois).split('|').forEach((item,index)=>{
-   //if(item==='')return
+   if(item==='')return
    item=item.split(',')
    str2+=`<node id='${POIid-index}' lat='${item[1]}' lon='${item[0]}'><tag k='POI' v='${item[2]}'/></node>`
   })
