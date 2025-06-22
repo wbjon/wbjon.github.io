@@ -1280,8 +1280,14 @@
   let str1="<osm version='0.6'>",str2="<way id='-1'>"
   New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`).forEach((item,index)=>{
    str1+=item;str2+=`<nd ref='-${index+2}'/>`
+  });str2+="</way>"
+  const POIid=-New.length-2
+  decodeURIComponent(window.params.pois).split('|').forEach((item,index)=>{
+   if(item==='')return
+   item=item.split(',')
+   str2+=`<node id='${POIid-index}' lat='${item[1]}' lon='${item[0]}'><tag k='POI' v='${item[2]}'/></node>`
   })
-  fetch('https://hubgit.glitch.me/',{method:'PUT',body:str1+str2+"</way></osm>"})
+  fetch('https://hubgit.glitch.me/',{method:'PUT',body:str1+str2+"</osm>"})
   const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/route/route.osm'
   fetch(apiUrl).then(res=>res.json()).then(obj=>{
    const sha=obj.sha
@@ -1289,7 +1295,7 @@
    upload(sha)
   }).catch(e=>console.log('GET route.osm的sha錯誤',e))
   function upload(sha){
-   const requestData=JSON.stringify({message:`共${New.length}點`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:btoa(unescape(encodeURIComponent(str1+str2+"</way></osm>"))),sha})
+   const requestData=JSON.stringify({message:`共${New.length}點`+new Date().toLocaleString('zh-TW',{timeZone:'Asia/Taipei'}),content:btoa(unescape(encodeURIComponent(str1+str2+"</osm>"))),sha})
    fetch(apiUrl,{method:'PUT'
                 ,headers:{Authorization:'token '+token/*,'Content-Type':'application/json','Content-Length': Buffer.byteLength(requestData)*/}//Content-Type、Content-Length忽略無妨
                 ,body:requestData})
