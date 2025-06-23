@@ -1287,7 +1287,7 @@
    item=item.split(',')
    str2+=`<node id='${POIid-index}' lat='${item[1]}' lon='${item[0]}'><tag k='POI' v='${item[2]}'/></node>`
   })
-  fetch('https://hubgit.glitch.me/',{method:'PUT',body:str1+str2+"</osm>"})
+  fetch('https://hubgit.glitch.me/',{method:'POST',body:str1+str2+"</osm>"})
   const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/route/route.osm'
   fetch(apiUrl).then(res=>res.json()).then(obj=>{
    const sha=obj.sha
