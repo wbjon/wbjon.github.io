@@ -1303,14 +1303,14 @@
    .catch(e=>console.error('PUT route.osm錯誤',e))
   }
  }
- var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center')
+ var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),red
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
   if(serverExport.onclick&&pane){
    clearInterval(Id)
    serverExport.onclick=pushOsm
-   const observer=new MutationObserver(mutationsList=>center.style.display='none')
+   const observer=new MutationObserver(mutationsList=>{if(red){center.style.display='block';red=false}else center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['style']})
   }
  },1000)
@@ -1333,7 +1333,7 @@
    text=location.href.split('/')
    text[text.length-3]=arr[0];text[text.length-2]=arr[1]
    location.href=text.join('/')
-   setTimeout(()=>center.style.display='block',0)
+   red=true
   }
  }
  document.addEventListener('mousedown',e=>{if(e.which==2)handle()},true)
