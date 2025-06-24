@@ -1303,8 +1303,17 @@
    .catch(e=>console.error('PUT route.osm錯誤',e))
   }
  }
- var token=localStorage.getItem('token'),serverExport
- const Id=setInterval(()=>{serverExport=document.getElementById('serverExport');if(serverExport.onclick){clearInterval(Id);serverExport.onclick=pushOsm}},1000)
+ var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center')
+ const Id=setInterval(()=>{
+  serverExport=document.getElementById('serverExport')
+  pane=document.querySelector('.leaflet-map-pane')
+  if(serverExport.onclick&&pane){
+   clearInterval(Id)
+   serverExport.onclick=pushOsm
+   const observer=new MutationObserver(mutationsList=>center.style.display='none')
+   observer.observe(pane,{attributes:true,attributeFilter:['style']})
+  }
+ },1000)
  ;(function setToken(){
   if(!token){
    token=prompt('請輸入token：','ghp_BwbM9FnPtO8wUqRQ4SuWer83nRT7Lj49d')
@@ -1312,8 +1321,6 @@
   }
  })()
  const handle=async()=>{
-  const center=document.getElementById('center')
-  if(center.style.display=='block'){center.style.display='none';return}
   let text=await navigator.clipboard.readText()
   let arr=text.split('/')
   if(arr.length>=2){text=','+arr.pop();text=arr.pop()+text}//pop()可取得陣列最後一個，且原陣列最後一個會去除
@@ -1330,7 +1337,6 @@
   }
  }
  document.addEventListener('mousedown',e=>{if(e.which==2)handle()},true)
- console.log('test',document.querySelector('.leaflet-map-pane'))
 </script>
     </body>
 </html>
