@@ -1310,6 +1310,20 @@
    if(token.length!=40){token=null;setToken()}else localStorage.setItem('token',token)
   }
  })()
+ const handle=async()=>{
+  let text=await navigator.clipboard.readText()
+  let arr=text.split('/')
+  if(arr.length>=2){text=','+arr.pop();text=arr.pop()+text}//pop()可取得陣列最後一個，且原陣列最後一個會去除
+  //↑JOSM:https://www.openstreetmap.org/#map=18/23.900696/121.047114
+  text=text.replace(/S|W/ig,"-")
+  text=text.replace(/N|E|°|,/ig,' ').trim()//trim()可去除字串前後的空白
+  text=text.replace(/\s+/g,',')//將每段落的(1或數個)空白取代為,
+  arr=text.split(',')
+  text=location.href.split('/')
+  text[text.length-3]=arr[0];text[text.length-2]=arr[1]
+  text=text.join('/')
+  location.href=text
+ }
 </script>
     </body>
 </html>
