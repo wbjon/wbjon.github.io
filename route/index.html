@@ -1333,7 +1333,7 @@
    text=location.href.split('/')
    text[text.length-3]=arr[0];text[text.length-2]=arr[1]
    location.href=text.join('/')
-   center.style.display='block'
+   setTimeout(()=>center.style.display='block',1000)
   }
  }
  document.addEventListener('mousedown',e=>{if(e.which==2)handle()},true)
