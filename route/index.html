@@ -1321,8 +1321,7 @@
   arr=text.split(',')
   text=location.href.split('/')
   text[text.length-3]=arr[0];text[text.length-2]=arr[1]
-  text=text.join('/')
-  location.href=text
+  location.href=text.join('/')
  }
  document.addEventListener('mousedown',e=>{if(e.which==2)handle()},true)
 </script>
