@@ -924,7 +924,7 @@
                         <div id="overpass_loading_indicator"></div>
                     </div>
                     <div id="preview" hidden data-i18n="map.preview">Preview</div>
-                    <div style="display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;background:red;border-radius:50%;z-index:1000;"></div>
+                    <div id="center" style="display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10px;height:10px;background:red;border-radius:50%;z-index:1000;"></div>
                 </div>
                 <div id="sidebar" class="leaflet-sidebar collapsed">
                     <div class="leaflet-sidebar-content">
@@ -1323,7 +1323,7 @@
   text=location.href.split('/')
   text[text.length-3]=arr[0];text[text.length-2]=arr[1]
   location.href=text.join('/')
-  map.lastElementChild.style.display='block'
+  document.getElementById('center').style.display='block'
  }
  document.addEventListener('mousedown',e=>{if(e.which==2)handle()},true)
 </script>
