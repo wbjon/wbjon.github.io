@@ -1322,6 +1322,7 @@
   text=text.replace(/N|E|°|,/ig,' ').trim()//trim()可去除字串前後的空白
   text=text.replace(/\s+/g,',')//將每段落的(1或數個)空白取代為,
   arr=text.split(',')
+  console.log(arr)
   text=location.href.split('/')
   text[text.length-3]=arr[0];text[text.length-2]=arr[1]
   location.href=text.join('/')
