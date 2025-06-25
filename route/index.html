@@ -1310,8 +1310,8 @@
   if(serverExport.onclick&&pane){
    clearInterval(Id)
    serverExport.onclick=pushOsm
-   const observer=new MutationObserver(mutationsList=>{console.log(mutationsList);if(mousedown==1)center.style.display='none'})
-   observer.observe(pane,{attributes:true,attributeFilter:['style']})
+   const observer=new MutationObserver(mutationsList=>{console.log(mutationsList[0].attributeName);if(mousedown==1)center.style.display='none'})
+   observer.observe(pane,{attributes:true,attributeFilter:['style','class']})
   }
  },1000)
  ;(function setToken(){
