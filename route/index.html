@@ -1309,6 +1309,7 @@
   pane=document.querySelector('.leaflet-map-pane')
   if(serverExport.onclick&&pane){
    clearInterval(Id)
+   console.log(document.querySelector('.leaflet-bottom.leaflet-right'))
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{if(mousedown==1||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
