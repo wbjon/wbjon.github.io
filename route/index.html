@@ -1312,7 +1312,8 @@
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{
 
-if(mutationsList[0].attributeName=='class')console.log(mutationsList[0].target.className)
+//if(mutationsList[0].attributeName=='class')
+console.log(mutationsList[0].target.className)
 
 
 
@@ -1321,7 +1322,7 @@ if(mutationsList[0].attributeName=='class')console.log(mutationsList[0].target.c
 
 
 if(mousedown==1)center.style.display='none'})
-   observer.observe(pane,{attributes:true,attributeFilter:['style','class']})
+   observer.observe(pane,{attributes:true,attributeFilter:['class']})
   }
  },1000)
  ;(function setToken(){
