@@ -1312,7 +1312,7 @@
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{
 
-if(mutationsList[0].attributeName=='class')console.log(mutationsList[0].target)
+if(mutationsList[0].attributeName=='class')console.log(mutationsList[0].target==pane)
 
 
 
