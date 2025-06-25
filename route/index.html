@@ -1306,12 +1306,11 @@
  var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
-   pane=document.querySelector('.leaflet-map-pane')
-  //pane=document.querySelector('canvas')
+  pane=document.querySelector('.leaflet-map-pane')
   if(serverExport.onclick&&pane){
    clearInterval(Id)
    serverExport.onclick=pushOsm
-   const observer=new MutationObserver(mutationsList=>{if(mousedown==1)center.style.display='none'})
+   const observer=new MutationObserver(mutationsList=>{console.log(mutationsList);if(mousedown==1)center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['style']})
   }
  },1000)
