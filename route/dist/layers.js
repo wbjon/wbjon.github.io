@@ -9,7 +9,7 @@ BR.layerIndex = {
    "maxZoom":18,
    "id":"1009",
    "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
-   //"overlay":true,
+   "attribution":"Hello World"
   },
   "type": "Feature"
  },
