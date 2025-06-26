@@ -4,8 +4,7 @@ BR.confLayers.defaultBaseLayers = [
     'standard',
     'OpenTopoMap',
     'Stamen.Terrain',
-    'Esri.WorldImagery',
-    '1016'
+    'Esri.WorldImagery'
 ];
 
 // worldwide monolingual layers to add as default when browser language matches
