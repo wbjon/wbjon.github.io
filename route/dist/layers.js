@@ -5,10 +5,11 @@ BR.layerIndex = {
  "1009":{
   "geometry":null,
   "properties":{
-   "name":"Taiwan Contours",
+   "name":"grmn",
    "maxZoom":18,
+"min_zoom": 1,
    "id":"1009",
-   "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
+   "url":"https://{switch:grmn,rmng,mngr,ngrm,rgmn}.onrender.com/{zoom}/{x}/{y}.pbf",
    "attribution":{"text":"My Map"}
   },
   "type": "Feature"
