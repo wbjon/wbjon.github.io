@@ -3748,7 +3748,7 @@ BR.layerIndex = {
       "max_zoom": 18,
       "min_zoom": 1,
       "name": "OpenTopoMap",
-      "type": "tms",
+      //"type": "tms",
       "url": "https://{switch:grmn,rmng,mngr,ngrm,rgmn}.onrender.com/{zoom}/{x}/{y}.pbf",
       "valid-georeference": true,
       "dataSource": "JOSM"
