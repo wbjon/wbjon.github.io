@@ -2,6 +2,16 @@
 // except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),
 // see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation
 BR.layerIndex = {
+ "1009":{
+  "geometry":null,
+  "properties":{
+   "name":"Taiwan Contours",
+   "maxZoom":18,
+   "id":"1009",
+   "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
+  },
+  "type": "Feature"
+ },
   "1010": {
     "geometry": null,
     "properties": {
