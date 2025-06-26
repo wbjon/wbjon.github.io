@@ -1333,7 +1333,7 @@
   if(Number.isFinite(+arr[0])&&Number.isFinite(+arr[1])){
    text=location.href.split('/')
    text[text.length-3]=arr[0];text[text.length-2]=arr[1]
-   location.href=text.join('/')
+   location.replace(text.join('/'))//location.href=text.join('/')
    center.style.display='block'
   }
  }
