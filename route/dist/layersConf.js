@@ -2,7 +2,7 @@ BR.confLayers = {};
 
 BR.confLayers.defaultBaseLayers = [
     'standard',
-    'OpenTopoMap',
+    //'OpenTopoMap',
     'Stamen.Terrain',
     'Esri.WorldImagery'
 ];
@@ -53,7 +53,8 @@ BR.confLayers.tree = {
             'opencylemap',
             '1061', // Thunderforest Outdoors
             '1065', // Hike & Bike Map
-            '1016', // 4UMaps,
+            '1016', //
+,
             'openmapsurfer',
             '1059'  // ÖPNV Karte
         ],
