@@ -3,17 +3,18 @@
 // see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation
 BR.layerIndex = {
  "1009":{
+"attribution": {
+        "required": true,
+        "text": "© OpenStreetMap contributors, CC-BY-SA 2.0",
+        "url": "https://www.openstreetmap.org/"
+      },
   "geometry":null,
   "properties":{
    "name":"Taiwan Contours",
    "maxZoom":18,
    "id":"1009",
    "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
-   "attribution": {
-        "required": true,
-        "text": "© OpenStreetMap contributors, CC-BY-SA 2.0",
-        "url": "https://www.openstreetmap.org/"
-      }
+
   },
   "type": "Feature"
  },
