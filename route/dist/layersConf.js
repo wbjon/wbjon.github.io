@@ -4,8 +4,7 @@ BR.confLayers.defaultBaseLayers = [
     'standard',
     'OpenTopoMap',
     'Stamen.Terrain',
-    'Esri.WorldImagery',
-    '1016'
+    'Esri.WorldImagery'
 ];
 
 // worldwide monolingual layers to add as default when browser language matches
@@ -54,8 +53,7 @@ BR.confLayers.tree = {
             'opencylemap',
             '1061', // Thunderforest Outdoors
             '1065', // Hike & Bike Map
-            '1016', //
-,
+            '1016', // 4UMaps,
             'openmapsurfer',
             '1059'  // ÖPNV Karte
         ],
