@@ -1309,10 +1309,10 @@
   pane=document.querySelector('.leaflet-map-pane')
   if(serverExport.onclick&&pane){
    clearInterval(Id)
-   BR.debug.map.on('mousedown',e=>{console.log(e.originalEvent.button,e.originalEvent.buttons,e.originalEvent.ctrlKey);mousedown=e.which;if(mousedown==2)handle()})
+   BR.debug.map.on('mousedown',e=>{console.log(e.originalEvent.button,e.originalEvent.buttons,e.originalEvent.ctrlKey);mousedown=e.originalEvent.button;if(mousedown==1)handle()})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    serverExport.onclick=pushOsm
-   const observer=new MutationObserver(mutationsList=>{/*if(mousedown==1||mutationsList[0].target.className.includes('zoom'))center.style.display='none'*/})
+   const observer=new MutationObserver(mutationsList=>{if(mousedown==0||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
   }
  },1000)
