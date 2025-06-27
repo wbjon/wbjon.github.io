@@ -1309,7 +1309,7 @@
   pane=document.querySelector('.leaflet-map-pane')
   if(serverExport.onclick&&pane){
    clearInterval(Id)
-   BR.debug.map.on('mousedown',e=>{console.log(e.originalEvent.button,e.originalEvent.buttons,e.originalEvent.ctrlKey);mousedown=e.originalEvent.button;if(mousedown==1)handle()})
+   BR.debug.map.on('mousedown',e=>{console.log(e.originalEvent.button,e.originalEvent.buttons,e.originalEvent.ctrlKey);mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey)console.log(e);else handle()}})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{if(mousedown==0||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
@@ -1337,7 +1337,7 @@
    //location.replace(text.join('/'))//改用以下
    BR.debug.map.setView(arr)
    center.style.display='block'
-  }else{const mapCenter=BR.debug.map.getCenter();navigator.clipboard.writeText(`${mapCenter.lat},${mapCenter.lng}`)}
+  }
  }
  //document.addEventListener('mousedown',e=>{mousedown=e.which;if(mousedown==2)handle()},true)//改用BR.debug.map.on('mousedown'
 </script>
