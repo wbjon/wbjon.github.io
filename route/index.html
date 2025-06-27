@@ -1322,7 +1322,8 @@
   }
  })()
  const handle=async()=>{
-  navigator.clipboard.writeText(BR.debug.map.getCenter());return
+  const mapCenter=BR.debug.map.getCenter()
+  navigator.clipboard.writeText(`${mapCenter.lat},${mapCenter.lng}`);return
   let text=await navigator.clipboard.readText()
   let arr=text.split('/')
   if(arr.length>=2){text=','+arr.pop();text=arr.pop()+text}//pop()可取得陣列最後一個，且原陣列最後一個會去除
