@@ -1322,6 +1322,7 @@
   }
  })()
  const handle=async()=>{
+  navigator.clipboard.writeText(BR.debug.map.getCenter());return
   let text=await navigator.clipboard.readText()
   let arr=text.split('/')
   if(arr.length>=2){text=','+arr.pop();text=arr.pop()+text}//pop()可取得陣列最後一個，且原陣列最後一個會去除
@@ -1336,7 +1337,7 @@
    //location.replace(text.join('/'))//改用以下
    BR.debug.map.setView(arr)
    center.style.display='block'
-  }
+  }else
  }
  document.addEventListener('mousedown',e=>{mousedown=e.which;if(mousedown==2)handle()},true)
 </script>
