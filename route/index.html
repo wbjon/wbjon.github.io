@@ -1307,7 +1307,7 @@
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
-  if(serverExport.onclick&&pane){
+  if(serverExport.onclick&&pane){console.log(BR.debug.map)
    clearInterval(Id)
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    serverExport.onclick=pushOsm
@@ -1339,7 +1339,6 @@
   }else{const mapCenter=BR.debug.map.getCenter();navigator.clipboard.writeText(`${mapCenter.lat},${mapCenter.lng}`)}
  }
  document.addEventListener('mousedown',e=>{mousedown=e.which;if(mousedown==2)handle()},true)
- console.log(BR.debug.map)
 </script>
     </body>
 </html>
