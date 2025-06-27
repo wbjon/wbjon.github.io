@@ -16,6 +16,7 @@ BR.confLayers.languageDefaultLayers = [
 ];
 
 BR.confLayers.defaultOverlays =  [
+    '1008',
     'terrarium-hillshading',
     'Waymarked_Trails-Cycling',
     'Waymarked_Trails-Hiking'
