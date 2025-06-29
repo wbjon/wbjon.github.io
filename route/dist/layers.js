@@ -6,7 +6,8 @@ BR.layerIndex = {
   "geometry":null,
   "properties":{
    "name":"Google Maps",
-   "max_zoom":22,
+   "max_zoom":20,
+"maxZoom": 20,
    "id":"1007",
    "url":"https://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
    "attribution":{"text":"My Map"}
