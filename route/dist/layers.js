@@ -18,8 +18,7 @@ BR.layerIndex = {
   "geometry":null,
   "properties":{
    "name":"grmn",
-   "max_zoom":15,
-   "min_zoom":1,
+   "max_zoom":18,
    "id":"1009",
    "url":"https://{switch:grmn,rmng,mngr,ngrm,rgmn}.onrender.com/{zoom}/{x}/{y}.pbf",
    "attribution":{"text":"My Map"}
