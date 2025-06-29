@@ -8,8 +8,8 @@ BR.layerIndex = {
    "name":"Taiwan Contours",
    "maxZoom":11,
    "min_zoom":1,
-  "overlay": true,
-  "type": "tms",
+"overlay": true,
+      "type": "raster-dem",
    "id":"1008",
    "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
    "attribution":{"text":"My Map"}
