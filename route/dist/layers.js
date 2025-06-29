@@ -6,9 +6,7 @@ BR.layerIndex = {
   "geometry":null,
   "properties":{
    "name":"Taiwan Contours",
-   "max_zoom":11,
-"overlay": true,
-      "type": "raster-dem",
+   "max_zoom":18,
    "id":"1008",
    "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
    "attribution":{"text":"My Map"}
