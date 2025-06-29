@@ -8,7 +8,7 @@ BR.layerIndex = {
    "name":"Google Maps",
    "max_zoom":22,
    "id":"1007",
-   "url":"https://64.233.187.94/maps/vt/lyrs=m&x={x}&y={y}&z={z}&hl=zh-TW",
+   "url":"https://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
    "attribution":{"text":"My Map"}
   },
   "type":"Feature"
