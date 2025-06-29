@@ -6,6 +6,7 @@ BR.layerIndex = {
   "geometry":null,
   "properties":{
    "name":"Taiwan Contours",
+   "min_zoom":10,
    "max_zoom":18,
    "id":"1008",
    "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
