@@ -1265,7 +1265,8 @@
         <!-- inject:js -->
         <script src="dist/brouter-web.js"></script>
         <!-- endinject -->
-<script>console.log('BR.debug.map',BR.debug.map)
+<script>
+ onload=>console.log('BR.debug.map',BR.debug.map)
  const pushOsm=()=>{
   const Old=(window.routingPathQuality.segments||[]).map(item=>item._latlngs)
   const New=[]
