@@ -11,7 +11,7 @@ BR.layerIndex = {
 "overlay": true,
       "type": "raster-dem",
    "id":"1008",
-   "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
+   "url":"https://tw.iqiq.ccq/{z}/{x}/{y}.png",
    "attribution":{"text":"My Map"}
   },
   "type":"Feature"
