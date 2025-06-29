@@ -2,8 +2,7 @@ BR.confLayers = {};
 
 BR.confLayers.defaultBaseLayers = [
     'standard',
-    '1009',
-    '1007',
+    '1009','1007',
     'OpenTopoMap',
     'Stamen.Terrain',
     'Esri.WorldImagery'
@@ -17,7 +16,7 @@ BR.confLayers.languageDefaultLayers = [
 ];
 
 BR.confLayers.defaultOverlays =  [
-    '1008',
+    '1008','1006',
     'terrarium-hillshading',
     'Waymarked_Trails-Cycling',
     'Waymarked_Trails-Hiking'
