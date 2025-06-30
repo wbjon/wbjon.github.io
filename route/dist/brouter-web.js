@@ -38,12 +38,12 @@ t.on("contextmenu",e=>{
  for(const i in lonlats){
   const lonlat=lonlats[i].split(',')
   if(Math.abs(lonlat[0]-lng)<.000001&&Math.abs(lonlat[1]-lat)<.000001){
-   console.log(i)
    const idx=straight.indexOf(i)
    if(idx==-1)straight.push(i);else straight.splice(idx,1)
    break
   }
  }
+ console.log(straight)
  url=url.replace(/&straight=[^&]*/,"")
  location.replace(url+"&straight="+straight.join())
 })
