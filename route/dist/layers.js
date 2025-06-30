@@ -5,7 +5,7 @@ BR.layerIndex = {
  "1006":{
   "geometry":null,
   "properties":{
-   "name":"Google StreetView",
+   "name":"Google街景",
    "max_zoom":22,
    "id":"1006",
    "url":"https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i{z}!2i{x}!3i{y}!4i256!2m8!1e2!2ssvv!4m2!1scb_client!2sapiv3!4m2!1scc!2s*211m3*211e3*212b1*213e2*211m3*211e2*212b1*213e2!3m3!3sUS!12m1!1e68!4e0",
