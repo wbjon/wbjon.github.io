@@ -16,7 +16,7 @@ BR.layerIndex = {
  "1007":{
   "geometry":null,
   "properties":{
-   "name":"Google Maps",
+   "name":"Google地圖",
    "max_zoom":22,
    "id":"1007",
    "url":"https://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
