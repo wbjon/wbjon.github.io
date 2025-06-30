@@ -8,7 +8,7 @@ BR.layerIndex = {
    "name":"Google衛星",
    "max_zoom":22,
    "id":"1005",
-   "url":"https://google.com/maps/vt/lyrs=s&x={x}&y={y}&z={z}",
+   "url":"https://mt.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
    "attribution":{"text":"My Map"}
   },
   "type":"Feature"
