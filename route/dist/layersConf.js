@@ -2,7 +2,7 @@ BR.confLayers = {};
 
 BR.confLayers.defaultBaseLayers = [
     'standard',
-    '1009','1007',
+    '1009','1007','1005',
     'OpenTopoMap',
     'Stamen.Terrain',
     'Esri.WorldImagery'

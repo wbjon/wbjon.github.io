@@ -2,6 +2,17 @@
 // except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),
 // see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation
 BR.layerIndex = {
+ "1005":{
+  "geometry":null,
+  "properties":{
+   "name":"Google衛星",
+   "max_zoom":22,
+   "id":"1005",
+   "url":"https://www.google.com.tw/maps/vt/lyrs=s&x={x}&y={y}&z={z}",
+   "attribution":{"text":"My Map"}
+  },
+  "type":"Feature"
+ },
  "1006":{
   "geometry":null,
   "properties":{
