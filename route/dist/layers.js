@@ -27,7 +27,7 @@ BR.layerIndex = {
  "1008":{
   "geometry":null,
   "properties":{
-   "name":"Taiwan Contours",
+   "name":"台灣等高線",
    "min_zoom":10,
    "max_zoom":18,
    "id":"1008",
