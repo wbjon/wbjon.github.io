@@ -1325,7 +1325,7 @@
     }})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    collapsingNavbar=document.getElementById('collapsingNavbar')
-   collapsingNavbar.insertAdjacentHTML('beforeend','<button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕新增…📝</option></select><button>改名</button><button>開啟</button><button>刪除</button>')
+   collapsingNavbar.insertAdjacentHTML('beforeend','<button>儲存</button><select id="routes"><option selected>➕新增…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-4)
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{
@@ -1341,13 +1341,13 @@
      }
     }
    }
-   buttons[1].onclick=()=>{
+   buttons[1].onclick=()=>{if(routes.selectedIndex)location.replace(localStorage.getItem(routes.value))}
+   buttons[2].onclick=()=>{
     if(routes.selectedIndex){
      const newName=prompt('輸入新名：',routes.value)
      if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName}
     }
    }
-   buttons[2].onclick=()=>{if(routes.selectedIndex)location.replace(localStorage.getItem(routes.value))}
    buttons[3].onclick=()=>{if(routes.selectedIndex){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
