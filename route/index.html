@@ -1336,20 +1336,8 @@
     }
     routes.selectedIndex=0
    }
-
-   buttons[2].onclick=()=>{
-    // if(routes.selectedIndex){
-    //  const newName=prompt('輸入新名：',routes.value)
-    //  if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName}
-    // }
-    // routes.selectedIndex=0
-   }
-
+   buttons[2].onclick=()=>{if(routes.selectedIndex)location.replace(localStorage.getItem(routes.value))}
    buttons[3].onclick=()=>{if(routes.selectedIndex){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
-
-
-
-
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
     if(value.includes("https://")){
@@ -1358,11 +1346,6 @@
      routes.appendChild(newOption)
     }
    }
-
-
-
-
-
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{if(mousedown==0||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
