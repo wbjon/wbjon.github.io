@@ -1333,6 +1333,14 @@
     routes.selectedIndex=0
    }
 
+   buttons[3].onclick=()=>{
+    if(routes.selectedIndex){
+     localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);//routes.selectedIndex=0
+    }
+   }
+
+
+
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{if(mousedown==0||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
