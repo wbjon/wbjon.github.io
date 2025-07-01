@@ -1303,7 +1303,7 @@
    .catch(e=>console.error('PUT route.osm錯誤',e))
   }
  }
- var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons
+ var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
@@ -1315,7 +1315,17 @@
    collapsingNavbar=document.getElementById('collapsingNavbar')
    collapsingNavbar.innerHTML+='<button>儲存</button><select id="routes"><option disabled selected>選擇路徑</option></select><button>開啟</button><button>刪除</button>'
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-3)
-   buttons[0].onclick=()=>{localStorage.setItem(new Date().toLocaleString("zh-CN",{timeZone:"Asia/Taipei"}),'Hello'+Math.random())}
+   routes=document.getElementById('routes')
+   buttons[0].onclick=()=>{
+    if(/pois|lonlats/.test(location.href)){
+     const thisTime=new Date().toLocaleString("zh-CN",{timeZone:"Asia/Taipei"})
+     localStorage.setItem(thisTime,location.href)
+     const newOption = document.createElement("option")
+     newOption.textContent=thisTime
+     routes.appendChild(newOption)
+
+    }
+   }
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{if(mousedown==0||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
