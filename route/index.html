@@ -1334,7 +1334,7 @@
      const newName=prompt('輸入新名：',routes.value)
      if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName}
     }
-    routes.selectedIndex=0
+    //routes.selectedIndex=0
    }
    buttons[2].onclick=()=>{if(routes.selectedIndex)location.replace(localStorage.getItem(routes.value))}
    buttons[3].onclick=()=>{if(routes.selectedIndex){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
