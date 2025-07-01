@@ -1318,12 +1318,15 @@
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{
     if(/pois|lonlats/.test(location.href)){
-     const thisTime=new Date().toLocaleString("zh-CN",{timeZone:"Asia/Taipei"})
-     localStorage.setItem(thisTime,location.href)
-     const newOption=document.createElement("option")
-     newOption.text=thisTime//.text為<option>專用，相當於newOption.textContent
-     routes.appendChild(newOption)
-     routes.value=thisTime
+     if(routes.selectedIndex)localStorage.setItem(routes.value,location.href)
+     else{
+      const thisTime=new Date().toLocaleString("zh-CN",{timeZone:"Asia/Taipei"})
+      localStorage.setItem(thisTime,location.href)
+      const newOption=document.createElement("option")
+      newOption.text=thisTime//.text為<option>專用，相當於newOption.textContent
+      routes.appendChild(newOption)
+      routes.value=thisTime
+     }
     }
    }
    buttons[1].onclick=()=>{
