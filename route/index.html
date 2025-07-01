@@ -1336,7 +1336,7 @@
     }
    }
    buttons[2].onclick=()=>{if(routes.selectedIndex)location.replace(localStorage.getItem(routes.value))}
-   buttons[3].onclick=()=>{if(routes.selectedIndex){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
+   buttons[3].onclick=()=>{if(routes.selectedIndex){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);}}
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
     if(value.includes("https://")){
