@@ -1320,7 +1320,7 @@
     if(/pois|lonlats/.test(location.href)){
      const thisTime=new Date().toLocaleString("zh-CN",{timeZone:"Asia/Taipei"})
      localStorage.setItem(thisTime,location.href)
-     const newOption = document.createElement("option")
+     const newOption=document.createElement("option")
      newOption.text=thisTime//.text為<option>專用，相當於newOption.textContent
      routes.appendChild(newOption)
     }
@@ -1334,6 +1334,20 @@
    }
 
    buttons[3].onclick=()=>{if(routes.selectedIndex){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
+
+
+
+
+   for(let i=0;i<localStorage.length;i++){
+    const key=localStorage.key(i),value=localStorage.getItem(key)
+    if(value.includes("https://")){
+     const newOption=document.createElement("option")
+     newOption.text=key//.text為<option>專用，相當於newOption.textContent
+     routes.appendChild(newOption)
+    }
+   }
+
+
 
 
 
