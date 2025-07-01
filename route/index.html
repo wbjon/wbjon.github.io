@@ -1312,7 +1312,7 @@
    BR.debug.map.setMaxZoom(30)//讓操作及網址最大到30，也需修改brouter-web.js的,t=new L.Map("map",{zoomControl:!1,worldCopyJump:!0,minZoom:0,maxZoom:30}),讓大zoom地圖及控制項不顯灰
    BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey)navigator.clipboard.writeText(`${e.latlng.lat},${e.latlng.lng}`);else handle()}})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
-   const coll=document.getElementById('collapsingNavbar')
+   var coll=document.getElementById('collapsingNavbar')
 
    coll.innerHTML+='<button>儲存</button><select id="routes"><option disabled selected>選擇路徑</option></select><button>開啟</button><button>刪除</button>'
    serverExport.onclick=pushOsm
