@@ -1328,11 +1328,9 @@
    buttons[1].onclick=()=>{
     if(routes.selectedIndex){
      const newName=prompt('輸入新名：',routes.value)
-     localStorage.setItem(newName,localStorage.getItem(routes.value));
-     localStorage.removeItem(routes.value)
-     routes.options[routes.selectedIndex].text=newName
-     routes.selectedIndex=0
+     if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName}
     }
+    routes.selectedIndex=0
    }
 
    serverExport.onclick=pushOsm
