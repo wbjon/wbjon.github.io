@@ -1323,6 +1323,7 @@
      const newOption=document.createElement("option")
      newOption.text=thisTime//.text為<option>專用，相當於newOption.textContent
      routes.appendChild(newOption)
+     routes.value=thisTime
     }
    }
    buttons[1].onclick=()=>{
@@ -1331,6 +1332,14 @@
      if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName}
     }
     routes.selectedIndex=0
+   }
+
+   buttons[2].onclick=()=>{
+    // if(routes.selectedIndex){
+    //  const newName=prompt('輸入新名：',routes.value)
+    //  if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName}
+    // }
+    // routes.selectedIndex=0
    }
 
    buttons[3].onclick=()=>{if(routes.selectedIndex){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
