@@ -1333,11 +1333,7 @@
     routes.selectedIndex=0
    }
 
-   buttons[3].onclick=()=>{
-    if(routes.selectedIndex){
-     localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);//routes.selectedIndex=0
-    }
-   }
+   buttons[3].onclick=()=>{if(routes.selectedIndex){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
 
 
 
