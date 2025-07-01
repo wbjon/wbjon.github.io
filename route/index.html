@@ -1313,7 +1313,7 @@
    BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey)navigator.clipboard.writeText(`${e.latlng.lat},${e.latlng.lng}`);else handle()}})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    collapsingNavbar=document.getElementById('collapsingNavbar')
-   collapsingNavbar.insertAdjacentHTML('beforeend','<button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>新增…</option></select><button>改名</button><button>開啟</button><button>刪除</button>')
+   collapsingNavbar.insertAdjacentHTML('beforeend','<button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕新增…📝</option></select><button>改名</button><button>開啟</button><button>刪除</button>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-4)
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{
