@@ -1321,15 +1321,15 @@
      const thisTime=new Date().toLocaleString("zh-CN",{timeZone:"Asia/Taipei"})
      localStorage.setItem(thisTime,location.href)
      const newOption = document.createElement("option")
-     newOption.textContent=thisTime
+     newOption.text=thisTime//.text為<option>專用，相當於newOption.textContent
      routes.appendChild(newOption)
     }
    }
    buttons[1].onclick=()=>{
-    console.log(routes.selectedIndex)
-
-
-
+    if(routes.selectedIndex){
+     const newName=prompt('輸入新名：',routes.value)
+     console.log(newName)
+    }
    }
 
    serverExport.onclick=pushOsm
