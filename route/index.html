@@ -1318,7 +1318,7 @@
 
 
 
-   BR.debug.map.on('keydown',e=>{e.originalEvent.stopPropagation()
+   BR.debug.map.on('keydown',e=>{e.originalEvent.preventDefault()//stopPropagation()
     let step=1
     switch(e.originalEvent.keyCode){
      case 38://向上鍵
