@@ -1328,7 +1328,19 @@
    collapsingNavbar.insertAdjacentHTML('beforeend','<button>當前</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-5)
    routes=document.getElementById('routes')
-   buttons[0].onclick=()=>{BR.debug.map.fitBounds([[23.67,120.87],[23.66,120.88]])}
+   buttons[0].onclick=()=>{
+    BR.debug.map.fitBounds([[23.67,120.87],[23.66,120.88]])
+    let lonlats=location.href.match(/lonlats=([^&]+)/),pois=url.match(/pois=([^&]+)/)
+    lonlats=lonlats?lonlats[1].split(';').forEach((item,index,array)=>array[index]=item.split(',').reverse()):[]
+    pois=pois?pois[1].split(';').forEach((item,index,array)=>array[index]=item.split(',').reverse().splice(1)):[]
+console.log('lonlats',lonlats)
+console.log('pois',pois)
+
+
+
+
+
+   }
    buttons[1].onclick=()=>{
     if(/pois|lonlats/.test(location.href)){
      if(routes.selectedIndex)localStorage.setItem(routes.value,location.href)
