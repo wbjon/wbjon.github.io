@@ -1362,7 +1362,7 @@
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
    new MutationObserver(mutations=>{
     //for(const mutation of mutations){console.log(mutation.target)}
-console.log(mutations)
+console.log(location.href)
 }).observe(document.querySelector('.leaflet-pane.leaflet-map-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['class']})
   }
  },1000)
