@@ -1333,7 +1333,7 @@
     lonlats=lonlats?lonlats[1].split(';').map(item=>item.split(',').reverse()):[]
     pois=pois?pois[1].split(';').map(item=>item.split(',').reverse().splice(1)):[]
     lonlats.push(...pois)
-    if(lonlats.length)BR.debug.map.fitBounds(lonlats)
+    if(lonlats.length)BR.debug.map.fitBounds(lonlats,{maxZoom:18})
    }
    buttons[1].onclick=()=>{
     if(/pois|lonlats/.test(location.href)){
