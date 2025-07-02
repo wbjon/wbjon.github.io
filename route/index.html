@@ -1361,8 +1361,8 @@
    const observer=new MutationObserver(mutationsList=>{if(mousedown==0||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
    new MutationObserver(mutations=>{
-    //for(const mutation of mutations){console.log(mutation.target)}
-console.log(location.href.split('#')[1])
+    for(const mutation of mutations){console.log(mutation.target)}
+//console.log(location.href.split('#')[1])
 //console.log(mutations)
 }).observe(document.querySelector('.leaflet-pane.leaflet-map-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['class']})
   }
