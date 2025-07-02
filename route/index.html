@@ -1329,17 +1329,10 @@
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-5)
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{
-    BR.debug.map.fitBounds([[23.67,120.87],[23.66,120.88]])
     let lonlats=location.href.match(/lonlats=([^&]+)/),pois=location.href.match(/pois=([^&]+)/)
     lonlats=lonlats?lonlats[1].split(';').map(item=>item.split(',').reverse()):[]
     pois=pois?pois[1].split(';').map(item=>item.split(',').reverse().splice(1)):[]
-console.log('lonlats',lonlats)
-console.log('pois',pois)
-
-
-
-
-
+    BR.debug.map.fitBounds(lonlats.concat(pois))
    }
    buttons[1].onclick=()=>{
     if(/pois|lonlats/.test(location.href)){
