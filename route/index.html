@@ -1360,7 +1360,8 @@
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{if(mousedown==0||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
-   new MutationObserver(mutationsList=>{console.log(mutationsList)}).observe(document.getElementById('map'),{childList:true,attributes:false,subtree:true})
+   new MutationObserver(mutationsList=>{
+    for(const mutation of mutations){console.log(mutation.target)}}).observe(document.getElementById('map'),{childList:true,attributes:false,subtree:true})
   }
  },1000)
  ;(function setToken(){
