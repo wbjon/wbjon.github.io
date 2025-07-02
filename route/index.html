@@ -1348,7 +1348,7 @@
      if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName}
     }
    }
-   buttons[3].onclick=()=>{if(routes.selectedIndex&&confirm("確定要刪除嗎？")){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
+   buttons[3].onclick=()=>{if(routes.selectedIndex&&confirm(`確定要刪除${routes.value}嗎？`)){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
     if(value.includes("https://")){
