@@ -1363,7 +1363,7 @@
    new MutationObserver(mutations=>{
     //for(const mutation of mutations){console.log(mutation.target)}
 console.log(mutations)
-}).observe(document.querySelector('.leaflet-pane.leaflet-map-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['style']})
+}).observe(document.querySelector('.leaflet-pane.leaflet-map-pane'),{childList:true,subtree:false,attributes:true,attributeFilter:['style']})
   }
  },1000)
  ;(function setToken(){
