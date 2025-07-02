@@ -1311,7 +1311,14 @@
    clearInterval(Id)
    BR.debug.map.setMaxZoom(30)//讓操作及網址最大到30，也需修改brouter-web.js的,t=new L.Map("map",{zoomControl:!1,worldCopyJump:!0,minZoom:0,maxZoom:30}),讓大zoom地圖及控制項不顯灰
    BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey)navigator.clipboard.writeText(`${e.latlng.lat},${e.latlng.lng}`);else handle()}})
-                                              BR.debug.map.getContainer().on('keydown',e=>{e.stopPropogation()
+
+
+
+
+
+
+
+   BR.debug.map.on('keydown',e=>{e.stopPropogation()
     let step=1
     switch(e.originalEvent.keyCode){
      case 38://向上鍵
