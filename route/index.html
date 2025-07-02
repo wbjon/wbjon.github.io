@@ -1318,14 +1318,13 @@
 
 
 
-   BR.debug.map.on('keydown',e=>{
+   BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
     switch(e.originalEvent.keyCode){
      case 38://向上鍵
       step=-1
       //刻意不加break，讓case 40一併執行(貫穿)
      case 40://向下鍵
-      e.originalEvent.stopPropagation()
       const radios=[...document.querySelectorAll('.leaflet-control-layers-base input')],length=radios.length
       let currentIndex=radios.findIndex(r=>r.checked)+length//+length可防止減1變負數，又不會影響取餘數
       currentIndex+=step;currentIndex%=length
