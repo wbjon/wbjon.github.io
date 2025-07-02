@@ -1330,9 +1330,9 @@
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{
     BR.debug.map.fitBounds([[23.67,120.87],[23.66,120.88]])
-    let lonlats=location.href.match(/lonlats=([^&]+)/),pois=url.match(/pois=([^&]+)/)
-    lonlats=lonlats?lonlats[1].split(';').forEach((item,index,array)=>array[index]=item.split(',').reverse()):[]
-    pois=pois?pois[1].split(';').forEach((item,index,array)=>array[index]=item.split(',').reverse().splice(1)):[]
+    let lonlats=location.href.match(/lonlats=([^&]+)/),pois=location.href.match(/pois=([^&]+)/)
+    lonlats=lonlats?lonlats[1].split(';').map(item=>item.split(',').reverse()):[]
+    pois=pois?pois[1].split(';').map(item=>item.split(',').reverse().splice(1)):[]
 console.log('lonlats',lonlats)
 console.log('pois',pois)
 
