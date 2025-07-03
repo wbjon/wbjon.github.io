@@ -1361,7 +1361,9 @@
     if(value.includes("https://")){
      const newOption=document.createElement("option")
      newOption.text=key//.text為<option>專用，相當於newOption.textContent
-     routes.appendChild(newOption);console.log(routes.options)
+     console.log(routes.options)
+     for(let i=1;i<routes.options;i++){console.log(i)}
+     routes.appendChild(newOption)
     }
    }
    serverExport.onclick=pushOsm
