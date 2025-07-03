@@ -1361,7 +1361,7 @@
     if(value.includes("https://")){
      const newOption=document.createElement("option")
      newOption.text=key//.text為<option>專用，相當於newOption.textContent
-     let Len=routes.options.length;console.log(Len)
+     let Len=routes.options.length;console.log(Len,key)
      for(let j=1;j<Len;j++){
       if(new Date(key)<new Date(routes.options[j].text)){routes.insertBefore(newOption,routes.options[j]);Len=0;break}
      }
