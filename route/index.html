@@ -1361,12 +1361,12 @@
     if(value.includes("https://")){
      const newOption=document.createElement("option")
      newOption.text=key//.text為<option>專用，相當於newOption.textContent
-     let L=routes.options.length
-     for(let j=1;j<L;j++){
-      if(new Date(key)<new Date(routes.options[j].text)){routes.insertBefore(newOption,routes.options[j]);L=0;break}
+     let Len=routes.options.length
+     for(let j=1;j<Len;j++){
+      if(new Date(key)<new Date(routes.options[j].text)){routes.insertBefore(newOption,routes.options[j]);Len=0;break}
      }
 
-      if(L&&(new Date(key)>new Date(routes.lastElementChild.text))){routes.appendChild(newOption)}else{routes.insertBefore(newOption,routes.options[1])}
+      if(Len&&(new Date(key)>new Date(routes.lastElementChild.text))){routes.appendChild(newOption)}else{routes.insertBefore(newOption,routes.options[1])}
 
     }
    }
