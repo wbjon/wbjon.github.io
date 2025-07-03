@@ -1366,7 +1366,7 @@
       if(new Date(key)<new Date(routes.options[j].text)){routes.insertBefore(newOption,routes.options[j]);L=0;break}
      }
 
-      if(L&&new Date(key)>new Date(routes.lastElementChild.text)){routes.appendChild(newOption)}else{routes.insertBefore(newOption,routes.options[1])}
+      if(L&&(new Date(key)>new Date(routes.lastElementChild.text))){routes.appendChild(newOption)}else{routes.insertBefore(newOption,routes.options[1])}
 
     }
    }
