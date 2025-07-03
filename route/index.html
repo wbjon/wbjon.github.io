@@ -1373,7 +1373,7 @@
 //console.log(mutations)
 }).observe(document.querySelector('.leaflet-pane.leaflet-map-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['class']})
    BR.debug.map.eachLayer(function(layer){
-    if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers)){console.log(layer)}
+    if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers)){window.POILayer=layer}
    })
   }
  },1000)
