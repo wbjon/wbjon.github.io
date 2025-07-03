@@ -1367,7 +1367,7 @@
      }
 
       if(Len&&(new Date(key)>new Date(routes.lastElementChild.text))){routes.appendChild(newOption)}else{routes.insertBefore(newOption,routes.options[1])}
-console.log([...routes.options].map(item => item.text))
+console.log(Len,[...routes.options].map(item => item.text))
     }
    }
    serverExport.onclick=pushOsm
