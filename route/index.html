@@ -1361,9 +1361,12 @@
     if(value.includes("https://")){
      const newOption=document.createElement("option")
      newOption.text=key//.text為<option>專用，相當於newOption.textContent
-     console.log(routes.options)
-     for(let i=1;i<routes.options.length;i++){console.log(i)}
-     routes.appendChild(newOption)
+     for(var optionsI=1;optionsI<routes.options.length;optionsI++){
+      if(new Date(key)<new Date(routes.options[optionsI].text)){routes.insertBefore(newOption,routes.options[optionsI]);break}
+     }
+     if(optionsI==routes.options.length){
+      if(new Date(key)>new Date(routes.lastElementChild.text))routes.appendChild(newOption);else routes.insertBefore(newOption,routes.options[1])
+     }
     }
    }
    serverExport.onclick=pushOsm
