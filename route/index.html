@@ -1348,7 +1348,7 @@
      }
     }
    }
-   buttons[2].onclick=()=>{if(routes.selectedIndex)location.replace(localStorage.getItem(routes.value))}
+   buttons[2].onclick=()=>{if(routes.selectedIndex){location.replace(localStorage.getItem(routes.value));for(const id in poisLayer._layers){poisLayer._map.removeLayer(poisLayer._layers[id]);delete poisLayer._layers[id]}}}//poisLayer._map等同於BR.debug.map
    buttons[3].onclick=()=>{
     if(routes.selectedIndex){
      const newName=prompt('輸入新名：',routes.value)
