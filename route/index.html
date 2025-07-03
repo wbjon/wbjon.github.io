@@ -1362,7 +1362,7 @@
      const newOption=document.createElement("option")
      newOption.text=key//.text為<option>專用，相當於newOption.textContent
      console.log(routes.options)
-     for(let i=1;i<routes.options;i++){console.log(i)}
+     for(let i=1;i<routes.options.length;i++){console.log(i)}
      routes.appendChild(newOption)
     }
    }
