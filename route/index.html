@@ -1325,7 +1325,7 @@
     }})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    collapsingNavbar=document.getElementById('collapsingNavbar')
-   collapsingNavbar.insertAdjacentHTML('beforeend','<button>當前</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
+   collapsingNavbar.insertAdjacentHTML('beforeend','<button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-5)
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{
@@ -1372,7 +1372,7 @@
 //console.log(location.href.split('#')[1])
 //console.log(mutations)
 }).observe(document.querySelector('.leaflet-pane.leaflet-map-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['class']})
-   BR.debug.map.eachLayer(function(layer){if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers))window.poisLayer=layer})
+   BR.debug.map.eachLayer(function(layer){if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers))window.poisLayer=layer})//找出興趣點層
   }
  },1000)
  ;(function setToken(){
