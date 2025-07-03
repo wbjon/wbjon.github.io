@@ -1352,7 +1352,7 @@
    buttons[3].onclick=()=>{
     if(routes.selectedIndex){
      const newName=prompt('輸入新名：',routes.value)
-     if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName}
+     if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName;routes.insertBefore(routes.options[routes.selectedIndex],routes.options[1])}
     }
    }
    buttons[4].onclick=()=>{if(routes.selectedIndex&&confirm(`刪除…${routes.value}`)){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
