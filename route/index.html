@@ -1395,7 +1395,8 @@
 if(location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[0].replace(/(map|profile)=[^&]*/g,'')){
  lastURLs.unshift(location.href)
  lastURLs.splice(100)//去除索引100以後的陣列，即控制陣列最大長度100
- console.log(lastURLs,mutations)
+ //console.log(lastURLs,mutations)
+ console.log(mutations)
 //      lastURLs.splice(0,page+1)
 //      lastURLs.unshift(location.href)
 //      lastURLs.splice(100)//去除索引100以後的陣列，即控制陣列最大長度100
@@ -1403,7 +1404,7 @@ if(location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[0].replace(/(map|p
 }
 
 
-}).observe(document.querySelector('.leaflet-pane.leaflet-marker-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['class']})
+}).observe(document.querySelector('.leaflet-pane.leaflet-marker-pane'),{childList:true,subtree:false/*,attributes:true,attributeFilter:['class']*/})
 
 
 
