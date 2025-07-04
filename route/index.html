@@ -1365,11 +1365,9 @@
      for(let j=1;j<Len;j++){
       if(new Date(key)<new Date(routes.options[j].text)){routes.insertBefore(newOption,routes.options[j]);Len=0;break}
      }
-     if(Len){
-      if(!isNaN(new Date(routes.lastElementChild.text).getTime())&&isNaN(new Date(key).getTime()))routes.insertBefore(newOption,routes.options[1]);else routes.appendChild(newOption)
-console.log(Len,[...routes.options].map(item => item.text))
+     if(!Len)continue
+     if(!isNaN(new Date(routes.lastElementChild.text).getTime())&&isNaN(new Date(key).getTime()))routes.insertBefore(newOption,routes.options[1]);else routes.appendChild(newOption)
     }
-}
    }
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{if(mousedown==0||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
