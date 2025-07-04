@@ -1303,7 +1303,7 @@
    .catch(e=>console.error('PUT route.osm錯誤',e))
   }
  }
- var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[location.href],page=0
+ var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[location.href],page=0,PrevNext=false
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
@@ -1339,8 +1339,8 @@
    collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-7)
    routes=document.getElementById('routes')
-   buttons[0].onclick=()=>{page++;console.log(page);if(lastURLs[page])location.replace(lastURLs[page]);else page--}
-   buttons[1].onclick=()=>{page--;console.log(page);if(lastURLs[page])location.replace(lastURLs[page]);else page++}
+   buttons[0].onclick=()=>{PrevNext=true;page++;console.log(page);if(lastURLs[page])location.replace(lastURLs[page]);else page--}
+   buttons[1].onclick=()=>{PrevNext=true;page--;console.log(page);if(lastURLs[page])location.replace(lastURLs[page]);else page++}
    buttons[2].onclick=()=>{
     let lonlats=location.href.match(/lonlats=([^&]+)/),pois=location.href.match(/pois=([^&]+)/)
     lonlats=lonlats?lonlats[1].split(';').map(item=>item.split(',').reverse()):[]
@@ -1394,10 +1394,21 @@
 //console.log(location.href.split('#')[1])
 //console.log(mutations)
 if(location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[0].replace(/(map|profile)=[^&]*/g,'')){
- lastURLs.unshift(location.href)
- lastURLs.splice(100)//去除索引100以後的陣列，即控制陣列最大長度100
  //console.log(lastURLs,mutations)
- setTimeout(()=>{if(mousedown===null)console.log(mutations,mousedown)},0)
+ setTimeout(()=>{if(mousedown===null){
+  console.log(mutations,mousedown)
+
+  if(!page)lastURLs.unshift(location.href)
+  else if(!PrevNext){
+   lastURLs.splice(0,page,location.href)
+   page=0
+
+  }
+  lastURLs.splice(100)//去除索引100以後的陣列，即控制陣列最大長度100
+
+PrevNext=false
+
+ }},0)
 //      lastURLs.splice(0,page+1)
 //      lastURLs.unshift(location.href)
 //      lastURLs.splice(100)//去除索引100以後的陣列，即控制陣列最大長度100
