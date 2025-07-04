@@ -1303,7 +1303,7 @@
    .catch(e=>console.error('PUT route.osm錯誤',e))
   }
  }
- var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastUrl=location.href
+ var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=Array(100)
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
@@ -1311,7 +1311,10 @@
    clearInterval(Id)
    BR.debug.map.setMaxZoom(30)//讓操作及網址最大到30，也需修改brouter-web.js的,t=new L.Map("map",{zoomControl:!1,worldCopyJump:!0,minZoom:0,maxZoom:30}),讓大zoom地圖及控制項不顯灰
 
-   BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey)navigator.clipboard.writeText(`${e.latlng.lat},${e.latlng.lng}`);else handle()}else if(mousedown==0)lastUrl=location.href})
+   BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey)navigator.clipboard.writeText(`${e.latlng.lat},${e.latlng.lng}`);else handle()}else if(mousedown==0){
+console.log('左鍵下');if(location.href!=lastURLs[0]){lastURLs.pop();lastURLs.unshift(location.href)}
+
+}})
    BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
     switch(e.originalEvent.keyCode){
@@ -1329,7 +1332,7 @@
    collapsingNavbar.insertAdjacentHTML('beforeend','<button>返回</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-6)
    routes=document.getElementById('routes')
-   buttons[0].onclick=()=>{location.replace(lastUrl)}
+   buttons[0].onclick=()=>{/*location.replace(lastUrl)*/}
    buttons[1].onclick=()=>{
     let lonlats=location.href.match(/lonlats=([^&]+)/),pois=location.href.match(/pois=([^&]+)/)
     lonlats=lonlats?lonlats[1].split(';').map(item=>item.split(',').reverse()):[]
