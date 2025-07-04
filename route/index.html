@@ -1319,6 +1319,7 @@
      page=-1
     }
    }})
+   BR.debug.map.on('mouseup',e=>{console.log(e.originalEvent)})
    BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
     switch(e.originalEvent.keyCode){
