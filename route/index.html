@@ -1303,7 +1303,7 @@
    .catch(e=>console.error('PUT route.osm錯誤',e))
   }
  }
- var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=Array(100)
+ var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=Array(100),page=-1
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
@@ -1312,7 +1312,7 @@
    BR.debug.map.setMaxZoom(30)//讓操作及網址最大到30，也需修改brouter-web.js的,t=new L.Map("map",{zoomControl:!1,worldCopyJump:!0,minZoom:0,maxZoom:30}),讓大zoom地圖及控制項不顯灰
 
    BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey)navigator.clipboard.writeText(`${e.latlng.lat},${e.latlng.lng}`);else handle()}else if(mousedown==0){
-console.log('左鍵下');if(location.href!=lastURLs[0]){lastURLs.pop();lastURLs.unshift(location.href)}
+    if(location.href!=lastURLs[0]){page=-1;lastURLs.pop();lastURLs.unshift(location.href)}
 
 }})
    BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
@@ -1329,18 +1329,19 @@ console.log('左鍵下');if(location.href!=lastURLs[0]){lastURLs.pop();lastURLs.
     }})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    collapsingNavbar=document.getElementById('collapsingNavbar')
-   collapsingNavbar.insertAdjacentHTML('beforeend','<button>返回</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
-   buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-6)
+   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
+   buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-7)
    routes=document.getElementById('routes')
-   buttons[0].onclick=()=>{/*location.replace(lastUrl)*/}
-   buttons[1].onclick=()=>{
+   buttons[0].onclick=()=>{page++;if(lastURLs[page])location.replace(lastURLs[page]);else page--}
+   buttons[1].onclick=()=>{page--;if(lastURLs[page])location.replace(lastURLs[page]);else page++}
+   buttons[2].onclick=()=>{
     let lonlats=location.href.match(/lonlats=([^&]+)/),pois=location.href.match(/pois=([^&]+)/)
     lonlats=lonlats?lonlats[1].split(';').map(item=>item.split(',').reverse()):[]
     pois=pois?pois[1].split(';').map(item=>item.split(',').reverse().splice(1)):[]
     lonlats.push(...pois)
     if(lonlats.length)BR.debug.map.fitBounds(lonlats,{maxZoom:18})
    }
-   buttons[2].onclick=()=>{
+   buttons[3].onclick=()=>{
     if(/pois|lonlats/.test(location.href)){
      if(routes.selectedIndex)localStorage.setItem(routes.value,location.href)
      else{
@@ -1353,14 +1354,14 @@ console.log('左鍵下');if(location.href!=lastURLs[0]){lastURLs.pop();lastURLs.
      }
     }
    }
-   buttons[3].onclick=()=>{if(routes.selectedIndex){for(const id in poisLayer._layers){poisLayer._map.removeLayer(poisLayer._layers[id]);delete poisLayer._layers[id]};location.replace(localStorage.getItem(routes.value))}}//poisLayer._map等同於BR.debug.map
-   buttons[4].onclick=()=>{
+   buttons[4].onclick=()=>{if(routes.selectedIndex){for(const id in poisLayer._layers){poisLayer._map.removeLayer(poisLayer._layers[id]);delete poisLayer._layers[id]};location.replace(localStorage.getItem(routes.value))}}//poisLayer._map等同於BR.debug.map
+   buttons[5].onclick=()=>{
     if(routes.selectedIndex){
      const newName=prompt('輸入新名：',routes.value)
      if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName;routes.insertBefore(routes.options[routes.selectedIndex],routes.options[1])}
     }
    }
-   buttons[5].onclick=()=>{if(routes.selectedIndex&&confirm(`刪除…${routes.value}`)){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
+   buttons[6].onclick=()=>{if(routes.selectedIndex&&confirm(`刪除…${routes.value}`)){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
     if(value.includes("https://")){
