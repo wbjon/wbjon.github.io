@@ -1310,16 +1310,15 @@
   if(serverExport.onclick&&pane){
    clearInterval(Id)
    BR.debug.map.setMaxZoom(30)//讓操作及網址最大到30，也需修改brouter-web.js的,t=new L.Map("map",{zoomControl:!1,worldCopyJump:!0,minZoom:0,maxZoom:30}),讓大zoom地圖及控制項不顯灰
-
-   BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey)navigator.clipboard.writeText(`${e.latlng.lat},${e.latlng.lng}`);else handle()}else if(mousedown==0){
-    if(location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[0].replace(/(map|profile)=[^&]*/g,'')){
+   BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey)navigator.clipboard.writeText(`${e.latlng.lat},${e.latlng.lng}`);else handle()}})
+   BR.debug.map.on('mouseup',e=>{
+    if(e.originalEvent.button==0&&location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[0].replace(/(map|profile)=[^&]*/g,'')){
      lastURLs.splice(0,page+1)
      lastURLs.unshift(location.href)
      lastURLs.splice(100)//去除索引100以後的陣列，即控制陣列最大長度100
      page=-1
     }
-   }})
-   BR.debug.map.on('mouseup',e=>{console.log(e.originalEvent)})
+   })
    BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
     switch(e.originalEvent.keyCode){
