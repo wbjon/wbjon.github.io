@@ -1397,7 +1397,7 @@ if(location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[0].replace(/(map|p
  lastURLs.unshift(location.href)
  lastURLs.splice(100)//去除索引100以後的陣列，即控制陣列最大長度100
  //console.log(lastURLs,mutations)
- console.log(mutations,mousedown)
+ setTimeout(()=>console.log(mutations,mousedown),100)
 //      lastURLs.splice(0,page+1)
 //      lastURLs.unshift(location.href)
 //      lastURLs.splice(100)//去除索引100以後的陣列，即控制陣列最大長度100
