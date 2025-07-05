@@ -1416,7 +1416,7 @@
  function optionsSort(){
   const arr=[...routes.options].filter(opt=>!(!isNaN(new Date(opt.text).getTime())&&opt.text.length==19)    )
   arr.shift()
-  arr.forEach(item,index=>{arr[index]=item.text})
+  arr.forEach((item,index)=>{arr[index]=item.text})
 console.log(arr)
 
 
