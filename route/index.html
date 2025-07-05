@@ -1341,7 +1341,7 @@
     if(/pois|lonlats/.test(location.href)){
      if(routes.selectedIndex)localStorage.setItem(routes.value,location.href)
      else{
-      const thisTime=new Date().toLocaleString("zh-CN",{timeZone:"Asia/Taipei"})
+      const thisTime=new Date().toLocaleString("sv-SE",{timeZone:"Asia/Taipei"})
       localStorage.setItem(thisTime,location.href)
       const newOption=document.createElement("option")
       newOption.text=thisTime//.text為<option>專用，相當於newOption.textContent
