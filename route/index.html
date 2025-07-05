@@ -1418,7 +1418,7 @@
   arr.shift()
   arr.forEach((item,index)=>{arr[index]=item.text})
 arr.sort()
-console.log(arr)
+arr.forEach((item,index)=>{routes.options[index+1].text=item})
 
 
 }
