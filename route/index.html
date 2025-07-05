@@ -1368,7 +1368,7 @@
       if(new Date(key)<new Date(routes.options[j].text)){routes.insertBefore(newOption,routes.options[j]);Len=0;break}
      }
      if(!Len)continue
-     if(!isNaN(new Date(routes.lastElementChild.text).getTime())&&isNaN(new Date(key).getTime())&&key.length!=19)routes.insertBefore(newOption,routes.options[1]);else routes.appendChild(newOption)
+     if(!isNaN(new Date(routes.lastElementChild.text).getTime())&&isNaN(new Date(key).getTime()))routes.insertBefore(newOption,routes.options[1]);else routes.appendChild(newOption)
     }
    }
    serverExport.onclick=pushOsm
