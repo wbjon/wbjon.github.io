@@ -1328,8 +1328,8 @@
    collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-7)
    routes=document.getElementById('routes')
-   buttons[0].onclick=()=>{PrevNext=true;page++;if(lastURLs[page])location.replace(lastURLs[page]);else page--}
-   buttons[1].onclick=()=>{PrevNext=true;page--;if(lastURLs[page])location.replace(lastURLs[page]);else page++}
+   buttons[0].onclick=()=>{PrevNext=true;page++;if(lastURLs[page])location.replace(lastURLs[page]+`&time=${new Date().getTime()}`);else page--}
+   buttons[1].onclick=()=>{PrevNext=true;page--;if(lastURLs[page])location.replace(lastURLs[page]+`&time=${new Date().getTime()}`);else page++}
    buttons[2].onclick=()=>{
     let lonlats=location.href.match(/lonlats=([^&]+)/),pois=location.href.match(/pois=([^&]+)/)
     lonlats=lonlats?lonlats[1].split(';').map(item=>item.split(',').reverse()):[]
@@ -1377,9 +1377,10 @@
 
    new MutationObserver(mutations=>{
     setTimeout(()=>{
-     if(mousedown===null&&location.href.replace(/(map|profile)=[^&]*/g,'')!=(lastURLs[page]||'').replace(/(map|profile)=[^&]*/g,'')){
-      if(page==0)lastURLs.unshift(location.href)
-      else if(!PrevNext){lastURLs.splice(0,page,location.href);page=0}
+     const Url=location.href.replace(/&time=[^&]*/,'')
+     if(mousedown===null&&Url.replace(/(map|profile)=[^&]*/g,'')!=(lastURLs[page]||'').replace(/(map|profile)=[^&]*/g,'')){
+      if(page==0)lastURLs.unshift(Url)
+      else if(!PrevNext){lastURLs.splice(0,page,Url);page=0}
       PrevNext=false;lastURLs.splice(100)//去除索引100以後的陣列，即控制陣列最大長度100
     }},0)
    }).observe(document.querySelector('.leaflet-pane.leaflet-marker-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['class']})
