@@ -1339,7 +1339,7 @@
    }
    buttons[3].onclick=()=>{
     if(/pois|lonlats/.test(location.href)){
-     if(routes.selectedIndex)localStorage.setItem(routes.value,location.href)
+     if(routes.selectedIndex&&confirm(`覆寫…${routes.value}`))localStorage.setItem(routes.value,location.href)
      else{
       const thisTime=new Date().toLocaleString("sv-SE",{timeZone:"Asia/Taipei"})
       localStorage.setItem(thisTime,location.href)
