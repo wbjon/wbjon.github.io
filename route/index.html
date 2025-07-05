@@ -1303,7 +1303,7 @@
    .catch(e=>console.error('PUT route.osm錯誤',e))
   }
  }
- var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[location.href],page=0,PrevNext=false
+ var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
@@ -1395,7 +1395,7 @@
 //console.log(mutations)
 //if(location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[page].replace(/(map|profile)=[^&]*/g,'')){
  //console.log(lastURLs,mutations)
- setTimeout(()=>{if(mousedown===null&&location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[page].replace(/(map|profile)=[^&]*/g,'')){
+ setTimeout(()=>{if(mousedown===null&&location.href.replace(/(map|profile)=[^&]*/g,'')!=(lastURLs[page]||'').replace(/(map|profile)=[^&]*/g,'')){
   console.log(mutations,mousedown)
 
   if(!page)lastURLs.unshift(location.href)
