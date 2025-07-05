@@ -1376,7 +1376,7 @@
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
 
    new MutationObserver(mutations=>{
-    setTimeout(()=>{
+    setTimeout(()=>{console.log(location.href)
      const Url=location.href.replace(/&time=[^&]*/,'')
      if(mousedown===null&&Url.replace(/(map|profile)=[^&]*/g,'')!=(lastURLs[page]||'').replace(/(map|profile)=[^&]*/g,'')){
       if(page==0)lastURLs.unshift(Url)
