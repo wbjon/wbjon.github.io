@@ -1393,7 +1393,7 @@
     //for(const mutation of mutations){console.log(mutation.target)}
 //console.log(location.href.split('#')[1])
 //console.log(mutations)
-if(location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[0].replace(/(map|profile)=[^&]*/g,'')){
+if(location.href.replace(/(map|profile)=[^&]*/g,'')!=lastURLs[page].replace(/(map|profile)=[^&]*/g,'')){
  //console.log(lastURLs,mutations)
  setTimeout(()=>{if(mousedown===null){
   console.log(mutations,mousedown)
