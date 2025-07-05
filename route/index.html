@@ -1370,7 +1370,7 @@
      if(!Len)continue
      if(!isNaN(new Date(routes.lastElementChild.text).getTime())&&isNaN(new Date(key).getTime()))routes.insertBefore(newOption,routes.options[1]);else routes.appendChild(newOption)
     }
-   }
+   };optionsSort()
    serverExport.onclick=pushOsm
    const observer=new MutationObserver(mutationsList=>{if(mousedown==0||mutationsList[0].target.className.includes('zoom'))center.style.display='none'})
    observer.observe(pane,{attributes:true,attributeFilter:['class','style']})
@@ -1417,11 +1417,9 @@
   const arr=[...routes.options].filter(opt=>!(!isNaN(new Date(opt.text).getTime())&&opt.text.length==19)    )
   arr.shift()
   arr.forEach((item,index)=>{arr[index]=item.text})
-arr.sort()
-arr.forEach((item,index)=>{routes.options[index+1].text=item})
-
-
-}
+  arr.sort()
+  arr.forEach((item,index)=>{routes.options[index+1].text=item})
+ }
 </script>
     </body>
 </html>
