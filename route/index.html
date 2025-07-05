@@ -1413,6 +1413,13 @@
  }
  window.addEventListener('mouseup',()=>mousedown=null,true)
  //document.addEventListener('mousedown',e=>{mousedown=e.which;if(mousedown==2)handle()},true)//改用BR.debug.map.on('mousedown'
+ function optionsSort(){
+  const arr=[...routes.options].filter(opt=>!(!isNaN(new Date(opt.text).getTime())&&opt.text.length==19)    )
+//arr.shift()
+console.log(arr)
+
+
+}
 </script>
     </body>
 </html>
