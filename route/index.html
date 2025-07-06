@@ -1350,14 +1350,14 @@
      }
     }
    }
-   buttons[4].onclick=()=>{
+   buttons[4].onclick=async()=>{
     if(routes.selectedIndex){
      /*for(const id in poisLayer._layers){
       poisLayer._map.removeLayer(poisLayer._layers[id])
       delete poisLayer._layers[id]
      }*/
-     removeInput012(0b111)//使用poisLayer只刪除所有興趣點，removeInput012(0b000-0b111)刪除可控性更高
-     setTimeout(()=>location.replace(localStorage.getItem(routes.value)),1000)
+     await removeInput012(0b111)//使用poisLayer只刪除所有興趣點，removeInput012(0b000-0b111)刪除可控性更高
+     location.replace(localStorage.getItem(routes.value))
     }
    }//poisLayer._map等同於BR.debug.map
    buttons[5].onclick=()=>{
@@ -1436,7 +1436,7 @@
   hiddenStyle.textContent='.bootbox{visibility:hidden}.modal-backdrop.show{opacity:0}'
   document.querySelector('.leaflet-bar.easy-button-container.leaflet-control').lastElementChild.click()
   document.querySelectorAll('.bootbox-checkbox-list input').forEach((input,index)=>{input.checked=boolArray[index]})
-  setTimeout(()=>{document.querySelector('.btn.btn-primary.bootbox-accept').click();hiddenStyle.textContent=''},100)
+  return new Promise(resolve=>setTimeout(()=>{document.querySelector('.btn.btn-primary.bootbox-accept').click();hiddenStyle.textContent='';resolve()},100))
  }
 </script>
     </body>
