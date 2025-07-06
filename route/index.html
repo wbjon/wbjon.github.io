@@ -1357,7 +1357,7 @@
       delete poisLayer._layers[id]
      }*/
      removeInput012(0b111)//使用poisLayer只刪除所有興趣點，removeInput012(0b000-0b111)刪除可控性更高
-     location.replace(localStorage.getItem(routes.value))
+     setTimeout(()=>location.replace(localStorage.getItem(routes.value)),1000)
     }
    }//poisLayer._map等同於BR.debug.map
    buttons[5].onclick=()=>{
