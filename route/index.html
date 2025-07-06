@@ -1420,6 +1420,14 @@
   arr.sort()
   arr.forEach((item,index)=>{routes.options[index+1].text=item})
  }
+ const hiddenStyle=document.createElement('style')
+ document.head.appendChild(hiddenStyle)
+ function removeRouting(){
+  hiddenStyle.textContent='.bootbox{visibility:hidden}.modal-backdrop.show{opacity:0}'
+  document.querySelector('.leaflet-bar.easy-button-container.leaflet-control').lastElementChild.click()
+  console.log(document.querySelector('.btn.btn-primary.bootbox-accept'))
+  hiddenStyle.textContent=''
+ }
 </script>
     </body>
 </html>
