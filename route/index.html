@@ -1442,6 +1442,11 @@
   document.querySelectorAll('.bootbox-checkbox-list input').forEach((input,index)=>{input.checked=boolArray[index]})
   return new Promise(resolve=>setTimeout(()=>{document.querySelector('.btn.btn-primary.bootbox-accept').click();hiddenStyle.textContent='';resolve()},100))
  }
+ function renamePOI(marker){
+  const newName=prompt('輸入新名：',marker.options.name)
+  if(newName){marker.setPopupContent(newName);marker.setTooltipContent(newName)}
+
+ }
 </script>
     </body>
 </html>
