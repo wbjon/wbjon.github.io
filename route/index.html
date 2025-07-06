@@ -1444,7 +1444,7 @@
  }
  function renamePOI(marker){
   const newName=prompt('輸入新名：',marker.options.name)
-  if(newName){marker.setPopupContent(newName);marker.setTooltipContent(newName)}
+  if(newName){;marker.setTooltipContent(newName);marker.setPopupContent(newName)}
 
  }
 </script>
