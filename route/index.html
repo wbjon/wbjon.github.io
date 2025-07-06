@@ -1368,8 +1368,8 @@
    }
    buttons[6].onclick=()=>{
     if(routes.selectedIndex){
-     if(confirm(`刪除…${routes.value}`)){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}
-    }else removeInput012(0b111)
+     if(confirm(`刪除儲存的…${routes.value}`)){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}
+    }else if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)
    }
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
