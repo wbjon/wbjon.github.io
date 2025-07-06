@@ -1350,7 +1350,16 @@
      }
     }
    }
-   buttons[4].onclick=()=>{if(routes.selectedIndex){for(const id in poisLayer._layers){poisLayer._map.removeLayer(poisLayer._layers[id]);delete poisLayer._layers[id]};location.replace(localStorage.getItem(routes.value))}}//poisLayer._map等同於BR.debug.map
+   buttons[4].onclick=()=>{
+    if(routes.selectedIndex){
+     /*for(const id in poisLayer._layers){
+      poisLayer._map.removeLayer(poisLayer._layers[id])
+      delete poisLayer._layers[id]
+     }*/
+     removeInput012(0b111)//使用poisLayer只刪除所有興趣點，removeInput012(0b000-0b111)刪除可控性更高
+     location.replace(localStorage.getItem(routes.value))
+    }
+   }//poisLayer._map等同於BR.debug.map
    buttons[5].onclick=()=>{
     if(routes.selectedIndex){
      const newName=prompt('輸入新名：',routes.value)
@@ -1422,7 +1431,7 @@
  }
  const hiddenStyle=document.createElement('style')
  document.head.appendChild(hiddenStyle)
- function removeRouting(num){//0b000～0b111控制3個<input>的勾選
+ function removeInput012(num){//0b000～0b111控制3個<input>的勾選
   const boolArray=[...(num||0).toString(2).padStart(3,'0')].map(b=>b==='1')
   hiddenStyle.textContent='.bootbox{visibility:hidden}.modal-backdrop.show{opacity:0}'
   document.querySelector('.leaflet-bar.easy-button-container.leaflet-control').lastElementChild.click()
