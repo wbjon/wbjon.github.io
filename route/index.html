@@ -1436,7 +1436,7 @@
   hiddenStyle.textContent='.bootbox{visibility:hidden}.modal-backdrop.show{opacity:0}'
   document.querySelector('.leaflet-bar.easy-button-container.leaflet-control').lastElementChild.click()
   document.querySelectorAll('.bootbox-checkbox-list input').forEach((input,index)=>{input.checked=boolArray[index]})
-  return new Promise(resolve=>setTimeout(()=>{document.querySelector('.btn.btn-primary.bootbox-accept').click();hiddenStyle.textContent='';resolve()},100))
+  return new Promise(resolve=>setTimeout(()=>{document.querySelector('.btn.btn-primary.bootbox-accept').click();hiddenStyle.textContent='';resolve()},0))
  }
 </script>
     </body>
