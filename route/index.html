@@ -1423,10 +1423,10 @@
  const hiddenStyle=document.createElement('style')
  document.head.appendChild(hiddenStyle)
  function removeRouting(){
-  //hiddenStyle.textContent='.bootbox{visibility:hidden}.modal-backdrop.show{opacity:0}'
+  hiddenStyle.textContent='.bootbox{visibility:hidden}.modal-backdrop.show{opacity:0}'
   document.querySelector('.leaflet-bar.easy-button-container.leaflet-control').lastElementChild.click()
   setTimeout(()=>document.querySelector('.btn.btn-primary.bootbox-accept').click(),100)
-  //hiddenStyle.textContent=''
+  hiddenStyle.textContent=''
  }
 </script>
     </body>
