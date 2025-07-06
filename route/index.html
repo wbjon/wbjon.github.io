@@ -1422,13 +1422,12 @@
  }
  const hiddenStyle=document.createElement('style')
  document.head.appendChild(hiddenStyle)
- function removeRouting(num){//0b000～0b111
+ function removeRouting(num){//0b000～0b111控制3個<input>的勾選
   const boolArray=[...(num||0).toString(2).padStart(3,'0')].map(b=>b==='1')
+  hiddenStyle.textContent='.bootbox{visibility:hidden}.modal-backdrop.show{opacity:0}'
   document.querySelector('.leaflet-bar.easy-button-container.leaflet-control').lastElementChild.click()
   document.querySelectorAll('.bootbox-checkbox-list input').forEach((input,index)=>{input.checked=boolArray[index]})
-
-  //hiddenStyle.textContent='.bootbox{visibility:hidden}.modal-backdrop.show{opacity:0}'
-  //setTimeout(()=>{document.querySelector('.btn.btn-primary.bootbox-accept').click();hiddenStyle.textContent=''},100)
+  setTimeout(()=>{document.querySelector('.btn.btn-primary.bootbox-accept').click();hiddenStyle.textContent=''},100)
  }
 </script>
     </body>
