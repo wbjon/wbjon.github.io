@@ -1366,7 +1366,11 @@
      if(newName){localStorage.setItem(newName,localStorage.getItem(routes.value));localStorage.removeItem(routes.value);routes.options[routes.selectedIndex].text=newName;routes.insertBefore(routes.options[routes.selectedIndex],routes.options[1]);optionsSort();routes.value=newName}
     }
    }
-   buttons[6].onclick=()=>{if(routes.selectedIndex&&confirm(`刪除…${routes.value}`)){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}}
+   buttons[6].onclick=()=>{
+    if(routes.selectedIndex){
+     if(confirm(`刪除…${routes.value}`)){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}
+    }else removeInput012(0b111)
+   }
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
     if(value.includes("https://")){
