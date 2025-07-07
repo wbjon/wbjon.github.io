@@ -1446,7 +1446,7 @@
   const newName=prompt('輸入新名：',marker.options.name)
   if(newName){
    marker.options.name=newName
-   marker._popup._content=marker._popup._content.replace(/<p>.*?<\/p>/,`<p>${newName}</p>`)
+   //marker._popup._content=marker._popup._content.replace(/<p>.*?<\/p>/,`<p>${newName}</p>`)
    //marker.setTooltipContent(newName);marker.setPopupContent(newName)}
   }
  }
