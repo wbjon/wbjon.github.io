@@ -1392,7 +1392,7 @@
    new MutationObserver(mutations=>{
     setTimeout(()=>{
      let Url=location.href.replace(/&time=[^&]*/,'')
-     if(mousedown===null&&Url.replace(/(map|profile)=[^&]*/g,'')!=(lastURLs[page]||'').replace(/(map|profile)=[^&]*/g,'')){
+     if(mousedown===null&&Url.replace(/(map|profile|time)=[^&]*/g,'')!=(lastURLs[page]||'').replace(/(map|profile|time)=[^&]*/g,'')){
       //console.log(0,routes.value)
       Url+='&time='+routes.value
       if(page==0)lastURLs.unshift(Url)
