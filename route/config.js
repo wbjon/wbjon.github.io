@@ -107,13 +107,13 @@
         },
         beeline: {
             weight: 5,
-            dashArray: [1, 10],
+            //dashArray: [1, 10],
             color: 'blue',
             opacity: BR.conf.defaultOpacity,
         },
         beelineTrailer: {
             weight: 5,
-            dashArray: [1, 10],
+            //dashArray: [1, 10],
             opacity: 0.6,
             color: 'blue',
         },
