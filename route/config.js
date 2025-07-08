@@ -114,8 +114,8 @@
         beelineTrailer: {
             weight: 5,
             dashArray: [1, 10],
-            opacity: 0.1,
-            color: 'magenta',
+            opacity: 0.6,
+            color: 'blue',
         },
     };
 
