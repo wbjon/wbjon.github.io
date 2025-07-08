@@ -1265,7 +1265,7 @@
         <!-- inject:js -->
         <script src="dist/brouter-web.js"></script>
         <!-- endinject -->
-<script>
+<script>var routeSegments=[]
  const pushOsm=()=>{
   const Old=(window.routingPathQuality.segments||[]).map(item=>item._latlngs)
   const New=[]
@@ -1303,7 +1303,7 @@
    .catch(e=>console.error('PUT route.osm錯誤',e))
   }
  }
- var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false,routeSegments=[]
+ var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
