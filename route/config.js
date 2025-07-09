@@ -124,7 +124,7 @@
         poi: '#436978',
         start: '#72b026ff',
         via: '#38aaddff',
-        stop: '#d63e2a40',
+        stop: '#d63e2a10',
     };
 
     // transit (intermodal routing) demo config
