@@ -123,7 +123,7 @@
         // awesome-markers colors (by color picker)
         poi: '#436978',
         start: '#72b026',
-        via: '#38aadd',
+        via: '#38aaddff',
         stop: '#d63e2a40',
     };
 
