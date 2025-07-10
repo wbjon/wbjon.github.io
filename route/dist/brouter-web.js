@@ -25,7 +25,7 @@ this._setIconStyles(t,"icon-"+o.markerColor),t}},
 {key:"_createInner",value:function(){
 var e=document.createElement("i"),
 t=this.options;
-console.log('e.style.fontSize',e.style.fontSize)
+console.log('e.style.fontSize',typeof e.style.fontSize)
 return e.classList.add(t.prefix),
 t.extraClasses&&e.classList.add(t.extraClasses),
 t.prefix?e.classList.add(t.prefix+"-"+t.icon):e.classList.add(t.icon),
