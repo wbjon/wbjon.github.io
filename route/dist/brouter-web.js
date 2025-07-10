@@ -9,7 +9,7 @@ var toGeoJSON=function(){"use strict";var t,r=/\s*/g,i=/^\s*|\s*$/g,o=/\s+/;func
 iconSize:[25,41],
 //shadowSize:[41,41],
 iconAnchor:[12,41-27],
-popupAnchor:[1,-34-27],
+popupAnchor:[1,-34+27],
 tooltipAnchor:[16,-28+27],
 className:"vector-marker",
 prefix:"fa",
