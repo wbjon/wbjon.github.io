@@ -11,7 +11,7 @@ iconSize:[25,41],
 iconAnchor:[12,14],
 popupAnchor:[1,-34],
 tooltipAnchor:[16,-28],
-className:"vector-marker",prefix:"fa",spinClass:"fa-spin",extraIconClasses:"",extraDivClasses:"",icon:"home",markerColor:"#338ACC",iconColor:"yellow",viewBox:"0 0 32 52"},r=(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(c,a.default.Icon),r(c,[{key:"createIcon",value:function(e){
+className:"vector-marker",prefix:"fa",spinClass:"fa-spin",extraIconClasses:"",extraDivClasses:"",icon:"home",markerColor:"#338ACC",iconColor:"yellow",viewBox:"0 0 64 104"},r=(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(c,a.default.Icon),r(c,[{key:"createIcon",value:function(e){
 console.log('this.options',this.options);
 window.Test=this;
 if(this.options.icon=='star')this.options.iconSize=[50,82];
