@@ -23,7 +23,7 @@ o.className+=0<o.className.length?" "+o.extraDivClasses:o.extraDivClasses,
 this._setIconStyles(t,"icon"),
 this._setIconStyles(t,"icon-"+o.markerColor),t}},
 {key:"_createInner",value:function(){
-var e=document.createElement("i"),
+var e=document.createElement("i"),e.style.fontSize = "20px",
 t=this.options;return e.classList.add(t.prefix),
 t.extraClasses&&e.classList.add(t.extraClasses),
 t.prefix?e.classList.add(t.prefix+"-"+t.icon):e.classList.add(t.icon),
