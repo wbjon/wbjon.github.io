@@ -24,7 +24,7 @@ r=(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super ex
 var t=e&&"DIV"===e.tagName?e:document.createElement("div"),o=this.options,e=o.map_pin||"M16,1 C7.7146,1 1,7.65636364 1,15.8648485 C1,24.0760606 16,51 16,51 C16,51 31,24.0760606 31,15.8648485 C31,7.65636364 24.2815,1 16,1 L16,1 Z";
 return t.innerHTML='',
 o.icon&&t.appendChild(this._createInner()),o.className+=0<o.className.length?" "+o.extraDivClasses:o.extraDivClasses,this._setIconStyles(t,"icon"),this._setIconStyles(t,"icon-"+o.markerColor),t}},{key:"_createInner",value:function(){
-var e=document.createElement("i"),t=this.options;
+var e=document.createElement("i"),t=this.options;console.log(this)
 if(t.icon=="star"){const emoji=document.createElement("span");emoji.textContent="🥰";emoji.style.fontSize="20px";emoji.style.display="inline-block";return emoji}
 return e.classList.add(t.prefix),t.extraClasses&&e.classList.add(t.extraClasses),t.prefix?e.classList.add(t.prefix+"-"+t.icon):e.classList.add(t.icon),t.spin&&"string"==typeof t.spinClass&&e.classList.add(t.spinClass),t.iconColor&&("white"===t.iconColor||"black"===t.iconColor?e.classList.add("icon-"+t.iconColor):e.style.color=t.iconColor),t.iconSize&&(e.style.width=t.iconSize[0]+"px"),
 this.options.icon=="star"&&(e.style.fontSize="20px")&&(e.style.color="red"),
