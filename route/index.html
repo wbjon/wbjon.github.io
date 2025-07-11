@@ -1452,7 +1452,8 @@
    console.log(marker)
    marker.closePopup()
    for(const child of document.querySelector('.leaflet-pane.leaflet-marker-pane').children){
-    console.log(child.style.zIndex);
+    if(child.style.zIndex==marker._zIndex){console.log(child)}
+
    }
 
   }
