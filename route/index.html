@@ -1402,7 +1402,6 @@
 
    BR.debug.map.eachLayer(function(layer){if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers))window.poisLayer=layer})//找出興趣點層
    poisLayer.eachLayer(layer=>{
-    layer._icon.querySelector('span').textContent=layer.options.name.split(';')[1]||"⭐"
     const lastName=layer.options.name.split(';')[1],span=layer._icon.querySelector('span')
     if(lastName)span.textContent=lastName
     else{span.textContent="⭐";span.style.display="none";span.nextElementSibling.style.display=""}
@@ -1456,9 +1455,9 @@
    marker.options.name=newName
    marker._popup._content=marker._popup._content.replace(/<p>.*?<\/p>/,`<p>${newName}</p>`)
    marker.closePopup()
-  console.log(marker,poisLayer)
-
- //if(child.style.zIndex==marker._zIndex){child.lastElementChild.textContent=newName.split(';')[1]||"⭐"}
+   const lastName=marker.options.name.split(';')[1],span=marker._icon.querySelector('span')
+   if(lastName){span.textContent=lastName;span.style.display="";span.nextElementSibling.style.display="none"}
+   else{span.textContent="⭐";span.style.display="none";span.nextElementSibling.style.display=""}
   }
  }
 </script>
