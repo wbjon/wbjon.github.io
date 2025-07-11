@@ -1446,16 +1446,13 @@
  }
  function renamePOI(marker){
   const newName=prompt('輸入新名：',marker.options.name)
-  if(newName){//console.log(marker.options.name,marker._popup._content)//newName=newName.split(';')[0]
+  if(newName){
    marker.options.name=newName
    marker._popup._content=marker._popup._content.replace(/<p>.*?<\/p>/,`<p>${newName}</p>`)
-   console.log(marker)
    marker.closePopup()
    for(const child of document.querySelector('.leaflet-pane.leaflet-marker-pane').children){
-    if(child.style.zIndex==marker._zIndex){child.lastElementChild.textContent=newName.split(';')[1]}
-
+    if(child.style.zIndex==marker._zIndex){child.lastElementChild.textContent=newName.split(';')[1]||"⭐"}
    }
-
   }
  }
 </script>
