@@ -89,7 +89,7 @@
             weight: 5,
             dashArray: null,
             opacity: 0.6,
-            color: 'magenta',
+            color: 'black',
         },
         track: {
             weight: 5,
