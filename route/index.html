@@ -1451,6 +1451,10 @@
    marker._popup._content=marker._popup._content.replace(/<p>.*?<\/p>/,`<p>${newName}</p>`)
    console.log(marker)
    marker.closePopup()
+   for(const child of document.querySelector('.leaflet-pane.leaflet-marker-pane').children){
+    console.log(child);
+   }
+
   }
  }
 </script>
