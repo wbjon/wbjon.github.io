@@ -1456,9 +1456,9 @@
    marker.options.name=newName
    marker._popup._content=marker._popup._content.replace(/<p>.*?<\/p>/,`<p>${newName}</p>`)
    marker.closePopup()
-   for(const child of document.querySelector('.leaflet-pane.leaflet-marker-pane').children){
-    if(child.style.zIndex==marker._zIndex){child.lastElementChild.textContent=newName.split(';')[1]||"⭐"}
-   }
+  console.log(marker,poisLayer)
+
+ //if(child.style.zIndex==marker._zIndex){child.lastElementChild.textContent=newName.split(';')[1]||"⭐"}
   }
  }
 </script>
