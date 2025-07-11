@@ -1402,7 +1402,7 @@
 
    BR.debug.map.eachLayer(function(layer){if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers))window.poisLayer=layer})//找出興趣點層
    poisLayer.eachLayer(layer => {
-  console.log(layer._icon); // 跟上面結果相同
+  console.log(layer._icon.querySelector('span').textContent); // 跟上面結果相同
 });
   }
  },1000)
