@@ -1401,7 +1401,7 @@
    }).observe(document.querySelector('.leaflet-pane.leaflet-marker-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['class']})
 
    BR.debug.map.eachLayer(function(layer){if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers))window.poisLayer=layer})//找出興趣點層
-   console.log(poisLayer)
+   poisLayer._layers.forEach(layer=>console.log(layer))
   }
  },1000)
  ;(function setToken(){
