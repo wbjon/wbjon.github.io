@@ -1449,6 +1449,7 @@
   if(newName){//console.log(marker.options.name,marker._popup._content)//newName=newName.split(';')[0]
    marker.options.name=newName
    marker._popup._content=marker._popup._content.replace(/<p>.*?<\/p>/,`<p>${newName}</p>`)
+   console.log(marker)
    marker.closePopup()
   }
  }
