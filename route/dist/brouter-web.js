@@ -105,7 +105,7 @@ i="<p>"+o+'</p><p><button id="remove-poi-marker" class="btn btn-secondary"><i cl
 r=this,n=L.marker(t,{icon:a,draggable:!0,name:e}).bindPopup(i).on("dragend",function(){r.fire("update")}).on("popupopen",function(){
 window.thisMarker=this;
 this.unbindTooltip(),$("#remove-poi-marker").on("click",function(t){r.markersLayer.removeLayer(n),t.preventDefault(),r.fire("update")})}).on("popupclose",function(){
-!1===BR.Browser.touch&&this.bindTooltip(thisMarker.options.name)
+!1===BR.Browser.touch&&this.bindTooltip(thisMarker.options.name.split(';')[0])
 }).addTo(this.markersLayer);!1===BR.Browser.touch&&n.bindTooltip(o.split(';')[0])
 ;console.log(this);
 },clear:function(){this.markersLayer.clearLayers()},setMarkers:function(t){if(this.clear(),t)for(var e=0;e<t.length;e++){var a=t[e];this.addMarker(a.latlng,a.name)}},getMarkers:function(){return this.markersLayer.getLayers().map(function(t){return{latlng:t.getLatLng(),name:t.options.name}})}}),BR.PoiMarkers.include(L.Evented.prototype);
