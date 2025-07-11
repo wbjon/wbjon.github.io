@@ -1446,7 +1446,7 @@
  }
  function renamePOI(marker){
   const newName=prompt('輸入新名：',marker.options.name)
-  if(newName){newName.split(';')[0]
+  if(newName){newName=newName.split(';')[0]
    marker.options.name=newName
    marker._popup._content=marker._popup._content.replace(/<p>.*?<\/p>/,`<p>${newName}</p>`)
    marker.closePopup()
