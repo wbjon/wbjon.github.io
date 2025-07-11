@@ -1452,7 +1452,7 @@
    console.log(marker)
    marker.closePopup()
    for(const child of document.querySelector('.leaflet-pane.leaflet-marker-pane').children){
-    if(child.style.zIndex==marker._zIndex){console.log(child)}
+    if(child.style.zIndex==marker._zIndex){child.lastElementChild.textContent=newName.split(';')[0]}
 
    }
 
