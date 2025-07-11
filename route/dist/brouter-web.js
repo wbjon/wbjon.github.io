@@ -22,7 +22,7 @@ iconColor:"yellow",
 viewBox:"0 0 32 52"},
 r=(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(c,a.default.Icon),r(c,[{key:"createIcon",value:function(e){
 var t=e&&"DIV"===e.tagName?e:document.createElement("div"),o=this.options,e=o.map_pin||"M16,1 C7.7146,1 1,7.65636364 1,15.8648485 C1,24.0760606 16,51 16,51 C16,51 31,24.0760606 31,15.8648485 C31,7.65636364 24.2815,1 16,1 L16,1 Z";
-return t.innerHTML='<span style="font-size:20px">🥰</span>',
+return t.innerHTML=t.icon=="star"?'<span style="font-size:20px">🥰</span>':'',
 o.icon&&t.appendChild(this._createInner()),o.className+=0<o.className.length?" "+o.extraDivClasses:o.extraDivClasses,this._setIconStyles(t,"icon"),this._setIconStyles(t,"icon-"+o.markerColor),t}},{key:"_createInner",value:function(){
 var e=document.createElement("i"),t=this.options;
 //if(t.icon=="star"){const emoji=document.createElement("span");emoji.textContent="🥰";emoji.style.fontSize="20px";emoji.style.display="inline-block";return emoji}
