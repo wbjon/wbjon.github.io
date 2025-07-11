@@ -1401,11 +1401,6 @@
    }).observe(document.querySelector('.leaflet-pane.leaflet-marker-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['class']})
 
    BR.debug.map.eachLayer(function(layer){if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers))window.poisLayer=layer})//找出興趣點層
-//    poisLayer.eachLayer(layer=>{
-//     const lastName=layer.options.name.split(';')[1],span=layer._icon.querySelector('span')
-//     if(lastName)span.textContent=lastName
-//     else{span.textContent="⭐";span.style.display="none";span.nextElementSibling.style.display=""}
-//    })
   }
  },1000)
  ;(function setToken(){
