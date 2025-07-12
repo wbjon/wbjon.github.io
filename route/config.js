@@ -86,13 +86,13 @@
 
     BR.conf.routingStyles = {
         trailer: {
-            weight: 1,
+            weight: 2,
             dashArray: null,
             opacity: 0.6,
             color: 'magenta',
         },
         track: {
-            weight: 5,
+            weight: 2,
             color: 'magenta',
             opacity: BR.conf.defaultOpacity,
         },
@@ -106,13 +106,13 @@
             color: 'darkred',
         },
         beeline: {
-            weight: 5,
+            weight: 2,
             dashArray: null,
             color: 'blue',
             opacity: BR.conf.defaultOpacity,
         },
         beelineTrailer: {
-            weight: 5,
+            weight: 2,
             dashArray: null,
             opacity: 0.6,
             color: 'blue',
