@@ -86,7 +86,7 @@
 
     BR.conf.routingStyles = {
         trailer: {
-            weight: 1,
+            weight: 2,
             dashArray: null,
             opacity: 0.6,
             color: 'magenta',
