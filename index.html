@@ -81,7 +81,7 @@ function addOnHoverListener(data){function showPopup(){L.popup({autoPan:false}).
  {mapOnPopup=true//2021.1.28加入，可避免連續請求及popup
   if(data[0].data.options.url)
   {
-   var url=data[0].data.options.url,station_no=url.split('%27')[1]
+   var url=data[0].data.options.url,station_no=url.split('%27')[1],formData=`{"station_no":["${station_no}"]}`
    oldUrl=url//oldUrl可避免手機重複讀取借還車數目兩次
    var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
    //xhr.open('GET',url,true);if(url.indexOf('onrender')==-1)xhr.setRequestHeader('Authorization','Bearer '+token)//2025.9.13註解
@@ -97,7 +97,7 @@ function addOnHoverListener(data){function showPopup(){L.popup({autoPan:false}).
    xhr.timeout=10000
    xhr.ontimeout=showPopup
    xhr.onerror=showPopup
-   xhr.send(`{"station_no":["${station_no}"]}`)
+   xhr.send(formData)
    xhr.onload=function()
    {
     if(xhr.status!=200){showPopup();return}//2025.9.13修改{token='';getToken(xhr,url,null,function(a,b){a.open('GET',b,true);a.setRequestHeader('Authorization','Bearer '+token);a.send()});return}
