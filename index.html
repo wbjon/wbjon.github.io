@@ -102,7 +102,9 @@ function addOnHoverListener(data){function showPopup(){L.popup({autoPan:false}).
    {
     if(xhr.status!=200){showPopup();return}//2025.9.13修改{token='';getToken(xhr,url,null,function(a,b){a.open('GET',b,true);a.setRequestHeader('Authorization','Bearer '+token);a.send()});return}
     oldUrl=''//oldUrl可避免手機重複讀取借還車數目兩次
-    var obj=xhr.response
+    var tmp=xhr.response.retVal.data[0]
+    var obj=[{AvailableRentBikes:tmp.available_spaces,available_spaces_detail:tmp.available_spaces_detail,AvailableReturnBikes:tmp.empty_spaces}]
+    //var obj=xhr.response//2025.9.13改POST請求直連worker
     var msg='可借：'+obj[0].AvailableRentBikes+'，可停：'+obj[0].AvailableReturnBikes
     let eyb=obj[0].available_spaces_detail&&obj[0].available_spaces_detail.eyb
     if(eyb){msg+='<br>'+'電動：'+eyb}//2022/10/10加入可借電動車數量
