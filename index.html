@@ -74,8 +74,8 @@ var linesLayer=L.layerGroup()
 var busLayer=L.layerGroup()
 var linesJSON={},arr=[];for(let i=0;i<=38;i++){arr.push([])}
 //var RouteData={}//分析某路線第n項之所有資料
-const eImg=new Image()
-eImg.src="單車站E.png"
+const eImg=new Image(),bImg=new Image()
+eImg.src="單車站E.png";bImg.src="單車站2.png"
 function addOnHoverListener(data){function showPopup(){L.popup({autoPan:false}).setLatLng(data[0].data._latlng).setContent(data[0].data._popup._content).openOn(map)}
  if(!enableFlag){enableFlag=true;map.closePopup()}//2021/8/15加入，讓按滑鼠右鍵顯示的點位消失
  if(!mapOnPopup)
@@ -110,7 +110,7 @@ function addOnHoverListener(data){function showPopup(){L.popup({autoPan:false}).
     let eyb=obj[0].available_spaces_detail&&obj[0].available_spaces_detail.eyb
     if(eyb){msg+='<br>'+'電動：'+eyb}//2022/10/10加入可借電動車數量
     if(eyb&&data[0].data.canvas_img.src.indexOf("2.png")!=-1){data[0].data.canvas_img=eImg;ciLayer.redraw()}//電動車從無→有，變更icon圖示，2022/10/16加入
-    else if(!eyb&&data[0].data.canvas_img.src.indexOf("E.png")!=-1){let tmp=document.createElement("img");tmp.setAttribute('src','單車站2.png');data[0].data.canvas_img=tmp;ciLayer.redraw()}//電動車從有→無，變更icon圖示，2022/10/16加入
+    else if(!eyb&&data[0].data.canvas_img.src.indexOf("E.png")!=-1){data[0].data.canvas_img=bImg;ciLayer.redraw()}//電動車從有→無，變更icon圖示，2022/10/16加入
     L.popup({autoPan:false}).setLatLng(data[0].data._latlng).setContent(data[0].data._popup._content+'<br>'+msg).openOn(map)
    }
   }
