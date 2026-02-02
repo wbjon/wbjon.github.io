@@ -86,7 +86,8 @@ function addOnHoverListener(data){function showPopup(){L.popup({autoPan:false}).
    oldUrl=url//oldUrl可避免手機重複讀取借還車數目兩次
    var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
    //xhr.open('GET',url,true);if(url.indexOf('onrender')==-1)xhr.setRequestHeader('Authorization','Bearer '+token)//2025.9.13註解
-   url='https://md.spy-160126.workers.dev/?url=https://apis.youbike.com.tw/tw2/parkingInfo'//2025.9.13改POST請求直連worker
+   //url='https://md.spy-160126.workers.dev/?url=https://apis.youbike.com.tw/tw2/parkingInfo'//2025.9.13改POST請求直連worker，Protocol是http3
+   url='https://md.iqiq.dpdns.org/?url=https://apis.youbike.com.tw/tw2/parkingInfo'//2025.9.13改POST請求直連worker，Protocol是http2，防止pending
    xhr.open('POST',url,true)//2025.9.13改POST請求直連worker
    xhr.setRequestHeader("X-Header-Bundle",JSON.stringify({
     "User-Agent":navigator.userAgent,
