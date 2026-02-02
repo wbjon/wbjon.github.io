@@ -96,7 +96,7 @@ function addOnHoverListener(data){function showPopup(){L.popup({autoPan:false}).
     "Content-Length":formData.length,
     "Content-Type":"application/json"
    }))
-   xhr.timeout=10000
+   xhr.timeout=15000//2026.02.03從10秒延長至15秒
    xhr.ontimeout=showPopup
    xhr.onerror=showPopup
    xhr.send(formData)
