@@ -160,7 +160,8 @@ function makeOSM4(n,str2,id)
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
 "<node id='"+(id--)+"' lat='"+Lat+"' lon='"+Lon+"'>"+
-"<tag k='metro' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
+//"<tag k='metro' v='"+pointName+"'/><tag k='note' v='"+pointDes+"'/></node>"
+`<tag k='metro' v="${pointName}"/><tag k='note' v="${pointDes}"/></node>`//2026.02.02改這行，因為最近捷運站pointDes出現單引號'
   }
   n++
   if(n<url.length){makeOSM4(n,str2,id)}
