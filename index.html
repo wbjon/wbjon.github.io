@@ -87,19 +87,20 @@ function addOnHoverListener(data){function showPopup(){L.popup({autoPan:false}).
    var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
    //xhr.open('GET',url,true);if(url.indexOf('onrender')==-1)xhr.setRequestHeader('Authorization','Bearer '+token)//2025.9.13註解
    //url='https://md.spy-160126.workers.dev/?url=https://apis.youbike.com.tw/tw2/parkingInfo'//2025.9.13改POST請求直連worker，Protocol是http3
-   url='https://md.iqiq.dpdns.org/?url=https://apis.youbike.com.tw/tw2/parkingInfo'//2025.9.13改POST請求直連worker，Protocol是http2，防止pending
-   xhr.open('POST',url,true)//2025.9.13改POST請求直連worker
-   xhr.setRequestHeader("X-Header-Bundle",JSON.stringify({
+   //url='https://md.iqiq.dpdns.org/?url=https://apis.youbike.com.tw/tw2/parkingInfo'//2025.9.13改POST請求直連worker，Protocol是http2，防止pending
+   url=`https://ilv.ilv.tw/bike.php?${station_no}`
+   xhr.open('GET',url,true)//2025.9.13改POST請求直連worker，2026.2.9又改為GET請求
+   /*xhr.setRequestHeader("X-Header-Bundle",JSON.stringify({
     "User-Agent":navigator.userAgent,
     Referer:"https://www.youbike.com.tw/",
     Origin:"https://www.youbike.com.tw",
     "Content-Length":formData.length,
     "Content-Type":"application/json"
-   }))
-   xhr.timeout=15000//2026.02.03從10秒延長至15秒
+   }))*/
+   xhr.timeout=10000
    xhr.ontimeout=showPopup
    xhr.onerror=showPopup
-   xhr.send(formData)
+   xhr.send()//xhr.send(formData)
    xhr.onload=function()
    {
     if(xhr.status!=200){showPopup();return}//2025.9.13修改{token='';getToken(xhr,url,null,function(a,b){a.open('GET',b,true);a.setRequestHeader('Authorization','Bearer '+token);a.send()});return}
