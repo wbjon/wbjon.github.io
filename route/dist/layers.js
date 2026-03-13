@@ -2,62 +2,62 @@
 // except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),
 // see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation
 BR.layerIndex = {
- "1005":{
-  "geometry":null,
-  "properties":{
-   "name":"Google衛星",
-   "max_zoom":22,
-   "id":"1005",
-   "url":"https://mt.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
-   "attribution":{"text":"My Map"}
+  "1005":{
+   "geometry":null,
+   "properties":{
+    "name":"Google衛星",
+    "max_zoom":22,
+    "id":"1005",
+    "url":"https://mt.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+    "attribution":{"text":"My Map"}
+   },
+   "type":"Feature"
   },
-  "type":"Feature"
- },
- "1006":{
-  "geometry":null,
-  "properties":{
-   "name":"Google街景",
-   "max_zoom":22,
-   "id":"1006",
-   "url":"https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i{z}!2i{x}!3i{y}!4i256!2m8!1e2!2ssvv!4m2!1scb_client!2sapiv3!4m2!1scc!2s*211m3*211e3*212b1*213e2*211m3*211e2*212b1*213e2!3m3!3sUS!12m1!1e68!4e0",
-   "attribution":{"text":"My Map"}
+  "1006":{
+   "geometry":null,
+   "properties":{
+    "name":"Google街景",
+    "max_zoom":22,
+    "id":"1006",
+    "url":"https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i{z}!2i{x}!3i{y}!4i256!2m8!1e2!2ssvv!4m2!1scb_client!2sapiv3!4m2!1scc!2s*211m3*211e3*212b1*213e2*211m3*211e2*212b1*213e2!3m3!3sUS!12m1!1e68!4e0",
+    "attribution":{"text":"My Map"}
+   },
+   "type":"Feature"
   },
-  "type":"Feature"
- },
- "1007":{
-  "geometry":null,
-  "properties":{
-   "name":"Google地圖",
-   "max_zoom":22,
-   "id":"1007",
-   "url":"https://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
-   "attribution":{"text":"My Map"}
+  "1007":{
+   "geometry":null,
+   "properties":{
+    "name":"Google地圖",
+    "max_zoom":22,
+    "id":"1007",
+    "url":"https://mt.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+    "attribution":{"text":"My Map"}
+   },
+   "type":"Feature"
   },
-  "type":"Feature"
- },
- "1008":{
-  "geometry":null,
-  "properties":{
-   "name":"台灣等高線",
-   "min_zoom":10,
-   "max_zoom":18,
-   "id":"1008",
-   "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
-   "attribution":{"text":"My Map"}
+  "1008":{
+   "geometry":null,
+   "properties":{
+    "name":"台灣等高線",
+    "min_zoom":10,
+    "max_zoom":18,
+    "id":"1008",
+    "url":"https://tw.iqiq.cc/{z}/{x}/{y}.png",
+    "attribution":{"text":"My Map"}
+   },
+   "type":"Feature"
   },
-  "type":"Feature"
- },
- "1009":{
-  "geometry":null,
-  "properties":{
-   "name":"grmn",
-   "max_zoom":18,
-   "id":"1009",
-   "url":"https://{switch:grmn,rmng,mngr,ngrm,rgmn}.onrender.com/{zoom}/{x}/{y}.pbf",
-   "attribution":{"text":"My Map"}
+  "1009":{
+   "geometry":null,
+   "properties":{
+    "name":"grmn",
+    "max_zoom":18,
+    "id":"1009",
+    "url":"https://{switch:grmn,rmng,mngr,ngrm,rgmn}.onrender.com/{zoom}/{x}/{y}.pbf",
+    "attribution":{"text":"My Map"}
+   },
+   "type":"Feature"
   },
-  "type":"Feature"
- },
   "1010": {
     "geometry": null,
     "properties": {
@@ -77,6 +77,17 @@ BR.layerIndex = {
       "dataSource": "LayersCollection"
     },
     "type": "Feature"
+  },
+  "1011":{
+   "geometry":null,
+   "properties":{
+    "name":"NLSC等高線",
+    "max_zoom":20,
+    "id":"1011",
+    "url":"https://wmts.nlsc.gov.tw/wmts/EMAP5/default/EPSG:3857/{z}/{y}/{x}",
+    "attribution":{"text":"My Map"}
+   },
+   "type":"Feature"
   },
   "1016": {
     "geometry": null,
