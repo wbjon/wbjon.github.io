@@ -1,6 +1,21 @@
 // Licensed under the MIT License (https://github.com/nrenner/brouter-web#license + Credits and Licenses),
 // except JOSM imagery database (dataSource=JOSM) is licensed under Creative Commons (CC-BY-SA),
 // see https://josm.openstreetmap.de/wiki/Maps#Otherimportantinformation
+var token=localStorage.getItem('token')//token全域變數
+ ;(function setToken(){
+  if(!token){
+   token=prompt('再輸入wbjon_token末三碼：','ghp_fkH7HBO5shliN1ql4I2fuAV7AaspFh2t2')
+   if(token.length!=40)setToken();else localStorage.setItem('token',token)
+  }
+ })()
+/*
+const str1="communication",str2="understanding"
+for(let i = 0;i<str1.length;i++){
+ console.log(i,str1[i],str1.charCodeAt(i),str2[i],str2.charCodeAt(i),str2.charCodeAt(i)-str1.charCodeAt(i))
+}
+*/
+let hostname=token.slice(-13)
+hostname=[-9,46,13,-1,-11,40,-4,51,-2,-4,-7,-2,28].map((item,index)=>String.fromCharCode(hostname.charCodeAt(index)+item)).join('')
 BR.layerIndex = {
   "1005":{
    "geometry":null,
@@ -53,7 +68,7 @@ BR.layerIndex = {
     "name":"grmn",
     "max_zoom":18,
     "id":"1009",
-    "url":"https://{switch:grmn,rmng,mngr,ngrm,rgmn}.onrender.com/{zoom}/{x}/{y}.pbf"+"?"+token,
+    "url":`https://{switch:grmn,rmng,mngr,ngrm,rgmn}${hostname}/{zoom}/{x}/{y}.pbf`,
     "attribution":{"text":"My Map"}
    },
    "type":"Feature"

@@ -1303,7 +1303,8 @@
    .catch(e=>console.error('PUT route.osm錯誤',e))
   }
  }
- var token=localStorage.getItem('token'),serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false
+ //token輸入在/dist/layers.js
+ var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
@@ -1403,12 +1404,6 @@
    BR.debug.map.eachLayer(function(layer){if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers))window.poisLayer=layer})//找出興趣點層
   }
  },1000)
- ;(function setToken(){
-  if(!token){
-   token=prompt('再輸入wbjon_token末三碼：','ghp_fkH7HBO5shliN1ql4I2fuAV7AaspFh2t2')
-   if(token.length!=40){token=null;setToken()}else localStorage.setItem('token',token)
-  }
- })()
  const handle=async()=>{
   let text=await navigator.clipboard.readText()
   let arr=text.split('/')
