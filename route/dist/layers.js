@@ -53,7 +53,7 @@ BR.layerIndex = {
     "name":"grmn",
     "max_zoom":18,
     "id":"1009",
-    "url":"https://{switch:grmn,rmng,mngr,ngrm,rgmn}.onrender.com/{zoom}/{x}/{y}.pbf",
+    "url":"https://{switch:grmn,rmng,mngr,ngrm,rgmn}.onrender.com/{zoom}/{x}/{y}.pbf"+"?"+token,
     "attribution":{"text":"My Map"}
    },
    "type":"Feature"
