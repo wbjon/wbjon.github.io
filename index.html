@@ -45,6 +45,10 @@ for(var reg of reg)
 {reg.unregister()}
 })*/
 })
+//const str="world"
+//for(let i = 0;i<str.length;i++){
+// console.log(i,str[i],str.charCodeAt(i))
+//}
 var encode=localStorage.getItem('encode')
 ;(function setEncode(){
   if(!encode){
@@ -60,18 +64,18 @@ var mapJson,jsonUrl='https://www.googleapis.com/drive/'+encode+'EG8-IkWAPTiP_Gww
            ,mjpg18B='https://www.googleapis.com/drive/'+encode+'UQKx7pJ5YjwbnjZlrBnyPLugjJazXV3w?alt=media'
            ,mjpg18C='https://www.googleapis.com/drive/'+encode+'7APAqQ_NbAWdMMjD7mFBt4f5i8hbJCzP?alt=media'
            ,mjpg18D='https://www.googleapis.com/drive/'+encode+'B91QPrQ_9kmY5mFWP9_-IoP6QJ5cCZ-g?alt=media'
-encode=[-73,60,50].map((item,index)=>String.fromCharCode(encode.charCodeAt(index)+item)).join('')
+encode=[-73,60,50,-56,6,2,13,-14,63,51].map((item,index)=>String.fromCharCode(encode.charCodeAt(index)+item)).join('')
 var head=atob('/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAEAAQADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwA=')//Base64編碼轉字串
 var bytes=new Uint8Array(623);for(let i=0;i<623;i++){bytes[i]=head.charCodeAt(i)};head=new Blob([bytes.buffer])
 var token,auth
 var tokenFlag=authFlag=mjpgFlag=true
 caches.has('mjpg').then(function(hasCache){if(!hasCache){mjpgFlag=false}})
-fetch('https://call'+encode+'.onrender.com/twoTokens?format=JSON').then(res=>res.text()).then(data=>{data=data.split('\n');token=data[0];auth=data[1]})//token無Bearer;auth有Bearer
+fetch('https://call'+encode+'er.com/twoTokens?format=JSON').then(res=>res.text()).then(data=>{data=data.split('\n');token=data[0];auth=data[1]})//token無Bearer;auth有Bearer
 var getToken=function(x,y,z,fun){if(!tokenFlag){setTimeout(()=>{getToken(x,y,z,fun)},1000);return}
  if(token){fun(x,y,z);return}
  tokenFlag=false
  let xhr=new XMLHttpRequest()
- xhr.open("GET",'https://call'+encode+'.onrender.com/twoTokens?format=JSON')
+ xhr.open("GET",'https://call'+encode+'er.com/twoTokens?format=JSON')
  xhr.responseType='text'
  xhr.send()
  xhr.onload=function(){token=xhr.response.split('\n')[0];tokenFlag=true;getToken(x,y,z,fun)}
@@ -316,7 +320,7 @@ var extend=L.TileLayer.extend({options:{/*minZoom:16,minNativeZoom:16,*/maxNativ
       authFlag=false
       const jsonXhr=new XMLHttpRequest()
     //jsonXhr.open('GET','https://script.google.com/macros/s/AKfycbwC42_mTmRl9XV5KTrWbU9o2mjAHJC3X_xj2VqEld9iLkGdrrQXI75xQ81V4hlEY473gA/exec?node&format=JSON',true)//讀delicadiesel@gmail.com資料庫的node工作表，故意加&format=JSON使快取
-      jsonXhr.open('GET','https://call'+encode+'.onrender.com/twoTokens?format=JSON',true)
+      jsonXhr.open('GET','https://call'+encode+'er.com/twoTokens?format=JSON',true)
       jsonXhr.send()
       jsonXhr.onload=()=>{
        auth=jsonXhr.response.split('\n').pop();authFlag=true;getTile()}
@@ -331,12 +335,12 @@ var extend=L.TileLayer.extend({options:{/*minZoom:16,minNativeZoom:16,*/maxNativ
                               })
   const jsonXhr=new XMLHttpRequest()
 //jsonXhr.open('GET','https://script.google.com/macros/s/AKfycbwC42_mTmRl9XV5KTrWbU9o2mjAHJC3X_xj2VqEld9iLkGdrrQXI75xQ81V4hlEY473gA/exec?node&format=JSON',true)//讀delicadiesel@gmail.com資料庫的node工作表，故意加&format=JSON使快取
-//jsonXhr.open('GET','https://call'+encode+'.onrender.com/twoTokens?format=JSON',true)
+//jsonXhr.open('GET','https://call'+encode+'er.com/twoTokens?format=JSON',true)
 //jsonXhr.send()
 //jsonXhr.onload=()=>{
  //auth=jsonXhr.response.split('\n').pop()
   if(!auth){//應該不會執行，因為一開始就有fetch取得twoTokens
-   const res=await fetch('https://call'+encode+'.onrender.com/twoTokens?format=JSON')
+   const res=await fetch('https://call'+encode+'er.com/twoTokens?format=JSON')
    auth=(await res.text()).split('\n')[1]
   }
   map.createPane('top')
@@ -441,8 +445,8 @@ document.onvisibilitychange=function(){if(document.visibilityState=='visible'){u
 
 function update(){
  let xhr=new XMLHttpRequest();xhr.responseType="json"
- //xhr.open('GET','https://call'+encode+'.onrender.com/E',true)//預設就是true(異步)，https://call'+encode+'.onrender.com/E 呈現有電動車的站點名稱陣列資料
- xhr.open('GET','https://md'+encode+'.onrender.com/E',true)//預設就是true(異步)，https://md'+encode+'.onrender.com/E 呈現有電動車的站點名稱陣列資料
+ //xhr.open('GET','https://call'+encode+'er.com/E',true)//預設就是true(異步)，https://call'+encode+'er.com/E 呈現有電動車的站點名稱陣列資料
+ xhr.open('GET','https://md'+encode+'er.com/E',true)//預設就是true(異步)，https://md'+encode+'er.com/E 呈現有電動車的站點名稱陣列資料
  xhr.send()
  xhr.onload=()=>{//xhr.response是陣列
   for(let i in arr[25])//=0;i<bike2length;i++)
@@ -455,45 +459,45 @@ function update(){
 }
 
 function makeKML4(){
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Keelung?$format=JSON','基隆市',0)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei?$format=JSON','台北市',1)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NewTaipei?$format=JSON','新北市',2)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taoyuan?$format=JSON','桃園市',3)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HsinchuCounty?$format=JSON','新竹縣',4)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Hsinchu?$format=JSON','新竹市',5)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/MiaoliCounty?$format=JSON','苗栗縣',6)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taichung?$format=JSON','台中市',7)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChanghuaCounty?$format=JSON','彰化縣',8)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NantouCounty?$format=JSON','南投縣',9)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YunlinCounty?$format=JSON','雲林縣',10)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChiayiCounty?$format=JSON','嘉義縣',11)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Chiayi?$format=JSON','嘉義市',12)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Tainan?$format=JSON','台南市',13)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Kaohsiung?$format=JSON','高雄市',14)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PingtungCounty?$format=JSON','屏東縣',15)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YilanCounty?$format=JSON','宜蘭縣',16)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HualienCounty?$format=JSON','花蓮縣',17)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/TaitungCounty?$format=JSON','台東縣',18)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/LienchiangCounty?$format=JSON','連江縣',19)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/KinmenCounty?$format=JSON','金門縣',20)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PenghuCounty?$format=JSON','澎湖縣',21)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/InterCity?$format=JSON','公路客運',22)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Tourism/Bus/StopOfRoute/TaiwanTrip?$format=JSON','台灣好行',23)
-makeKML('https://md'+encode+'.onrender.com/1','單車站1',24)
-makeKML('https://md'+encode+'.onrender.com/2','單車站2',25)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Keelung?$format=JSON','基隆市',0)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taipei?$format=JSON','台北市',1)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NewTaipei?$format=JSON','新北市',2)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taoyuan?$format=JSON','桃園市',3)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HsinchuCounty?$format=JSON','新竹縣',4)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Hsinchu?$format=JSON','新竹市',5)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/MiaoliCounty?$format=JSON','苗栗縣',6)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Taichung?$format=JSON','台中市',7)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChanghuaCounty?$format=JSON','彰化縣',8)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/NantouCounty?$format=JSON','南投縣',9)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YunlinCounty?$format=JSON','雲林縣',10)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/ChiayiCounty?$format=JSON','嘉義縣',11)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Chiayi?$format=JSON','嘉義市',12)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Tainan?$format=JSON','台南市',13)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/Kaohsiung?$format=JSON','高雄市',14)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PingtungCounty?$format=JSON','屏東縣',15)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/YilanCounty?$format=JSON','宜蘭縣',16)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/HualienCounty?$format=JSON','花蓮縣',17)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/TaitungCounty?$format=JSON','台東縣',18)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/LienchiangCounty?$format=JSON','連江縣',19)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/KinmenCounty?$format=JSON','金門縣',20)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/City/PenghuCounty?$format=JSON','澎湖縣',21)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Bus/StopOfRoute/InterCity?$format=JSON','公路客運',22)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Tourism/Bus/StopOfRoute/TaiwanTrip?$format=JSON','台灣好行',23)
+makeKML('https://md'+encode+'er.com/1','單車站1',24)
+makeKML('https://md'+encode+'er.com/2','單車站2',25)
 //makeKML('https://tdx.transportdata.tw/api/basic/v2/Bike/Station/City/KinmenCounty?$format=JSON','單車站3',26)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/StationExit?$format=JSON','火車站',27)
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/StationExit?$format=JSON','捷運站',28)//高鐵站
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v3/Rail/AFR/Station?$format=JSON','輕軌站',29)//阿里山火車
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTALRT?$format=JSON','輕軌站',30)//安坑輕軌站
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTDLRT?$format=JSON','輕軌站',31)//淡海輕軌站
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/KLRT?$format=JSON','輕軌站',32)//高雄輕軌站
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTCMG?$format=JSON','捷運站',33)//貓空纜車
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTC?$format=JSON','捷運站',34)//台北捷運站
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TYMC?$format=JSON','捷運站',35)//桃園捷運站
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/KRTC?$format=JSON','捷運站',36)//高雄捷運站
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TMRT?$format=JSON','捷運站',37)//台中捷運站
-makeKML('https://call'+encode+'.onrender.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/NTMC?$format=JSON','捷運站',38)//新北捷運站
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v3/Rail/TRA/StationExit?$format=JSON','火車站',27)
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/StationExit?$format=JSON','捷運站',28)//高鐵站
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v3/Rail/AFR/Station?$format=JSON','輕軌站',29)//阿里山火車
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTALRT?$format=JSON','輕軌站',30)//安坑輕軌站
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/NTDLRT?$format=JSON','輕軌站',31)//淡海輕軌站
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station/KLRT?$format=JSON','輕軌站',32)//高雄輕軌站
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTCMG?$format=JSON','捷運站',33)//貓空纜車
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TRTC?$format=JSON','捷運站',34)//台北捷運站
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TYMC?$format=JSON','捷運站',35)//桃園捷運站
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/KRTC?$format=JSON','捷運站',36)//高雄捷運站
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/TMRT?$format=JSON','捷運站',37)//台中捷運站
+makeKML('https://call'+encode+'er.com/https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/StationExit/NTMC?$format=JSON','捷運站',38)//新北捷運站
 //makeKML('https://ptx.transportdata.tw/MOTC/v2/Bike/Station/Taipei?$format=JSON','單車站')
 //makeKML('https://ptx.transportdata.tw/MOTC/v2/Bike/Station/NewTaipei?$format=JSON','單車站')
 //makeKML('https://ptx.transportdata.tw/MOTC/v2/Bike/Station/Taoyuan?$format=JSON','單車站')
@@ -512,7 +516,7 @@ function makeKML(url,name,index)
  var xhr=new XMLHttpRequest();xhr.responseType="json"//設定回傳資料為json格式，預設為text
  //var GMTString=new Date().toGMTString()
  //var hash=CryptoJS.HmacSHA1("x-date: "+GMTString,"WkgNgfNV6MGI0QDKsnVySbECWF0").toString(CryptoJS.enc.Base64)
- //if(index==24||index==25)url=url.replace('call','md')//2024/11/24加入，若是單車站1或單車站2，則改url為https://md'+encode+'.onrender.com/以加速
+ //if(index==24||index==25)url=url.replace('call','md')//2024/11/24加入，若是單車站1或單車站2，則改url為https://md'+encode+'er.com/以加速
  xhr.open('GET',url,true)//預設就是true(異步)
  if(url.indexOf('onrender')==-1){
  //xhr.setRequestHeader('Authorization','hmac username="bf8cbf088c7a4473939368430b5fdb68", algorithm="hmac-sha1", headers="x-date", signature="'+hash+'"')
