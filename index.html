@@ -56,7 +56,7 @@ var encode=localStorage.getItem('encode')
    if(encode.length!=10){encode=null;setEncode()}else localStorage.setItem('encode',encode)
   }
  })()
-encode=[13,-57,-64,-16,4,-1,4,3,-64,-58].map((item,index)=>String.fromCharCode(encode.charCodeAt(index)+item)).join('')
+encode=[8,-46,-71,-3,2,11,-15,10,-64,-61].map((item,index)=>String.fromCharCode(encode.charCodeAt(index)+item)).join('')
 var mapJson,jsonUrl='https://www.googleapis.com/drive/'+encode+'EG8-IkWAPTiP_GwwDr0tsjEu8Hp33RxO?alt=media&.png'//故意加&.png，使其快取
             ,mjpg16='https://www.googleapis.com/drive/'+encode+'bFWa4-Sys39hCXneKAdoRPUrsfy60eH5?alt=media'
             ,mjpg17='https://www.googleapis.com/drive/'+encode+'i3B9uUW9fMmZMMN8r77bwL0A2mrkRGOl?alt=media'
