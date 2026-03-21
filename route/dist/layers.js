@@ -14,8 +14,8 @@ for(let i = 0;i<str1.length;i++){
  console.log(i,str1[i],str1.charCodeAt(i),str2[i],str2.charCodeAt(i),str2.charCodeAt(i)-str1.charCodeAt(i))
 }
 */
-let hostname=token.slice(-13)
-hostname=[-9,46,13,-1,-11,40,-4,51,-2,-4,-7,-2,28].map((item,index)=>String.fromCharCode(hostname.charCodeAt(index)+item)).join('')
+let hostname=token.slice(-3).repeat(4)
+hostname=[5,-3,33,-5,-3,19,-5,1,-35,-7,-2,28].map((item,index)=>String.fromCharCode(hostname.charCodeAt(index)+item)).join('')
 BR.layerIndex = {
   "1005":{
    "geometry":null,
@@ -68,7 +68,7 @@ BR.layerIndex = {
     "name":"grmn",
     "max_zoom":18,
     "id":"1009",
-    "url":`https://{switch:grmn,rmng,mngr,ngrm,rgmn}${hostname}/{zoom}/{x}/{y}.pbf`,
+    "url":`https://{switch:grmn,rmng,mngr,ngrm,rgmn}.${hostname}/{zoom}/{x}/{y}.pbf`,
     "attribution":{"text":"My Map"}
    },
    "type":"Feature"
