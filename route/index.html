@@ -1314,7 +1314,8 @@
    BR.debug.map.on('contextmenu',()=>document.querySelector('button[title*="Toggle"]').click())
    BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey){
     const url=`https://www.google.com/maps?layer=c&cbll=${e.latlng.lat},${e.latlng.lng}`
-    navigator.clipboard.writeText(url);open(url)
+    navigator.clipboard.writeText(url)
+    if(document.querySelector('input[type="checkbox"]').checked)open(url)
    }else handle()}})
    BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
