@@ -1314,8 +1314,7 @@
    BR.debug.map.on('contextmenu',()=>document.querySelector('button[title*="Toggle"]').click())
    BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey){
     const url=`https://www.google.com/maps?layer=c&cbll=${e.latlng.lat},${e.latlng.lng}`
-    navigator.clipboard.writeText(url)
-    open(url,"streetViewWindow")
+    navigator.clipboard.writeText(url);open(url)
    }else handle()}})
    BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
@@ -1331,7 +1330,7 @@
     }})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    collapsingNavbar=document.getElementById('collapsingNavbar')
-   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button>')
+   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button><label><input type="checkbox">開啟街景分頁</label>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-7)
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{PrevNext=true;page++;if(lastURLs[page]){location.replace(lastURLs[page][0]+`&time=${new Date().getTime()}`);routes.value=lastURLs[page][1]}else page--}
