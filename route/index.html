@@ -1304,7 +1304,7 @@
   }
  }
  //token輸入在/dist/layers.js
- var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false
+ var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false,gisWin
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
@@ -1316,6 +1316,7 @@
     const url=`https://www.google.com/maps?layer=c&cbll=${e.latlng.lat},${e.latlng.lng}`
     navigator.clipboard.writeText(url)
     if(document.querySelector('input[type="checkbox"]').checked)open(url)
+    if(gisWin)gisWin.postMessage(`${e.latlng.lat},${e.latlng.lng}`,"*")
    }else handle()}})
    BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
@@ -1331,8 +1332,8 @@
     }})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    collapsingNavbar=document.getElementById('collapsingNavbar')
-   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button><label style="color:white"><input type="checkbox">開啟街景分頁</label>')
-   buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-7)
+   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button><button>GIS</button><label style="color:white"><input type="checkbox">開啟街景分頁</label>')
+   buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-8)
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{PrevNext=true;page++;if(lastURLs[page]){location.replace(lastURLs[page][0]+`&time=${new Date().getTime()}`);routes.value=lastURLs[page][1]}else page--}
    buttons[1].onclick=()=>{PrevNext=true;page--;if(lastURLs[page]){location.replace(lastURLs[page][0]+`&time=${new Date().getTime()}`);routes.value=lastURLs[page][1]}else page++}
@@ -1377,6 +1378,10 @@
     if(routes.selectedIndex){
      if(confirm(`刪除儲存的…${routes.value}`)){localStorage.removeItem(routes.value);routes.remove(routes.selectedIndex);routes.selectedIndex=0}
     }else if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)
+   }
+   buttons[7].onclick=()=>{
+    navigator.clipboard.writeText('code…')
+    gisWin=open("https://gissrv4.sinica.edu.tw/gis/","gis","width=600,height=400")
    }
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
