@@ -1332,7 +1332,7 @@
     }})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    collapsingNavbar=document.getElementById('collapsingNavbar')
-   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button><button>GIS</button><label style="color:white"><input type="checkbox">開啟街景分頁</label>')
+   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button><button>GIS&JS</button><label style="color:white"><input type="checkbox">開啟街景分頁</label>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-8)
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{PrevNext=true;page++;if(lastURLs[page]){location.replace(lastURLs[page][0]+`&time=${new Date().getTime()}`);routes.value=lastURLs[page][1]}else page--}
@@ -1415,6 +1415,7 @@
  },1000)
  const handle=async()=>{
   let text=await navigator.clipboard.readText()
+  text=text.split('=').pop()//Street View:https://www.google.com/maps?layer=c&cbll=24.1583874,120.6444516
   let arr=text.split('/')
   if(arr.length>=2){text=','+arr.pop();text=arr.pop()+text}//pop()可取得陣列最後一個，且原陣列最後一個會去除
   //↑JOSM:https://www.openstreetmap.org/#map=18/23.900696/121.047114
