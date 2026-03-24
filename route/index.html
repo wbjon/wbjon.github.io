@@ -1318,7 +1318,7 @@
     const url=`https://www.google.com/maps?layer=c&cbll=${e.latlng.lat},${e.latlng.lng}`
     navigator.clipboard.writeText(url)
     if(document.querySelector('input[type="checkbox"]').checked)open(url)
-    if(gisWin)gisWin.postMessage(`${e.latlng.lat},${e.latlng.lng}`,"*")
+    if(gisWin)gisWin.postMessage(e.latlng,"*")
    }else handle()}})
    BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
@@ -1384,7 +1384,7 @@
    buttons[7].onclick=()=>{
     navigator.clipboard.writeText(
 `const sv=map.getStreetView();sv.setVisible(true)
-window.addEventListener("message",event=>{const position=event.data.split(',');sv.setPosition({lat:+position[0],lng:+position[1]})})
+window.addEventListener("message",event=>{sv.setPosition(event.data)})
 setTimeout(()=>{
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'#map{height:100% !important}'}))
 Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed",top:"0",left:"0",width:"100%",height:"100%"})
