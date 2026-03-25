@@ -1307,7 +1307,8 @@
  }
  //token輸入在/dist/layers.js
  var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false
- var gisWin,gps=L.triangleMarker(BR.debug.map.getCenter(),{rotation:0,width:50,height:50,color:'red',weight:1,fill:false}).addTo(BR.debug.map)
+ var gisWin
+var gps=L.triangleMarker(BR.debug.map.getCenter(),{rotation:0,width:50,height:50,color:'red',weight:1,fill:false}).addTo(BR.debug.map)
  window.addEventListener("message",event=>{
   const pov=event.data
   gps.setLatLng([pov.lat,pov.lng])
