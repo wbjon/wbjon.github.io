@@ -1316,7 +1316,7 @@
    gps=L.triangleMarker(BR.debug.map.getCenter(),{rotation:180,width:50,height:50,color:'red',weight:1,fill:false,interactive:false}).addTo(BR.debug.map)//interactive:false可避免地圖mousedown事件被triangleMarker擋住
    BR.debug.map.setMaxZoom(30)//讓操作及網址最大到30，也需修改brouter-web.js的,t=new L.Map("map",{zoomControl:!1,worldCopyJump:!0,minZoom:0,maxZoom:30}),讓大zoom地圖及控制項不顯灰
    BR.debug.map.on('contextmenu',()=>document.querySelector('button[title*="Toggle"]').click())
-   BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(e.originalEvent.ctrlKey){
+   BR.debug.map.on('mousedown',e=>{mousedown=e.originalEvent.button;if(mousedown==1){if(!e.originalEvent.ctrlKey){
     const url=`https://www.google.com/maps?layer=c&cbll=${e.latlng.lat},${e.latlng.lng}`
     navigator.clipboard.writeText(url)
     if(document.querySelector('input[type="checkbox"]').checked)open(url)
