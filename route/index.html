@@ -1307,7 +1307,7 @@
  }
  //token輸入在/dist/layers.js
  var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false,gisWin,gps
- window.addEventListener("message",event=>{const pov=event.data;gps.setLatLng([pov.lat,pov.lng]);gps.setRotation(pov.heading)})
+ window.addEventListener("message",event=>{const pov=event.data;gps.setLatLng([pov.lat,pov.lng]);gps.setRotation(pov.heading-180)})
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
