@@ -1384,7 +1384,7 @@
     }else if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)
    }
    buttons[7].onclick=()=>{
-    alert(//navigator.clipboard.writeText(
+    navigator.clipboard.writeText(
 `const sv=map.getStreetView();sv.setVisible(true)
 let lastHeading,lastLat,lastLng
 sv.addListener("pov_changed",()=>{
@@ -1399,7 +1399,8 @@ setTimeout(()=>{
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'#map{height:100% !important}'}))
 Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed",top:"0",left:"0",width:"100%",height:"100%"})
 },1000)`)
-    gisWin=open("https://gissrv4.sinica.edu.tw/gis/","gis",`width=${screen.width/2},height=${screen.height/2}`)
+    const yes=confirm('彈出GIS視窗？')
+    if(yes)gisWin=open("https://gissrv4.sinica.edu.tw/gis/","gis",`width=${screen.width/2},height=${screen.height/2}`)
    }
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
