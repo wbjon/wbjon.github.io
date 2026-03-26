@@ -1306,8 +1306,8 @@
   }
  }
  //token輸入在/dist/layers.js
- var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false,gisWin,gps,lastCenter=null
- window.addEventListener("message",event=>{const pov=event.data;gps.setLatLng([pov.lat,pov.lng]);gps.setRotation(pov.heading-180);BR.debug.map.setView([pov.lat,pov.lng])})
+ var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false,gisWin,gps,pov,lastCenter=null
+ window.addEventListener("message",event=>{pov=event.data;gps.setLatLng([pov.lat,pov.lng]);gps.setRotation(pov.heading-180);BR.debug.map.setView([pov.lat,pov.lng])})
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
