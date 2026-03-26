@@ -1307,7 +1307,7 @@
  }
  //token輸入在/dist/layers.js
  var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false,gisWin,gps,pov,startPoint=null
- window.addEventListener("message",event=>{pov=event.data;gps.setLatLng([pov.lat,pov.lng]);gps.setRotation(pov.heading-180);BR.debug.map.setView([pov.lat,pov.lng])})
+ window.addEventListener("message",event=>{pov=event.data;gps.setLatLng([pov.lat,pov.lng]);gps.setRotation(pov.heading-180);BR.debug.map.setView([pov.lat,pov.lng]);console.log(pov.heading)})
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
   pane=document.querySelector('.leaflet-map-pane')
@@ -1386,15 +1386,16 @@
    buttons[7].onclick=()=>{
     navigator.clipboard.writeText(
 `const sv=map.getStreetView();sv.setVisible(true)
-let lastHeading,lastLat,lastLng
+let lastHeading,lastLat,lastLng,message=false
 sv.addListener("pov_changed",()=>{
- const{heading}=sv.getPov(),pos=sv.getPosition()
- const lat=pos.lat(),lng=pos.lng()
+ let{heading}=sv.getPov()
+ const pos=sv.getPosition(),lat=pos.lat(),lng=pos.lng()
  if(lastHeading===heading&&lastLat===lat&&lastLng===lng)return
  lastHeading=heading;lastLat=lat;lastLng=lng
+ if(message){heading+=360;message=false}
  window.opener.postMessage({heading,lat,lng},"*")
 })
-window.addEventListener("message",event=>{sv.setVisible(true);sv.setPosition(event.data)})
+window.addEventListener("message",event=>{message=true;sv.setVisible(true);sv.setPosition(event.data)})
 setTimeout(()=>{
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'#map{height:100% !important}'}))
 Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed",top:"0",left:"0",width:"100%",height:"100%"})
