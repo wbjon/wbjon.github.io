@@ -1394,7 +1394,7 @@ sv.addListener("pov_changed",()=>{
  lastHeading=heading;lastLat=lat;lastLng=lng
  window.opener.postMessage({heading,lat,lng},"*")
 })
-window.addEventListener("message",event=>{sv.setVisible(true);if("heading" in event.data)sv.setPov(event.data);else sv.setPosition(event.data)})
+window.addEventListener("message",event=>{sv.setVisible(true);if("heading" in event.data){event.data.pitch=0;sv.setPov(event.data)}else sv.setPosition(event.data)})
 setTimeout(()=>{
 document.head.appendChild(Object.assign(document.createElement('style'),{textContent:'#map{height:100% !important}'}))
 Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed",top:"0",left:"0",width:"100%",height:"100%"})
@@ -1453,7 +1453,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    center.style.display='block'
   }
  }
- window.addEventListener('mouseup',()=>mousedown=null,true)
+ window.addEventListener('mouseup',()=>{mousedown=null;BR.debug.map.dragging.enable()},true)
  //document.addEventListener('mousedown',e=>{mousedown=e.which;if(mousedown==2)handle()},true)//改用BR.debug.map.on('mousedown'
  function optionsSort(){
   const arr=[...routes.options].filter(opt=>!(!isNaN(new Date(opt.text).getTime())&&opt.text.length==19)    )
