@@ -1327,7 +1327,7 @@
     BR.debug.map.dragging.disable()
     const dx=e.containerPoint.x-startPoint.x
     const dy=e.containerPoint.y-startPoint.y
-    if(Math.abs(dx)<50&&Math.abs(dy)<50)return
+    if(Math.abs(dx)<20&&Math.abs(dy)<20)return
     const rad=Math.atan2(dx,-dy)
     let deg=rad*180/Math.PI
     deg=(deg+360)%360
