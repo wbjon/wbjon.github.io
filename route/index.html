@@ -1306,7 +1306,7 @@
   }
  }
  //token輸入在/dist/layers.js
- var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false,gisWin,gps,pov,startPoint=null
+ var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false,gisWin,gps,pov,startPoint
  window.addEventListener("message",event=>{pov=event.data;gps.setLatLng([pov.lat,pov.lng]);gps.setRotation(pov.heading-180);if(!document.hasFocus())BR.debug.map.setView([pov.lat,pov.lng])})
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
@@ -1453,7 +1453,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    center.style.display='block'
   }
  }
- window.addEventListener('mouseup',()=>mousedown=startPoint=null,true)
+ window.addEventListener('mouseup',()=>mousedown=null,true)
  //document.addEventListener('mousedown',e=>{mousedown=e.which;if(mousedown==2)handle()},true)//改用BR.debug.map.on('mousedown'
  function optionsSort(){
   const arr=[...routes.options].filter(opt=>!(!isNaN(new Date(opt.text).getTime())&&opt.text.length==19)    )
