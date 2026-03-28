@@ -1379,7 +1379,7 @@
       delete poisLayer._layers[id]
      }*/
      await removeInput012(0b111)//使用poisLayer只刪除所有興趣點，removeInput012(0b000-0b111)刪除可控性更高
-     const maps=location.href.match(/\/([^\/&]+)&/)[1]
+     const maps=location.href.split('/').pop().split('&')[0]//const maps=location.href.match(/\/([^\/&]+)&/)[1]//2026/3/29預防沒有&profile=
      location.replace(localStorage.getItem(routes.value).replace(/\/[^\/&]+&/,`/${maps}&`))
     }
    }//poisLayer._map等同於BR.debug.map
