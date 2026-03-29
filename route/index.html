@@ -1413,7 +1413,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
     const yes=confirm('彈出GIS視窗？')
     if(yes){
      gisWin=open("","gis",`width=${screen.width/2},height=${screen.height/2}`)
-     if(gisWin.location.href==="about:blank")gisWin=open("https://gissrv4.sinica.edu.tw/gis/","gis",`width=${screen.width/2},height=${screen.height/2}`)
+     try{if(gisWin.location.href==="about:blank")gisWin=open("https://gissrv4.sinica.edu.tw/gis/","gis",`width=${screen.width/2},height=${screen.height/2}`)}catch{}//try、catch避免Uncaught SecurityError: Failed to read a named property 'href' from 'Location': Blocked a frame with origin "https://wbjon.github.io" from accessing a cross-origin frame.
     }
    }
    for(let i=0;i<localStorage.length;i++){
