@@ -1464,7 +1464,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    center.style.display='block'
   }
  }
- window.addEventListener('mouseup',()=>{mousedown=null;BR.debug.map.dragging.enable()},true)
+ window.addEventListener('mouseup',()=>{console.log('mousedown',mousedown);mousedown=null;BR.debug.map.dragging.enable()},true)
  //document.addEventListener('mousedown',e=>{mousedown=e.which;if(mousedown==2)handle()},true)//改用BR.debug.map.on('mousedown'
  function optionsSort(){
   const arr=[...routes.options].filter(opt=>!(!isNaN(new Date(opt.text).getTime())&&opt.text.length==19)    )
