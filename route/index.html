@@ -1335,10 +1335,10 @@
     deg=(deg+360)%360
     gisWin.postMessage({heading:deg},"*")
    })
-   var one=123
-   let two=456
+   const onetwo=document.querySelectorAll('.leaflet-control-layers-overlays input')//切換 NLSC等高線/台灣等高線
    BR.debug.map.on('keydown',e=>{
-    console.log(one,two)//if(e.originalEvent.keyCode===49){;return}
+    if(e.originalEvent.keyCode===49){onetwo[0].click();return}
+    if(e.originalEvent.keyCode===50){onetwo[1].click();return}
     if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
     switch(e.originalEvent.keyCode){
