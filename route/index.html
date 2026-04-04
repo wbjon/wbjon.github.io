@@ -1342,8 +1342,9 @@
     if(e.originalEvent.keyCode===50){OneTwoThree[1].click();return}
     if(e.originalEvent.keyCode===51){OneTwoThree[2].click();return}
     if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
-    let step=1
-    switch(e.originalEvent.keyCode){
+    let step=1,keyCode=e.originalEvent.keyCode
+    console.log(e.originalEvent.button)
+    switch(keyCode){
      case 38://向上鍵
       step=-1
       //刻意不加break，讓case 40一併執行(貫穿)
