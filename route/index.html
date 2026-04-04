@@ -1335,10 +1335,11 @@
     deg=(deg+360)%360
     gisWin.postMessage({heading:deg},"*")
    })
-   const onetwo=document.querySelectorAll('.leaflet-control-layers-overlays input')//切換 NLSC等高線/台灣等高線
+   const OneTwoThree=document.querySelectorAll('.leaflet-control-layers-overlays input')//切換 NLSC等高線/台灣等高線/Google街景
    BR.debug.map.on('keydown',e=>{
-    if(e.originalEvent.keyCode===49){onetwo[0].click();return}
-    if(e.originalEvent.keyCode===50){onetwo[1].click();return}
+    if(e.originalEvent.keyCode===49){OneTwoThree[0].click();return}
+    if(e.originalEvent.keyCode===50){OneTwoThree[1].click();return}
+    if(e.originalEvent.keyCode===51){OneTwoThree[2].click();return}
     if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
     switch(e.originalEvent.keyCode){
