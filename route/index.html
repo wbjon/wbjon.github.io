@@ -1336,6 +1336,7 @@
     gisWin.postMessage({heading:deg},"*")
    })
    const OneTwoThree=document.querySelectorAll('.leaflet-control-layers-overlays input')//切換 NLSC等高線/台灣等高線/Google街景
+   const radios=[...document.querySelectorAll('.leaflet-control-layers-base input')]//切換 選單上方各個圖層
    BR.debug.map.on('keydown',e=>{
     if(e.originalEvent.keyCode===49){OneTwoThree[0].click();return}
     if(e.originalEvent.keyCode===50){OneTwoThree[1].click();return}
@@ -1347,9 +1348,8 @@
       step=-1
       //刻意不加break，讓case 40一併執行(貫穿)
      case 40://向下鍵
-      const radios=[...document.querySelectorAll('.leaflet-control-layers-base input')],length=radios.length
-      let currentIndex=radios.findIndex(r=>r.checked)+length//+length可防止減1變負數，又不會影響取餘數
-      currentIndex+=step;currentIndex%=length
+      let currentIndex=radios.findIndex(r=>r.checked)+radios.length//+radios.length可防止減1變負數，又不會影響取餘數
+      currentIndex+=step;currentIndex%=radios.length
       radios[currentIndex].click()
     }})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
