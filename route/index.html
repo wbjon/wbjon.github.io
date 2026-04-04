@@ -1335,7 +1335,11 @@
     deg=(deg+360)%360
     gisWin.postMessage({heading:deg},"*")
    })
-   BR.debug.map.on('keydown',e=>{if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
+   var one=123
+   let two=456
+   BR.debug.map.on('keydown',e=>{
+    console.log(one,two)//if(e.originalEvent.keyCode===49){;return}
+    if(e.originalEvent.keyCode>=37&&e.originalEvent.keyCode<=40)e.originalEvent.stopPropagation()
     let step=1
     switch(e.originalEvent.keyCode){
      case 38://向上鍵
