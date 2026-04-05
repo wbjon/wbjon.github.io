@@ -1358,7 +1358,7 @@
     }})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    collapsingNavbar=document.getElementById('collapsingNavbar')
-   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button><button>GIS&JS</button><label style="color:white"><input type="checkbox">開啟街景分頁</label>')
+   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button><button>GIS&JS</button><label style="color:white"><input type="checkbox">開啟街景分頁</label><button>複製區域</button>')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-8)
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{PrevNext=true;page++;if(lastURLs[page]){location.replace(lastURLs[page][0]+`&time=${new Date().getTime()}`);routes.value=lastURLs[page][1]}else page--}
@@ -1426,6 +1426,11 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
      gisWin=open("","gis",`width=${screen.width/2},height=${screen.height/2}`)
      try{if(gisWin.location.href==="about:blank")gisWin=open("https://gissrv4.sinica.edu.tw/gis/","gis",`width=${screen.width/2},height=${screen.height/2}`)}catch{}//try、catch避免Uncaught SecurityError: Failed to read a named property 'href' from 'Location': Blocked a frame with origin "https://wbjon.github.io" from accessing a cross-origin frame.
     }
+   }
+   buttons[8].onclick=()=>{
+    const lonlatsArr=window.params.lonlats.split('|')
+    const straightArr=window.params.straight.split(',')
+    if(lonlatsArr.length-straightArr.length!==1){alert('需全以藍色直線圍繞區域');return}
    }
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
