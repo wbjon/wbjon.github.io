@@ -1431,6 +1431,11 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
     const lonlatsArr=window.params.lonlats.split('|')
     const straightArr=window.params.straight.split(',')
     if(lonlatsArr.length-straightArr.length!==1){alert('需全以藍色直線圍繞區域');return}
+    const polygon=lonlatsArr.map(s=>{
+     const lonlat=s.split(',')
+     return {lat:+lonlat[1],lon:+lonlat[0]}
+    })
+    console.log(polygon)
    }
    for(let i=0;i<localStorage.length;i++){
     const key=localStorage.key(i),value=localStorage.getItem(key)
