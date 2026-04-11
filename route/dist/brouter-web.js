@@ -125,7 +125,7 @@ function(e,o){
  turf.featureEach(e,function(feature){
   if(BR.Track.isPoiPoint(feature)){
    const[lng,lat]=feature.geometry.coordinates
-   const marker=L.circleMarker([lat,lng],{radius:4,color:'black',weight:1,fill:false,interactive:true});marker.bindTooltip(feature.properties?.name||"POI",{permanent:true,direction:'top'})
+   const marker=L.circleMarker([lat,lng],{radius:4,color:'black',weight:1,fill:false,interactive:true});marker.bindTooltip(feature.properties?.name||"POI",{permanent:false,direction:'top'})
    group.addLayer(marker)
   }
  })
