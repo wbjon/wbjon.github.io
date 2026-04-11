@@ -1468,6 +1468,12 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
   }
  },1000)
  const handle=async()=>{
+  BR.tracksLayers[0].eachLayer(layer=>{
+   const Tooltip=layer.getTooltip()
+   if(Tooltip){
+    if(Tooltip.isOpen())layer.closeTooltip();else layer.openTooltip()
+   }
+  })
   let text=await navigator.clipboard.readText()
   text=text.split('=').pop()//Street View:https://www.google.com/maps?layer=c&cbll=24.1583874,120.6444516
   let arr=text.split('/')
