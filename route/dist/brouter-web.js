@@ -126,7 +126,7 @@ function(e,o){
   if(BR.Track.isPoiPoint(feature)){
    const coord=turf.getCoord(feature)
    const latlng=L.GeoJSON.coordsToLatLng(coord)
-   const marker=L.marker(latlng,{interactive:false})
+   const marker=L.marker(latlng,{interactive:false});marker.bindTooltip(feature.properties?.name||"POI",{permanent:true,direction:'top'})
    group.addLayer(marker)
   }
  })
