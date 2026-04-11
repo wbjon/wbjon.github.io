@@ -1335,7 +1335,7 @@
     deg=(deg+360)%360
     gisWin.postMessage({heading:deg},"*")
    })
-   //const OneTwoThree=document.querySelectorAll('.leaflet-control-layers-overlays input')//切換 NLSC等高線/台灣等高線/Google街景
+   //const OneTwoThree=document.querySelectorAll('.leaflet-control-layers-overlays input')//切換 NLSC等高線/台灣等高線/Google街景，加入gpx檔會被重置，故不再用此方法
    BR.debug.map.on('keydown',e=>{
     let keyCode=e.originalEvent.keyCode
     if(mousedown===null){
@@ -1358,7 +1358,7 @@
     }})
    document.querySelector('.leaflet-bottom.leaflet-right').remove()
    collapsingNavbar=document.getElementById('collapsingNavbar')
-   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button><button>GIS&JS</button><label style="color:white"><input type="checkbox">開啟街景分頁</label><button>複製區域</button>')
+   collapsingNavbar.insertAdjacentHTML('beforeend','<button>上頁</button><button>下頁</button><button>全覽</button><button>儲存</button><select id="routes" ondblclick="this.selectedIndex=0;if(confirm(`刪除地圖上…所有資料`))removeInput012(0b111)"><option selected>➕…新增路徑…📝</option></select><button>開啟</button><button>改名</button><button>刪除</button><button>GIS&JS</button><label style="color:white"><input type="checkbox">開啟街景分頁</label><button>複製區域</button>Alt鍵→POI文字有無')
    buttons=[...collapsingNavbar.querySelectorAll('button')].slice(-9)
    routes=document.getElementById('routes')
    buttons[0].onclick=()=>{PrevNext=true;page++;if(lastURLs[page]){location.replace(lastURLs[page][0]+`&time=${new Date().getTime()}`);routes.value=lastURLs[page][1]}else page--}
