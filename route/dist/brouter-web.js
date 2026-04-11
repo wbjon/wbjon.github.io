@@ -124,9 +124,8 @@ function(e,o){
  group.addLayer(trackLayer)
  turf.featureEach(e,function(feature){
   if(BR.Track.isPoiPoint(feature)){
-   const coord=turf.getCoord(feature)
-   const latlng=L.GeoJSON.coordsToLatLng(coord)
-   const marker=L.circleMarker(latlng,{radius:4,color:'black',weight:1,fill:false,interactive:false});marker.bindTooltip(feature.properties?.name||"POI",{permanent:true,direction:'top'})
+   const[lng,lat]=feature.geometry.coordinates
+   const marker=L.circleMarker([lat,lng],{radius:4,color:'black',weight:1,fill:false,interactive:false});marker.bindTooltip(feature.properties?.name||"POI",{permanent:true,direction:'top'})
    group.addLayer(marker)
   }
  })
