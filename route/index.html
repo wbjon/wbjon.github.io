@@ -1337,6 +1337,7 @@
    })
    //const OneTwoThree=document.querySelectorAll('.leaflet-control-layers-overlays input')//切換 NLSC等高線/台灣等高線/Google街景，加入gpx檔會被重置，故不再用此方法
    BR.debug.map.on('keydown',e=>{
+    if(e.originalEvent.altKey){console.log('Alt pressed');return}
     let keyCode=e.originalEvent.keyCode
     if(mousedown===null){
      if(keyCode===49){document.querySelectorAll('.leaflet-control-layers-overlays input')[0].click();return}
