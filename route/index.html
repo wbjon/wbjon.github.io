@@ -1465,6 +1465,28 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    }).observe(document.querySelector('.leaflet-pane.leaflet-marker-pane'),{childList:true,subtree:true,attributes:true,attributeFilter:['class']})
 
    BR.debug.map.eachLayer(function(layer){if(layer instanceof L.LayerGroup&&!(layer instanceof L.FeatureGroup)&&!(layer instanceof L.DistanceMarkers))window.poisLayer=layer})//找出興趣點層
+//base layer 底圖(單選)
+//overlay 疊加圖層(多選)
+//按滑鼠右鍵可移除右方overlay的gpx<label>、其左方map圖層
+/*brouter-web.js多加入BR.tracksLayers陣列，可記錄每次加入的gpx檔，並操作顯示/隱藏，不過我已不使用了，改用最下面按滑鼠右鍵移除
+  BR.tracksLayers=[];BR.layersControl=layersControl
+  BR.tracksLayers.push(eventLayer)
+  BR.layersControl.addOverlay(BR.tracksLayers[0],'gpx檔名')
+  BR.layersControl.removeLayer(BR.tracksLayers[0])
+  BR.debug.map.addLayer(BR.tracksLayers[0])
+  BR.debug.map.removeLayer(BR.tracksLayers[0])*/
+   const original=L.Control.Layers.prototype._addItem
+   L.Control.Layers.prototype._addItem=function(obj){
+    const label=original.call(this,obj)
+    if(obj.overlay){
+     label.addEventListener('contextmenu',e=>{BR.tracksLayers.length=0//因BR.tracksLayers棄用，故隨時清空陣列
+      e.preventDefault()
+    //const name=obj.name,layer=obj.layer
+      this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
+     })
+    }
+    return label
+   }
   }
  },1000)
  const handle=async()=>{
