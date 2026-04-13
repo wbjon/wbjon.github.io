@@ -1479,10 +1479,12 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    L.Control.Layers.prototype._addItem=function(obj){
     const label=original.call(this,obj)
     if(obj.overlay){
-     label.addEventListener('contextmenu',e=>{BR.tracksLayers.length=0//因BR.tracksLayers棄用，故隨時清空陣列
+     label.addEventListener('contextmenu',e=>{//BR.tracksLayers.length=0//因BR.tracksLayers棄用，故隨時清空陣列，但又因需要ayer.closeTooltip()、layer.openTooltip()所以不再清空
       e.preventDefault()
     //const name=obj.name,layer=obj.layer
-      this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
+      globalLayer=obj.layer
+      console.log(globalLayer)
+    //this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
      })
     }
     return label
