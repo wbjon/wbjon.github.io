@@ -1481,7 +1481,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
     if(obj.overlay){
      label.addEventListener('contextmenu',e=>{
       e.preventDefault()
-      console.log(obj.layer)//const name=obj.name,layer=obj.layer
+      console.log(obj.layer);return//const name=obj.name,layer=obj.layer
       const idx=BR.tracksLayers.indexOf(obj.layer)
       if(idx!==-1)BR.tracksLayers.splice(idx,1)
       this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
