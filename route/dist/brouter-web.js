@@ -128,7 +128,7 @@ function(e,o){
    const marker=L.circleMarker([lat,lng],{radius:4,color:'blue',weight:1,fill:false,interactive:false});marker.bindTooltip(feature.properties?.name||"POI",{permanent:true,direction:'top'})
    group.addLayer(marker)
   }
- })
+ });testLayer=trackLayer
  return group
 },
 layerOptions:BR.Track.getGeoJsonOptions(a),addToMap:!1,fileSizeLimit:BR.conf.trackSizeLimit||10240,shortcut:{open:79}},_initContainer:function(){var o,e=this.loader,t=L.DomUtil.get("navbarLoadTracksContainer");L.DomEvent.addListener(document,"keydown",this._keydownListener,this),(o=L.DomUtil.create("input","hidden",t)).type="file",o.multiple="multiple",this.options.formats?o.accept=this.options.formats.join(","):o.accept=".gpx,.kml,.json,.geojson",o.style.display="none",o.addEventListener("change",function(){e.loadMultiple(this.files),this.value=""},!1);t=L.DomUtil.get("navbarLoadTracks");L.DomEvent.disableClickPropagation(t),L.DomEvent.on(t,"click",function(e){o.click(),e.preventDefault()});t=L.DomUtil.create("div");return t.hidden=!0,t},_keydownListener:function(e){BR.Util.keyboardShortcutsAllowed(e)&&e.keyCode===this.options.shortcut.open&&!1===e.shiftKey&&$("#navbarLoadTracks")[0].click()}}),t.createPane("tracks"),t.getPane("tracks").style.zIndex=350;var o=new TracksLoader;return o.addTo(t),
