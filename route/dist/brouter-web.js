@@ -143,12 +143,8 @@ function(e,o){
     const lng=p1.lng+(p2.lng-p1.lng)*ratio
     const kmMarker=L.marker([lat,lng],{
      icon:L.divIcon({
-      html:`<div style="
-       background:white;
-       border:1px solid black;
-       border-radius:4px;
-       padding:2px 4px;
-       font-size:11px;">${nextKm}</div>`,className:''}),interactive:false})
+      html:`<div style="font-size:12px;color:black">${nextKm}</div>`}),interactive:false
+    })
     group.addLayer(kmMarker)
     nextKm++
    }
