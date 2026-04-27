@@ -142,7 +142,7 @@ function(e,o){
     const lat=p1.lat+(p2.lat-p1.lat)*ratio
     const lng=p1.lng+(p2.lng-p1.lng)*ratio
     const kmMarker=L.marker([lat,lng],{
-     icon:L.divIcon({className:'',html:`<div style="font-size:12px;color:black">${nextKm}</div>`}),
+     icon:L.divIcon({className:'',html:`<div style="background:white;border:1px solid black;border-radius:4px;padding:2px 4px;font-size:12px;">${nextKm}</div>`}),
      interactive:false
     })
     group.addLayer(kmMarker)
