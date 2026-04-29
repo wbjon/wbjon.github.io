@@ -1505,6 +1505,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    })
   })
   let text=await navigator.clipboard.readText()
+  if(text.includes('https://www.google.com/maps?layer=c&cbll='))return//BRouter自己複製的，最近先忽略不處理
   text=text.split('=').pop()//Street View:https://www.google.com/maps?layer=c&cbll=24.1583874,120.6444516
   let arr=text.split('/')
   if(arr.length>=2){text=','+arr.pop();text=arr.pop()+text}//pop()可取得陣列最後一個，且原陣列最後一個會去除
