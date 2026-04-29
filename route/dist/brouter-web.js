@@ -122,8 +122,6 @@ function(e,o){
  const group=L.featureGroup()
  const trackLayer=L.geoJSON(e,o)
  group.addLayer(trackLayer)
- group._kmLayer=L.layerGroup()
- group.addLayer(group._kmLayer)
  turf.featureEach(e,function(feature){
   if(BR.Track.isPoiPoint(feature)){
    const[lng,lat]=feature.geometry.coordinates
@@ -147,7 +145,7 @@ function(e,o){
      icon:L.divIcon({iconSize:null,className:'',html:`<div style="transform:translate(-50%,-50%);background:white;border:1px solid black;border-radius:4px;padding:1px 2px;font-size:12px;">${nextKm}</div>`}),
      interactive:false
     })
-    group._kmLayer.addLayer(kmMarker)//group.addLayer(kmMarker)
+    group.addLayer(kmMarker)
     nextKm++
    }
   }
