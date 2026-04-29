@@ -1492,20 +1492,22 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
   }
  },1000)
  const handle=async()=>{
-  BR.tracksLayers.forEach(group=>{
-   group.eachLayer(layer=>{
-    const Tooltip=layer.getTooltip()
-    if(Tooltip){
-     if(Tooltip.isOpen())layer.closeTooltip();else layer.openTooltip()
-    }
-    if(layer instanceof L.Marker){//里程標記marker顯示/隱藏
-     const visible=layer.options.opacity!==0
-     layer.setOpacity(visible?0:1)
-    }
+  const toggle=()=>{
+   BR.tracksLayers.forEach(group=>{
+    group.eachLayer(layer=>{
+     const Tooltip=layer.getTooltip()
+     if(Tooltip){
+      if(Tooltip.isOpen())layer.closeTooltip();else layer.openTooltip()
+     }
+     if(layer instanceof L.Marker){//里程標記marker顯示/隱藏
+      const visible=layer.options.opacity!==0
+      layer.setOpacity(visible?0:1)
+     }
+    })
    })
-  })
+  }
   let text=await navigator.clipboard.readText()
-  if(text.includes('https://www.google.com/maps?layer=c&cbll='))return//BRouter自己複製的，最近先忽略不處理
+  if(text.includes('https://www.google.com/maps?layer=c&cbll=')){toggle();return}//BRouter自己複製的，最近先忽略不處理
   text=text.split('=').pop()//Street View:https://www.google.com/maps?layer=c&cbll=24.1583874,120.6444516
   let arr=text.split('/')
   if(arr.length>=2){text=','+arr.pop();text=arr.pop()+text}//pop()可取得陣列最後一個，且原陣列最後一個會去除
@@ -1520,7 +1522,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    //location.replace(text.join('/'))//改用以下
    BR.debug.map.setView(arr)
    center.style.display='block'
-  }
+  }else toggle()
  }
  window.addEventListener('mouseup',()=>{if(mousedown==1)BR.debug.map.eachLayer(layer=>{if(layer.dragging)layer.dragging.enable()});mousedown=null;BR.debug.map.dragging.enable()},true)
  //document.addEventListener('mousedown',e=>{mousedown=e.which;if(mousedown==2)handle()},true)//改用BR.debug.map.on('mousedown'
