@@ -1498,6 +1498,10 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
     if(Tooltip){
      if(Tooltip.isOpen())layer.closeTooltip();else layer.openTooltip()
     }
+    if(layer instanceof L.Marker){//里程標記marker顯示/隱藏
+     const visible=layer.options.opacity!==0
+     layer.setOpacity(visible?0:1)
+    }
    })
   })
   let text=await navigator.clipboard.readText()
