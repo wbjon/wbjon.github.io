@@ -62,7 +62,7 @@ t.on("contextmenu",event=>{
  s._routing.beeline=!s._routing.beeline
  this._edit._parent._routeSegment(s,e,function(){n._parent._updateBeelines()})
 }),
-this.routeWaypoint(t,o),this._waypoints.addLayer(t)},
+n&&i&&n._routing.beeline&&(t._routing.beeline=!0)&&e===null,this.routeWaypoint(t,o),this._waypoints.addLayer(t)},
 removeWaypoint:function(t,e){
 console.log('移除marker並記錄在lastRemoved變數',t);lastRemoved={latlng:t._latlng,beeline:t._routing.beeline,prev:t._routing.prevMarker,next:t._routing.nextMarker}
 t.off("mouseover",this._fireWaypointEvent,this),t.off("mouseout",this._fireWaypointEvent,this),t.off("dragstart",this._fireWaypointEvent,this),t.off("dragend",this._fireWaypointEvent,this),t.off("drag",this._fireWaypointEvent,this),t.off("click",this._fireWaypointEvent,this);var n=t._routing.prevMarker,i=t._routing.nextMarker,o=this.getFirst()&&t._leaflet_id===this.getFirst()._leaflet_id,r=this.getLast()&&t._leaflet_id===this.getLast()._leaflet_id;o&&(this._waypoints._first=i)&&i.setIcon(this.options.icons.start),r&&(this._waypoints._last=n)&&(n._leaflet_id!==this.getFirst()._leaflet_id&&n.setIcon(this.options.icons.end),n._routing.beeline=!1),null!==n&&(n._routing.nextMarker=i,n._routing.nextLine=null),null!==i&&(i._routing.prevMarker=n,i._routing.prevLine=null),null!==t._routing.nextLine&&this._segments.removeLayer(t._routing.nextLine),null!==t._routing.prevLine&&this._segments.removeLayer(t._routing.prevLine),this._waypoints.removeLayer(t),null!==n?this.routeWaypoint(n,e):null!==i?this.routeWaypoint(i,e):(this._draw.enable(),e(null,null))},
