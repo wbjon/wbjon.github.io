@@ -61,7 +61,7 @@ t.on("contextmenu",event=>{
  if(!e){this._draw.toggleBeelineMode();return}//等同上行
  s._routing.beeline=!s._routing.beeline
  this._edit._parent._routeSegment(s,e,function(){n._parent._updateBeelines()})
-}),
+}),console.log('再beeline',e),
 e==null&&n&&i&&n._routing.beeline&&(t._routing.beeline=!0),this.routeWaypoint(t,o),this._waypoints.addLayer(t)},
 removeWaypoint:function(t,e){
 console.log('移除marker並記錄在lastRemoved變數',t);lastRemoved={latlng:t._latlng,beeline:t._routing.beeline,prev:t._routing.prevMarker,next:t._routing.nextMarker}
