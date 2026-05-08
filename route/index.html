@@ -1553,6 +1553,14 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    else{span.textContent="⭐";span.style.display="none";span.nextElementSibling.style.display=""}
   }
  }
+ function getMarkerIndex(routing,marker){
+  let index=0,found=-1
+  routing._eachSegment(function(m1,m2){
+   if(m1===marker)found=index;index++
+  })
+  if(found===-1&&routing.getLast()===marker)found=index
+  return found
+ }
 </script>
     </body>
 </html>
