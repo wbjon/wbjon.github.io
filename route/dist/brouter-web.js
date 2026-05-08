@@ -69,7 +69,7 @@ t.on("contextmenu",event=>{
  this._edit._parent._routeSegment(s,e,function(){n._parent._updateBeelines()})
 }),
 beeline==null&&n&&i&&n._routing.beeline&&(t._routing.beeline=!0),
-console.log('beeline',t._routing.beeline),
+this._history.push({type:'add',index:getMarkerIndex(this,n)+1}),
 this.routeWaypoint(t,o),this._waypoints.addLayer(t)},
 removeWaypoint:function(t,e){
 console.log('移除marker並記錄在lastRemoved變數',t);lastRemoved={latlng:t._latlng,beeline:t._routing.beeline,prev:t._routing.prevMarker,next:t._routing.nextMarker}
