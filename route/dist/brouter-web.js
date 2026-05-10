@@ -62,7 +62,7 @@ this.options.icons={
  iconSize: [60, 60],
   iconAnchor: [30, 30],
   className:'',
-  html:`<div style="transform:translate(-50%,-50%);font-size:60px">🔺</div>`
+  html:`<div style="font-size:60px">🔺</div>`
 }),
  normal:L.divIcon({html:'🟡'}),
  end:L.divIcon({html:'🟦'}),
