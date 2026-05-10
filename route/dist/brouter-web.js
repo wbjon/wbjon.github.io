@@ -54,7 +54,7 @@ L.Util.extend(L.LineUtil,{snapToLayers:function(n,t,i){var e,s,o,l,a,r,y=i.sensi
 L.Marker.include({snapTo:function(n){return L.LineUtil.snapToLayers(n,this._leaflet_id,this.options.snapping)}});
 L.Routing=L.Control.extend({includes:[L.Evented.prototype],statics:{VERSION:"0.1.1-dev"},options:{position:"topleft",tooltips:{waypoint:"Waypoint. Drag to move; Click to remove.",segment:"Drag to create a new waypoint. Click to toggle straight line."},
 icons:{
-start:L.divIcon({iconSize:null,className:'',html:'<div style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:22px;">🔺</div>'}),
+start:L.divIcon({iconSize:null,className:'',html:'<div style="width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:22px;">我</div>'}),
 end:new L.Icon.Default,
 normal:new L.Icon.Default,
 draw:new L.Icon.Default},
