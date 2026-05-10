@@ -60,7 +60,7 @@ this.options.icons={
  start:L.divIcon({
   iconSize:null,
   className:'',
-  html:`<div style="background:white;border:1px solid black;border-radius:4px;padding:1px 2px;font-size:12px;">🔺</div>`
+  html:`<div style="transform:translate(-50%,-50%);background:white;border:1px solid black;border-radius:4px;padding:1px 2px;font-size:12px;">🔺</div>`
 }),
  normal:L.divIcon({html:'🟡'}),
  end:L.divIcon({html:'🟦'}),
