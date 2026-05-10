@@ -58,9 +58,9 @@ styles:{trailer:{},track:{},nodata:{},beeline:{},beelineTrailer:{}},tolerance:5,
 onAdd:function(t){
 this.options.icons={
  start:L.divIcon({
-  iconSize:null,iconAnchor:[0,0],
+  iconSize:null,
   className:'',
-  html:`<div style="transform:translate(-50%,-50%);font-size:60px">🔺</div>`
+  html:`<div style="transform:translate(-50%,-50%);font-size:12px">🔺</div>`
 }),
  normal:L.divIcon({html:'🟡'}),
  end:L.divIcon({html:'🟦'}),
