@@ -57,7 +57,11 @@ icons:{start:new L.Icon.Default,end:new L.Icon.Default,normal:new L.Icon.Default
 styles:{trailer:{},track:{},nodata:{},beeline:{},beelineTrailer:{}},tolerance:5,toleranceTouch:10,snapSensitivity:10,zIndexOffset:2e3,routing:{router:null},snapping:{layers:[],sensitivity:10,vertexonly:!1},shortcut:{draw:{enable:68,disable:81,beelineMode:66,beelineModifier:16,beelineModifierName:"shiftKey"}}},initialize:function(t){this._editing=!1,this._drawing=!1,this.touch=!window.L_NO_TOUCH&&("ontouchstart"in window||window.DocumentTouch&&document instanceof window.DocumentTouch),L.Util.setOptions(this,t)},
 onAdd:function(t){
 this.options.icons={
- start:L.divIcon({className:'',html:'🔺'}),
+ start:L.divIcon({
+  iconSize:null,
+  className:'',
+  html:`<div style="transform:translate(-50%,-50%);background:white;border:1px solid black;border-radius:4px;padding:1px 2px;font-size:12px;">🔺</div>`
+}),
  normal:L.divIcon({html:'🟡'}),
  end:L.divIcon({html:'🟦'}),
  draw:L.divIcon({html:'➕'})
