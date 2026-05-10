@@ -62,7 +62,7 @@ this.options.icons={
  iconSize: [60, 60],
   iconAnchor: [30, 30],
   className:'',
-  html:`<div style="background:white;border:1px solid black;width:60px;height:60px;text-align:center;font-size:60px">🔺</div>`
+  html:`<div style="background:white;border:1px solid black;width:60px;height:60px;text-align:center;font-size:60px">🌞</div>`
 }),
  normal:L.divIcon({html:'🟡'}),
  end:L.divIcon({html:'🟦'}),
