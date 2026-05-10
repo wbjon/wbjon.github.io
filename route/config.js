@@ -121,14 +121,10 @@
 
     BR.conf.markerColors = {
         // awesome-markers colors (by color picker)
- poi: '#000000',
-    start: '#ff0000',
-    via: '#ffff00',
-    stop: '#00ff00',
-        // poi: '#436978',
-        // start: '#72b026',
-        // via: '#38aadd',
-        // stop: '#d63e2a',
+        poi: '#436978',
+        start: '#72b026',
+        via: '#38aadd',
+        stop: '#d63e2a',
     };
 
     // transit (intermodal routing) demo config
