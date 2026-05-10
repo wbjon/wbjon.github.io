@@ -55,9 +55,9 @@ L.Marker.include({snapTo:function(n){return L.LineUtil.snapToLayers(n,this._leaf
 L.Routing=L.Control.extend({includes:[L.Evented.prototype],statics:{VERSION:"0.1.1-dev"},options:{position:"topleft",tooltips:{waypoint:"Waypoint. Drag to move; Click to remove.",segment:"Drag to create a new waypoint. Click to toggle straight line."},
 icons:{start:new L.Icon.Default,end:new L.Icon.Default,normal:new L.Icon.Default,draw:new L.Icon.Default},
 styles:{trailer:{},track:{},nodata:{},beeline:{},beelineTrailer:{}},tolerance:5,toleranceTouch:10,snapSensitivity:10,zIndexOffset:2e3,routing:{router:null},snapping:{layers:[],sensitivity:10,vertexonly:!1},shortcut:{draw:{enable:68,disable:81,beelineMode:66,beelineModifier:16,beelineModifierName:"shiftKey"}}},initialize:function(t){this._editing=!1,this._drawing=!1,this.touch=!window.L_NO_TOUCH&&("ontouchstart"in window||window.DocumentTouch&&document instanceof window.DocumentTouch),L.Util.setOptions(this,t)},
-onAdd:function(t){console.log('onAdd');
+onAdd:function(t){
 this.options.icons={
- start:L.divIcon({html:'🔺'}),
+ start:L.divIcon({className:'',html:'🔺'}),
  normal:L.divIcon({html:'🟡'}),
  end:L.divIcon({html:'🟦'}),
  draw:L.divIcon({html:'➕'})
