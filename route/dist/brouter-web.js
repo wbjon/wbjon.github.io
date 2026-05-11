@@ -57,16 +57,10 @@ icons:{start:new L.Icon.Default,end:new L.Icon.Default,normal:new L.Icon.Default
 styles:{trailer:{},track:{},nodata:{},beeline:{},beelineTrailer:{}},tolerance:5,toleranceTouch:10,snapSensitivity:10,zIndexOffset:2e3,routing:{router:null},snapping:{layers:[],sensitivity:10,vertexonly:!1},shortcut:{draw:{enable:68,disable:81,beelineMode:66,beelineModifier:16,beelineModifierName:"shiftKey"}}},initialize:function(t){this._editing=!1,this._drawing=!1,this.touch=!window.L_NO_TOUCH&&("ontouchstart"in window||window.DocumentTouch&&document instanceof window.DocumentTouch),L.Util.setOptions(this,t)},
 onAdd:function(t){
 this.options.icons={
- start:L.divIcon({
-  //iconSize:null,
- iconSize: [60, 60],
-  iconAnchor: [30, 30],
-  className:'',
-  html:`<div style="background:white;border:1px solid black;width:60px;height:60px;text-align:center;font-size:60px">🌞</div>`
-}),
- normal:L.divIcon({html:'🟡'}),
- end:L.divIcon({html:'🟦'}),
- draw:L.divIcon({html:'➕'})
+ start:L.divIcon({iconSize:[12,12],iconAnchor:[6,6],className:'',html:`<div style="width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:12px">🔺</div>`}),
+ normal:L.divIcon({iconSize:[12,12],iconAnchor:[6,6],className:'',html:`<div style="width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:12px">🟡</div>`}),
+ end:L.divIcon({iconSize:[12,12],iconAnchor:[6,6],className:'',html:`<div style="width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:12px">🟦</div>`}),
+ draw:L.divIcon({iconSize:[12,12],iconAnchor:[6,6],className:'',html:`<div style="width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:12px">➕</div>`})
 }
 return this._map=t,this._container=this._map._container,this._overlayPane=this._map._panes.overlayPane,this._popupPane=this._map._panes.popupPane,this._router=this.options.routing.router,this._segments=(new L.FeatureGroup).addTo(t),this._segmentsTolerance=this.touch?this.options.toleranceTouch:this.options.tolerance,this._segmentsRenderer=L.canvas({tolerance:this._segmentsTolerance}),this._waypoints=(new L.FeatureGroup).addTo(t),this._waypoints._first=null,this._waypoints._last=null,this.options.shortcut&&(L.DomEvent.addListener(this._container,"keydown",this._keydownListener,this),L.DomEvent.addListener(this._container,"keyup",this._keyupListener,this)),this._draw=new L.Routing.Draw(this,this.options),this._edit=new L.Routing.Edit(this,this.options),this._edit.enable(),this.on("waypoint:click",this._waypointClickHandler,this),this.touch?this._segments.on("layeradd",this._fireSegmentEvent,this):this._segments.on("mouseover",this._fireSegmentEvent,this),this._edit.on("segment:mouseout",this._fireSegmentEvent,this),this._edit.on("segment:dragstart",this._fireSegmentEvent,this),this._edit.on("segment:dragend",this._fireSegmentEvent,this),L.DomUtil.create("div","leaflet-routing")},onRemove:function(t){this.off("waypoint:click",this._waypointClickHandler,this),this.touch?this._segments.off("layeradd",this._fireSegmentEvent,this):this._segments.off("mouseover",this._fireSegmentEvent,this),this._edit.off("segment:mouseout",this._fireSegmentEvent,this),this._edit.off("segment:dragstart",this._fireSegmentEvent,this),this._edit.off("segment:dragend",this._fireSegmentEvent,this),this._edit.disable(),this._draw.disable(),L.DomUtil.enableTextSelection(),L.DomEvent.removeListener(this._container,"keydown",this._keydownListener,this),L.DomEvent.removeListener(this._container,"keyup",this._keyupListener,this),delete this._draw,delete this._edit,delete this._map,delete this._router,delete this._segments,delete this._waypoints,delete this.options},_waypointClickHandler:function(t){this.removeWaypoint(t.marker,function(){})},
 addWaypoint:function(t,e,n,i,o){const beeline=e//t:marker,e:beeline,n:prev,i:next,o:cb
