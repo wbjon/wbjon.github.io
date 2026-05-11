@@ -57,7 +57,7 @@ icons:{start:new L.Icon.Default,end:new L.Icon.Default,normal:new L.Icon.Default
 styles:{trailer:{},track:{},nodata:{},beeline:{},beelineTrailer:{}},tolerance:5,toleranceTouch:10,snapSensitivity:10,zIndexOffset:2e3,routing:{router:null},snapping:{layers:[],sensitivity:10,vertexonly:!1},shortcut:{draw:{enable:68,disable:81,beelineMode:66,beelineModifier:16,beelineModifierName:"shiftKey"}}},initialize:function(t){this._editing=!1,this._drawing=!1,this.touch=!window.L_NO_TOUCH&&("ontouchstart"in window||window.DocumentTouch&&document instanceof window.DocumentTouch),L.Util.setOptions(this,t)},
 onAdd:function(t){
 this.options.icons={
- start:L.divIcon({iconSize:[16,16],iconAnchor:[8,8],className:'',html:`<div style="width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:16px">🔺</div>`}),
+ start:L.divIcon({iconSize:[16,16],iconAnchor:[8,8],className:'',html:`<div style="width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:16px">🌞</div>`}),
  normal:L.divIcon({iconSize:[12,12],iconAnchor:[6,6],className:'',html:`<div style="width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:12px">🟡</div>`}),
  end:L.divIcon({iconSize:[12,12],iconAnchor:[6,6],className:'',html:`<div style="width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:12px">🟦</div>`}),
  draw:L.divIcon({iconSize:[12,12],iconAnchor:[6,6],className:'',html:`<div style="width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:12px">➕</div>`})
