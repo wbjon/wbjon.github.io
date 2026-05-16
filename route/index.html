@@ -1307,6 +1307,7 @@
  }
  //token輸入在/dist/layers.js
  var serverExport,pane,center=document.getElementById('center'),mousedown,collapsingNavbar,buttons,routes,lastURLs=[],page=0,PrevNext=false,gisWin,gps,pov,startPoint
+ const activeRange=[0,undefined]//用來控制routing的區段，採用陣列slice原理
  window.addEventListener("message",event=>{pov=event.data;gps.setLatLng([pov.lat,pov.lng]);gps.setRotation(pov.heading-180);if(!document.hasFocus())BR.debug.map.setView([pov.lat,pov.lng])})
  const Id=setInterval(()=>{
   serverExport=document.getElementById('serverExport')
