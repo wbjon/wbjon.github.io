@@ -143,17 +143,11 @@ onAdd:function(t){this.options.tooltips.waypoint=i18next.t("map.route-tooltip-wa
 clear:function(){this._undoHistory.length=this._redoHistory.length=0;
 var t=this._draw._enabled,e=this._waypoints._first;if(this.draw(!1),null!==e){for(this._removeMarkerEvents(e);e._routing.nextMarker;){var n=e._routing.nextMarker;this._removeMarkerEvents(n),e=n}this._waypoints._first=null,this._waypoints._last=null,this._waypoints.clearLayers(),this._segments.clearLayers(),this._removeDistanceMarkers(),t&&this.draw(!0)}},setWaypoints:function(e,t,n){function i(t){r=r||t,++s>=e.length&&(a.fire("routing:setWaypointsEnd",{err:r}),n&&n(r))}var o,r,s=0,a=this;for(this.fire("routing:setWaypointsStart"),this._waypoints.remove(),this._waypoints._map=null,this._loadingTrailerGroup.remove(),this._loadingTrailerGroup._map=null,o=0;e&&o<e.length;o++){var l=t&&o<t.length?t[o]:null;this.addWaypoint(e[o],l,this._waypoints._last,null,i)}this._loadingTrailerGroup._map=this._map,this._loadingTrailerGroup.addTo(this._map),this._waypoints._map=this._map,this._waypoints.addTo(this._map)},toPolyline:function(){var i=[];return this._eachSegment(function(t,e,n){n&&n.feature&&(i=i.concat(n.getLatLngs()))}),L.polyline(i)},_routeSegment:function(t,e,n){var i;t&&null!==t._routing.nextLine&&t._routing.nextLine.setStyle({color:"dimgray"}),t&&e&&(i=new L.Polyline([t.getLatLng(),e.getLatLng()],{color:this.options.styles.track.color,opacity:this.options.styles.trailer.opacity,dashArray:[10,10],className:"loading-trailer"}),this._loadingTrailerGroup.addLayer(i)),L.Routing.prototype._routeSegment.call(this,t,e,L.bind(function(t,e){i&&this._loadingTrailerGroup.removeLayer(i),n(t,e)},this))},getSegments:function(){var i=[];return this._eachSegment(function(t,e,n){n&&n.feature&&i.push(n)}),i},_keydownListener:function(t){BR.Util.keyboardShortcutsAllowed(t)&&(t.keyCode===this.options.shortcut.draw.disable?this._draw.disable():t.keyCode===this.options.shortcut.draw.enable?this._draw.enable():t.keyCode===this.options.shortcut.reverse?this.reverse():t.keyCode===this.options.shortcut.deleteLastPoint?this.deleteLastPoint():t.keyCode===this.options.shortcut.draw.beelineMode?this.toggleBeelineDrawing():t.keyCode===this.options.shortcut.draw.beelineModifier&&this._draw._setTrailerStyle(!0))},_keyupListener:function(t){t.keyCode===this.options.shortcut.draw.beelineModifier&&this._draw._setTrailerStyle(!1)},isDrawing:function(){return this._draw._enabled},reverse:function(){var t=this.getWaypoints(),e=this.getBeelineFlags();t.reverse(),e.reverse(),this.clear(),this.setWaypoints(t,e)},deleteLastPoint:function(){(lastPoint=this.getLast())&&this.removeWaypoint(lastPoint,function(t,e){})},_removeDistanceMarkers:function(){this._map&&this._distanceMarkers&&this._map.removeLayer(this._distanceMarkers)
 },
-_getActiveSegments(){
- const segments=[]
- const waypoints=this.getWaypoints()
- const[start,end]=activeRange//activeRange=[0,undefined]定義在index.html
- const set=new Set(waypoints.slice(start,end))
- this._eachSegment((m1,m2,line)=>{if(set.has(m1)&&set.has(m2))segments.push(line)})
- return segments
-},
 toActivePolyline:function(){
- var latLngs=[]
- this._getActiveSegments().forEach(line=>{
+ const latLngs=[]
+ const segments=this.getSegments()
+ const[start,end]=activeRange//activeRange=[0,undefined]定義在index.html
+ segments.slice(start,end).forEach(line=>{
   if(line?.feature)latLngs.push(...line.getLatLngs())
  })
  return L.polyline(latLngs)
