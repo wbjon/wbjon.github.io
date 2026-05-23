@@ -145,22 +145,30 @@ var t=this._draw._enabled,e=this._waypoints._first;if(this.draw(!1),null!==e){fo
 },
 toActivePolyline:function(){
  const latLngs=[]
- const segments=this.getSegments()
- const[start,end]=activeRange//activeRange=[0,undefined]定義在index.html
-//變更marker外觀
- let i=0,current=this._waypoints._first
- const len=this.getWaypoints().length,
-       last=end==null?len-1:end<0?len+end-1:end-1
+ let[start,end]=activeRange//activeRange=[undefined,undefined]定義在index.html，undefined會==null
+ start??=this._waypoints._first;end??=this._waypoints._last//是null或undefined才賦值
+//變更marker外觀↓
+ let current=this._waypoints._first
+ //const len=this.getWaypoints().length,
+       //last=end==null?len-1:end<0?len+end-1:end-1
  while(current){
   current.setIcon(
-   this.options.icons[i===start?'start':i===last?'end':'normal']
+ //this.options.icons[i===start?'start':i===last?'end':'normal']
+   this.options.icons[current===start?'start':current===end?'end':'normal']
   )
-  current=current._routing.nextMarker;i++
+  current=current._routing.nextMarker
  }
-//變更marker外觀
- segments.slice(start,end).forEach(line=>{
-  if(line?.feature)latLngs.push(...line.getLatLngs())
+//變更marker外觀↑
+ let active=false
+ this._eachSegment((m1,m2,line)=>{
+  if(m1===start)active=true
+  if(active&&line?.feature)latLngs.push(...line.getLatLngs())
+  if(m2===end)active=false
  })
+//const segments=this.getSegments()
+//segments.slice(start,end).forEach(line=>{
+// if(line?.feature)latLngs.push(...line.getLatLngs())
+//})
  return L.polyline(latLngs)
 },
 _updateDistanceMarkers:function(){

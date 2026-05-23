@@ -163,6 +163,14 @@ var t=this._draw._enabled,e=this._waypoints._first;if(this.draw(!1),null!==e){fo
 
 
 
+
+
+
+
+
+
+
+
 _updateDistanceMarkers:function(){
 var t;this._removeDistanceMarkers(),this._map&&(t=this.options.distanceMarkers||{},
 this._distanceMarkers=new L.DistanceMarkers(this.toPolyline(),this._map,t),
