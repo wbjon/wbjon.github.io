@@ -147,6 +147,17 @@ toActivePolyline:function(){
  const latLngs=[]
  const segments=this.getSegments()
  const[start,end]=activeRange//activeRange=[0,undefined]定義在index.html
+//變更marker外觀
+ let i=0
+ const len=this.getWaypoints().length,
+       last=end==null?len-1:end<0?len+end-1:end-1
+ this._waypoints.eachLayer(marker=>{
+  marker.setIcon(
+   this.options.icons[i===start?'start':i===last?'end':'normal']
+  )
+  i++
+ })
+//變更marker外觀
  segments.slice(start,end).forEach(line=>{
   if(line?.feature)latLngs.push(...line.getLatLngs())
  })
