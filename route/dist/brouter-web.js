@@ -67,7 +67,7 @@ _waypointClickHandler:function(t){
  if(t.originalEvent.ctrlKey){
   const isStart=confirm("按「確定」=Start，按「取消」=End")
   if(isStart)activeRange[0]=t.marker;else activeRange[1]=t.marker===this._waypoints._last?null:t.marker
-  this._updateBeelines()
+  this._updateBeelines();this._updateDistanceMarkers()
  }else this.removeWaypoint(t.marker,function(){})},
 addWaypoint:function(t,e,n,i,o){const beeline=e//t:marker,e:beeline,n:prev,i:next,o:cb
 t instanceof L.LatLng&&(t=new L.Marker(t,{title:this.options.tooltips.waypoint,draggable:!0})),t._routing={prevMarker:n,nextMarker:i,prevLine:null,nextLine:null,timeoutID:null,beeline:e||!1};
