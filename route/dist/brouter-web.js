@@ -187,6 +187,7 @@ toActivePolyline:function(){
   if(active&&line?.feature)latLngs.push(...line.getLatLngs())
   if(m2===end)active=false
 
+  if(!line?.feature)return
   if(m2===start||m1===end)line.setStyle({opacity:0,interactive:false})
   else line.setStyle({opacity:this.options.styles.track.opacity??1,interactive:true})
 
