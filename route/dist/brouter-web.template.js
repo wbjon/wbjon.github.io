@@ -72,6 +72,7 @@ _waypointClickHandler:function(t){this.removeWaypoint(t.marker,function(){})},
 addWaypoint:function(t,e,n,i,o){
 t instanceof L.LatLng&&(t=new L.Marker(t,{title:this.options.tooltips.waypoint,draggable:!0})),t._routing={prevMarker:n,nextMarker:i,prevLine:null,nextLine:null,timeoutID:null,beeline:e||!1};
 
+
 var r=this.options.icons;n?i?t.setIcon(r.normal):t.setIcon(r.end):t.setIcon(r.start);
 var s=i&&this.getFirst()&&i._leaflet_id===this.getFirst()._leaflet_id,a=n&&this.getFirst()&&n._leaflet_id===this.getFirst()._leaflet_id,e=n&&this.getLast()&&n._leaflet_id===this.getLast()._leaflet_id;s&&i.setIcon(r.normal),e&&!a&&n.setIcon(r.normal),null===this.getFirst()&&null===this.getLast()?(this._waypoints._first=t,this._waypoints._last=t):null===i?this._waypoints._last=t:null===n&&(this._waypoints._first=t),null!==t._routing.prevMarker&&((t._routing.prevMarker._routing.nextMarker=t)._routing.prevLine=t._routing.prevMarker._routing.nextLine,null!==t._routing.prevLine&&(t._routing.prevLine._routing.nextMarker=t)),null!==t._routing.nextMarker&&((t._routing.nextMarker._routing.prevMarker=t).nextLine=t._routing.nextMarker._routing.prevLine,null!==t._routing.nextLine&&(t._routing.nextLine._routing.prevMarker=t)),t.on("mouseover",this._fireWaypointEvent,this),t.on("mouseout",this._fireWaypointEvent,this),
 t.on("dragstart",this._fireWaypointEvent,this),
