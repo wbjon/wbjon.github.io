@@ -180,7 +180,7 @@ toActivePolyline:function(){
  }
  if(!hasStart){activeRange[0]=start=start?._routing.prevMarker;console.log(activeRange)}//{start=this._waypoints._first;activeRange[0]=activeRange[0]?._routing.prevMarker}
  if(!hasEnd){activeRange[1]=end=end?._routing.nextMarker;console.log(activeRange)}//{end=this._waypoints._last;activeRange[1]=activeRange[1]?._routing.nextMarker}
- if(!hasStart||!hasEnd)return toActivePolyline()
+ if(!hasStart||!hasEnd)return this.toActivePolyline()
 //變更marker外觀↑
  let active=false
  this._eachSegment((m1,m2,line)=>{
