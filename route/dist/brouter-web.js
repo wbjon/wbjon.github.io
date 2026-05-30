@@ -186,9 +186,14 @@ toActivePolyline:function(){
   if(m1===start)active=true
   if(active&&line?.feature)latLngs.push(...line.getLatLngs())
   if(m2===end)active=false
-if(!line)return
-if(m1===activeRange[1])line.setStyle({opacity:0,interactive:false})
-else line.setStyle({opacity:this.options.styles.track.opacity??1,interactive:true})
+
+  if(m2===start||m1===end)line.setStyle({opacity:0,interactive:false})
+  else line.setStyle({opacity:this.options.styles.track.opacity??1,interactive:true})
+
+
+// if(!line)return
+// if(m1===activeRange[1])line.setStyle({opacity:0,interactive:false})
+// else line.setStyle({opacity:this.options.styles.track.opacity??1,interactive:true})
  })
 //const segments=this.getSegments()
 //segments.slice(start,end).forEach(line=>{
