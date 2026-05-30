@@ -178,8 +178,8 @@ toActivePolyline:function(){
 //this.options.icons[i===start?'start':i===last?'end':'normal']
   current=current._routing.nextMarker
  }
- if(!hasStart){activeRange[0]=start=start?._routing.prevMarker;console.log(activeRange)}//{start=this._waypoints._first;activeRange[0]=activeRange[0]?._routing.prevMarker}
- if(!hasEnd){activeRange[1]=end=end?._routing.nextMarker;console.log(activeRange)}//{end=this._waypoints._last;activeRange[1]=activeRange[1]?._routing.nextMarker}
+ if(!hasStart){activeRange[0]=start?._routing.prevMarker}
+ if(!hasEnd){activeRange[1]=end?._routing.nextMarker}
  if(!hasStart||!hasEnd)return this.toActivePolyline()
 //變更marker外觀↑
  let active=false
