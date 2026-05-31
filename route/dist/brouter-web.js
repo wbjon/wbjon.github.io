@@ -84,7 +84,7 @@ t.on("contextmenu",event=>{
  //if(!e){document.querySelector('button[title*="Toggle"]').click();return}
  if(!e){this._draw.toggleBeelineMode();return}//等同上行
  s._routing.beeline=!s._routing.beeline
- this._edit._parent._routeSegment(s,e,function(){n._parent._updateBeelines();n._parent._updateDistanceMarkers()})
+ this._edit._parent._routeSegment(s,e,function(){n._parent._updateBeelines();n._parent._updateDistanceMarkers();console.log(n._parent)})
 }),
 beeline==null&&n&&i&&n._routing.beeline&&(t._routing.beeline=!0),
 this._undoHistory.push({type:'add',index:getMarkerIndex(this,n)+1}),
