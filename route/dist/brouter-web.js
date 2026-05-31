@@ -66,7 +66,7 @@ return this._map=t,this._container=this._map._container,this._overlayPane=this._
 _waypointClickHandler:function(t){
  if(t.originalEvent.ctrlKey){
   const isStart=confirm("按「確定」=Start，按「取消」=End")
-  if(isStart){activeRange[0]=t.marker;t.marker._routing.prevMarker._routing.beeline=true}
+  if(isStart){activeRange[0]=t.marker;t.marker._routing.prevMarker?._routing.beeline=true}
   else{activeRange[1]=t.marker;t.marker._routing.beeline=true}//else activeRange[1]=t.marker===this._waypoints._last?null:t.marker
   this._updateBeelines();this._updateDistanceMarkers()
  }else this.removeWaypoint(t.marker,function(){})},
