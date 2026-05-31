@@ -69,6 +69,7 @@ _waypointClickHandler:function(t){this.removeWaypoint(t.marker,function(){})},
 
 
 
+
 addWaypoint:function(t,e,n,i,o){
 t instanceof L.LatLng&&(t=new L.Marker(t,{title:this.options.tooltips.waypoint,draggable:!0})),t._routing={prevMarker:n,nextMarker:i,prevLine:null,nextLine:null,timeoutID:null,beeline:e||!1};
 

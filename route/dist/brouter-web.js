@@ -66,13 +66,14 @@ return this._map=t,this._container=this._map._container,this._overlayPane=this._
 _waypointClickHandler:function(t){
  if(t.originalEvent.ctrlKey){
   const isStart=confirm("按「確定」=Start，按「取消」=End")
-  if(isStart)activeRange[0]=t.marker;else activeRange[1]=t.marker===this._waypoints._last?null:t.marker
+  if(isStart){activeRange[0]=t.marker;t.marker._routing.prevMarker._routing.beeline=true}
+  else{activeRange[1]=t.marker;t.marker._routing.beeline=true}//else activeRange[1]=t.marker===this._waypoints._last?null:t.marker
   this._updateBeelines();this._updateDistanceMarkers()
  }else this.removeWaypoint(t.marker,function(){})},
 addWaypoint:function(t,e,n,i,o){const beeline=e//t:marker,e:beeline,n:prev,i:next,o:cb
 t instanceof L.LatLng&&(t=new L.Marker(t,{title:this.options.tooltips.waypoint,draggable:!0})),t._routing={prevMarker:n,nextMarker:i,prevLine:null,nextLine:null,timeoutID:null,beeline:e||!1};
-if(n===activeRange[1]){activeRange[1]=t;t._routing.beeline=true}//若繪製的新點的前一點是end，則end=新點、新點至後一點拉直線
 if(i===activeRange[0]){activeRange[0]=t;n._routing.beeline=true}//若繪製的新點的後一點是start，則start=新點、新點至前一點拉直線
+if(n===activeRange[1]){activeRange[1]=t;t._routing.beeline=true}//若繪製的新點的前一點是end，則end=新點、新點至後一點拉直線
 var r=this.options.icons;n?i?t.setIcon(r.normal):t.setIcon(r.end):t.setIcon(r.start);
 var s=i&&this.getFirst()&&i._leaflet_id===this.getFirst()._leaflet_id,a=n&&this.getFirst()&&n._leaflet_id===this.getFirst()._leaflet_id,e=n&&this.getLast()&&n._leaflet_id===this.getLast()._leaflet_id;s&&i.setIcon(r.normal),e&&!a&&n.setIcon(r.normal),null===this.getFirst()&&null===this.getLast()?(this._waypoints._first=t,this._waypoints._last=t):null===i?this._waypoints._last=t:null===n&&(this._waypoints._first=t),null!==t._routing.prevMarker&&((t._routing.prevMarker._routing.nextMarker=t)._routing.prevLine=t._routing.prevMarker._routing.nextLine,null!==t._routing.prevLine&&(t._routing.prevLine._routing.nextMarker=t)),null!==t._routing.nextMarker&&((t._routing.nextMarker._routing.prevMarker=t).nextLine=t._routing.nextMarker._routing.prevLine,null!==t._routing.nextLine&&(t._routing.nextLine._routing.prevMarker=t)),t.on("mouseover",this._fireWaypointEvent,this),t.on("mouseout",this._fireWaypointEvent,this),
 t.on("dragstart",this._fireWaypointEvent,this),
