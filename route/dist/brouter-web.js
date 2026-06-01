@@ -211,7 +211,7 @@ L.Routing.prototype._updateBeelines.call(this);var o=[],r=null;
 let[start,end]=activeRange//activeRange=[undefined,undefined]定義在index.html，undefined會==null
 start??=this._waypoints._first;end??=this._waypoints._last//是null或undefined才賦值
 this._eachSegment(function(t,e,n){
-if(e===start||t===end)t._routing.beeline=true//若第二點是start，則第一點至start拉直線、若第一點是end，則第一點(end)至後一點拉直線
+if(e===start||t===end)n._routing.beeline=true//若第二點是start，則第一點至start拉直線、若第一點是end，則第一點(end)至後一點拉直線
 var i;null!=n&&null!==(i=n._routing)&&void 0!==i&&i.beeline?o.push(n):(0<o.length&&this._interpolateBeelines(o,r,n),r=n,o=[])
 }),0<o.length&&this._interpolateBeelines(o,r,null)
 },createBeeline:function(t,e){var n=L.Routing.prototype.createBeeline.call(this,t,e);delete n.getLatLngs()[0].alt,delete n.getLatLngs()[1].alt;var i=this._distance(t,e),o={cost:0,"filtered ascend":0,"plain-ascend":0,"total-energy":0,"total-time":0,"track-length":i,messages:[["Longitude","Latitude","Elevation","Distance","CostPerKm","ElevCost","TurnCost","NodeCost","InitialCost","WayTags","NodeTags","Time","Energy"],[1e6*e.lng,1e6*e.lat,null,i,null,null,null,null,null,"","",null,null]]};n.feature=turf.lineString([[t.lng,t.lat],[e.lng,e.lat]],o);var r=_createForOfIteratorHelper(n.getLatLngs());try{for(r.s();!(a=r.n()).done;){var s=a.value,a=o.messages[1];s.feature=BR.TrackEdges.getFeature(a),s.message=a}}catch(t){r.e(t)}finally{r.f()}return n}});
