@@ -97,6 +97,7 @@ let[start,end]=activeRange
 start??=this._waypoints._first;end??=this._waypoints._last
 //研究中if(t===start)i._routing.beeline=true
 //if(t===end)i._routing.beeline=true
+if(t===start){activeRange[1]=i}
 if(t===end){n._routing.beeline=true;activeRange[1]=n}
 o&&(this._waypoints._first=i)&&i.setIcon(this.options.icons.start),r&&(this._waypoints._last=n)&&(n._leaflet_id!==this.getFirst()._leaflet_id&&n.setIcon(this.options.icons.end),n._routing.beeline=!1),null!==n&&(n._routing.nextMarker=i,n._routing.nextLine=null),null!==i&&(i._routing.prevMarker=n,i._routing.prevLine=null),null!==t._routing.nextLine&&this._segments.removeLayer(t._routing.nextLine),null!==t._routing.prevLine&&this._segments.removeLayer(t._routing.prevLine),this._waypoints.removeLayer(t),null!==n?this.routeWaypoint(n,e):null!==i?this.routeWaypoint(i,e):(this._draw.enable(),e(null,null))},
 routeWaypoint:function(n,i){
