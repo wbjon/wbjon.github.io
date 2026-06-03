@@ -96,8 +96,8 @@ var n=t._routing.prevMarker,i=t._routing.nextMarker,o=this.getFirst()&&t._leafle
 let[start,end]=activeRange
 start??=this._waypoints._first;end??=this._waypoints._last
 if(t===start)activeRange[0]=i//研究中
-//start=start._routing.prevMarker
-//if(start?._routing.prevMarker&&t===start)start._routing.prevMarker._routing.beeline=true
+start=start._routing.prevMarker
+if(start?._routing.prevMarker&&t===start)start._routing.prevMarker._routing.beeline=true
 if(t===end){n._routing.beeline=true;activeRange[1]=n}//研究中
 o&&(this._waypoints._first=i)&&i.setIcon(this.options.icons.start),r&&(this._waypoints._last=n)&&(n._leaflet_id!==this.getFirst()._leaflet_id&&n.setIcon(this.options.icons.end),n._routing.beeline=!1),null!==n&&(n._routing.nextMarker=i,n._routing.nextLine=null),null!==i&&(i._routing.prevMarker=n,i._routing.prevLine=null),null!==t._routing.nextLine&&this._segments.removeLayer(t._routing.nextLine),null!==t._routing.prevLine&&this._segments.removeLayer(t._routing.prevLine),this._waypoints.removeLayer(t),null!==n?this.routeWaypoint(n,e):null!==i?this.routeWaypoint(i,e):(this._draw.enable(),e(null,null))},
 routeWaypoint:function(n,i){
