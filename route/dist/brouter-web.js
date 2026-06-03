@@ -97,7 +97,7 @@ var n=t._routing.prevMarker,i=t._routing.nextMarker,o=this.getFirst()&&t._leafle
 let[start,end]=activeRange
 start??=this._waypoints._first;end??=this._waypoints._last
 
-if(start===end&&t===start){activeRange[0]==activeRange[1]=start._routing.prevMarker}else{//activeRange.fill(undefined)
+if(start===end&&t===start){activeRange[0]=activeRange[1]=start._routing.prevMarker}else{//activeRange.fill(undefined)
 if(t===start)activeRange[0]=i//研究中
 start=start._routing.prevMarker
 if(start?._routing.prevMarker&&t===start)start._routing.prevMarker._routing.beeline=true
