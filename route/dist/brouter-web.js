@@ -188,9 +188,9 @@ toActivePolyline:function(){
 //this.options.icons[i===start?'start':i===last?'end':'normal']
   current=current._routing.nextMarker
  }
- //if(!hasStart){activeRange[0]=start?._routing.prevMarker}//研究
- //if(!hasEnd){activeRange[1]=end?._routing.nextMarker}
- //if(!hasStart||!hasEnd)return this.toActivePolyline()
+ if(!hasStart){activeRange[0]=start?._routing.nextMarker}//研究
+ if(!hasEnd){activeRange[1]=end?._routing.prevMarker}
+ if(!hasStart||!hasEnd)return this.toActivePolyline()
 //變更marker外觀↑
  let active=false
  this._eachSegment((m1,m2,line)=>{
