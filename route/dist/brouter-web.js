@@ -95,7 +95,7 @@ t.off("mouseover",this._fireWaypointEvent,this),t.off("mouseout",this._fireWaypo
 var n=t._routing.prevMarker,i=t._routing.nextMarker,o=this.getFirst()&&t._leaflet_id===this.getFirst()._leaflet_id,r=this.getLast()&&t._leaflet_id===this.getLast()._leaflet_id;
 let[start,end]=activeRange
 start??=this._waypoints._first;end??=this._waypoints._last
-//if(t===start)activeRange[0]=i//研究中
+if(t===start)activeRange[0]=i//研究中
 //start=start._routing.prevMarker
 //if(start?._routing.prevMarker&&t===start)start._routing.prevMarker._routing.beeline=true
 if(t===end){n._routing.beeline=true;activeRange[1]=n}//研究中
