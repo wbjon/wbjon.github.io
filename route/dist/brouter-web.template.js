@@ -209,10 +209,6 @@ deleteLastPoint:function(){(lastPoint=this.getLast())&&this.removeWaypoint(lastP
 
 
 
-
-
-
-
 _updateDistanceMarkers:function(){
 var t;this._removeDistanceMarkers(),this._map&&(t=this.options.distanceMarkers||{},
 this._distanceMarkers=new L.DistanceMarkers(this.toPolyline(),this._map,t),

@@ -182,20 +182,16 @@ toActivePolyline:function(){
  let[start,end]=activeRange//activeRange=[undefined,undefined]定義在index.html，undefined會==null
  start??=this._waypoints._first;end??=this._waypoints._last//是null或undefined才賦值
 //變更marker外觀↓
- let hasStart=false,hasEnd=false
  let current=this._waypoints._first
  //const len=this.getWaypoints().length,
       //last=end==null?len-1:end<0?len+end-1:end-1
  while(current){
-  if(current===start){hasStart=true;current.setIcon(this.options.icons.start)}
-  else if(current===end){hasEnd=true;current.setIcon(this.options.icons.end)}
+  if(current===start)current.setIcon(this.options.icons.start)
+  else if(current===end)current.setIcon(this.options.icons.end)
   else current.setIcon(this.options.icons.normal)
 //this.options.icons[i===start?'start':i===last?'end':'normal']
   current=current._routing.nextMarker
  }
- //if(!hasStart){activeRange[0]=start?._routing.nextMarker}//研究
- //if(!hasEnd){activeRange[1]=end?._routing.prevMarker}
- //if(!hasStart||!hasEnd)return this.toActivePolyline()
 //變更marker外觀↑
  let active=false
  this._eachSegment((m1,m2,line)=>{
