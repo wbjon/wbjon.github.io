@@ -1268,7 +1268,7 @@
         <!-- endinject -->
 <script src="/leaflet-triangle-marker.js"></script>
 <script>
- const pushOsm=()=>{
+ const pushOsm=()=>{/*
   const Old=(window.routingPathQuality.segments||[]).map(item=>item._latlngs)
   const New=[]
   while(Old.length){
@@ -1279,7 +1279,19 @@
     else if(NewLast.lat==OldFirst.lat&&NewLast.lng==OldFirst.lng){Old[i].shift();New.push(...Old[i]);Old.splice(i,1);break}
    }
    if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
-  }
+  }*/
+  const New=(()=>{
+   const latLngs=[],routing=BR.debug.routing
+   let[start,end]=activeRange
+   start??=routing._waypoints._first;end??=routing._waypoints._last
+   let active=false
+   routing._eachSegment((m1,m2,line)=>{
+    if(m1===start)active=true
+    if(active&&line?.feature)latLngs.push(...line.getLatLngs())
+    if(m2===end)active=false
+   })
+   return latLngs
+  })()
   let str1="<osm version='0.6'>",str2="<way id='-1'>"
   New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`).forEach((item,index)=>{
    str1+=item;str2+=`<nd ref='-${index+2}'/>`
@@ -1565,4 +1577,3 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
 </script>
     </body>
 </html>
-
