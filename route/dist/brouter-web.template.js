@@ -282,7 +282,9 @@ calcStats:function(t,e){
 for(var a,n={trackLength:0,filteredAscend:0,plainAscend:0,totalTime:0,totalEnergy:0,cost:0},o=0;e&&o<e.length;o++)
 
 
-a=e[o].feature.properties,n.trackLength+=+a["track-length"],n.filteredAscend+=+a["filtered ascend"],n.plainAscend+=+a["plain-ascend"],n.totalTime+=+a["total-time"],n.totalEnergy+=+a["total-energy"],n.cost+=+a.cost;
+a=e[o].feature.properties,
+n.trackLength+=+a["track-length"],
+n.filteredAscend+=+a["filtered ascend"],n.plainAscend+=+a["plain-ascend"],n.totalTime+=+a["total-time"],n.totalEnergy+=+a["total-energy"],n.cost+=+a.cost;
 
 return n
 }

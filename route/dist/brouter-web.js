@@ -282,7 +282,9 @@ let[start,end]=activeRange
 for(var a,n={trackLength:0,filteredAscend:0,plainAscend:0,totalTime:0,totalEnergy:0,cost:0},active=!start,o=0;e&&o<e.length;o++)
 {if(e[o]._routing.prevMarker===start)active=true
 if(active)
-a=e[o].feature.properties,n.trackLength+=+a["track-length"],n.filteredAscend+=+a["filtered ascend"],n.plainAscend+=+a["plain-ascend"],n.totalTime+=+a["total-time"],n.totalEnergy+=+a["total-energy"],n.cost+=+a.cost;
+a=e[o].feature.properties,
+n.trackLength+=+a["track-length"],
+n.filteredAscend+=+a["filtered ascend"],n.plainAscend+=+a["plain-ascend"],n.totalTime+=+a["total-time"],n.totalEnergy+=+a["total-energy"],n.cost+=+a.cost;
 if(e[o]._routing.nextMarker===end)break}
 return n
 }
