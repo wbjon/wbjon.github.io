@@ -279,7 +279,7 @@ BR.TrackStats=L.Class.extend({update:function(t,e){if(0==e.length)return $("#sta
 n=L.Util.formatNum(a.trackLength/1e3,2).toLocaleString(void 0,{minimumFractionDigits:2}),o=L.Util.formatNum(a.trackLength/1e3,3).toLocaleString(void 0,{minimumFractionDigits:3}),i=a.filteredAscend.toLocaleString(),l=a.plainAscend.toLocaleString(),r=a.cost.toLocaleString(),c=a.trackLength?L.Util.formatNum(a.cost/a.trackLength,2).toLocaleString():"0",t=Math.trunc(a.totalTime/3600)+":"+("0"+Math.trunc(a.totalTime%3600/60)).slice(-2),e=L.Util.formatNum(a.totalEnergy/36e5,2).toLocaleString(),a=a.trackLength?L.Util.formatNum(a.totalEnergy/36/a.trackLength,2).toLocaleString():"0";$("#distance").html(n),$("#distance").attr("title",o+" km"),$("#ascend").html(i),$("#plainascend").html(l),$("#cost").html(r),$("#meancostfactor").html(c),$("#totaltime").html(t),$("#totalenergy").html(e),$("#meanenergy").html(a)},
 calcStats:function(t,e){
 let[start,end]=activeRange
-for(var a,n={trackLength:0,filteredAscend:0,plainAscend:0,totalTime:0,totalEnergy:0,cost:0},active=!start,o=0;e&&o<e.length;o++)
+for(var a,n={javaLength:0,trackLength:0,filteredAscend:0,plainAscend:0,totalTime:0,totalEnergy:0,cost:0},active=!start,o=0;e&&o<e.length;o++)
 {if(e[o]._routing.prevMarker===start)active=true
 if(active)
 a=e[o].feature.properties,
