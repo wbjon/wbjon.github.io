@@ -283,8 +283,10 @@ for(var a,n={trackLength:0,filteredAscend:0,plainAscend:0,totalTime:0,totalEnerg
 {if(e[o]._routing.prevMarker===start)active=true
 if(active)
 a=e[o].feature.properties,
-n.trackLength+=+a["track-length"],
+//n.trackLength+=+a["track-length"],//來自java server會低估距離
 n.filteredAscend+=+a["filtered ascend"],n.plainAscend+=+a["plain-ascend"],n.totalTime+=+a["total-time"],n.totalEnergy+=+a["total-energy"],n.cost+=+a.cost;
+const latlngs=e[o].getLatLngs()
+for(let i=1;i<latlngs.length;i++)n.trackLength+=latlngs[i-1].distanceTo(latlngs[i])//改用js算距離
 if(e[o]._routing.nextMarker===end)break}
 return n
 }
