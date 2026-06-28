@@ -1288,7 +1288,7 @@
    routing._eachSegment((m1,m2,line)=>{
     if(m1===start)active=true
     if(active&&line?.feature){
-     //latLngs.push(...line.getLatLngs())//會友位置重複點，故捨棄
+     //latLngs.push(...line.getLatLngs())//會有位置重複點，故改以下
      const points=line.getLatLngs()
      const last=latLngs.at(-1)
      const startIndex=last&&last.lat===points[0].lat&&last.lng===points[0].lng?1:0
