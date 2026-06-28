@@ -1287,7 +1287,13 @@
    let active=false
    routing._eachSegment((m1,m2,line)=>{
     if(m1===start)active=true
-    if(active&&line?.feature)latLngs.push(...line.getLatLngs())
+    if(active&&line?.feature){
+     //latLngs.push(...line.getLatLngs())//會友位置重複點，故捨棄
+     const points=line.getLatLngs()
+     const last=latLngs.at(-1)
+     const startIndex=last&&last.lat===points[0].lat&&last.lng===points[0].lng?1:0
+     for(let i=startIndex;i<points.length;i++)latLngs.push(points[i])
+    }
     if(m2===end)active=false
    })
    return latLngs
