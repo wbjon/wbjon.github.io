@@ -100,7 +100,7 @@ function makeKML2(n,str2)
   {
    var pointName=obj[i].StationName.Zh_tw
    var pointDes=obj[i].StationAddress.Zh_tw
-   pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
+   pointName=pointName.replace(/\s+/g,"").replace(/&/g,"&amp;");if(pointDes)pointDes=pointDes.replace(/\s+/g,"").replace(/&/g,"&amp;");else pointDes='空'//去除所有空白，2026.6.30加入將&轉為&amp;
    str2+=
 '<Placemark>'+
 styleUrl+
