@@ -284,7 +284,8 @@ for(var a,n={trackLength:0,filteredAscend:0,plainAscend:0,totalTime:0,totalEnerg
 
 a=e[o].feature.properties,
 n.trackLength+=+a["track-length"],
-n.filteredAscend+=+a["filtered ascend"],n.plainAscend+=+a["plain-ascend"],n.totalTime+=+a["total-time"],n.totalEnergy+=+a["total-energy"],n.cost+=+a.cost;
+n.filteredAscend+=+a["filtered ascend"],n.plainAscend+=+a["plain-ascend"],n.totalTime+=+a["total-time"],n.totalEnergy+=+a["total-energy"],n.cost+=+a.cost
+
 
 
 
