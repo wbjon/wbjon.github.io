@@ -17,6 +17,16 @@ for(let i = 0;i<str1.length;i++){
 let hostname=token.slice(-3).repeat(4)
 hostname=[5,-3,33,-5,-3,19,-5,1,-35,-7,-2,28].map((item,index)=>String.fromCharCode(hostname.charCodeAt(index)+item)).join('')
 BR.layerIndex = {
+  "1004":{
+   "geometry":null,
+   "properties":{
+    "name":"YouBike",
+    "id":"1004",
+    "type":"geojson",
+    "url":"data/bike.geojson"
+   },
+   type:"Feature"
+  },
   "1005":{
    "geometry":null,
    "properties":{
