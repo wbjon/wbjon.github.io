@@ -104,6 +104,17 @@ BR.layerIndex = {
    },
    "type":"Feature"
   },
+  "1012":{
+   "geometry":null,
+   "properties":{
+    "name":"NLSC航照",
+    "max_zoom":20,
+    "id":"1012",
+    "url":"https://wmts.nlsc.gov.tw/wmts/PHOTO2/default/EPSG:3857/{z}/{y}/{x}",
+    "attribution":{"text":"My Map"}
+   },
+   "type":"Feature"
+  },
   "1016": {
     "geometry": null,
     "properties": {
