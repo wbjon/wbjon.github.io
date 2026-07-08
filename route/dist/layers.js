@@ -23,7 +23,7 @@ BR.layerIndex = {
     "name":"YouBike",
     "id":"1004",
     "type":"geojson",
-    "url":"data/bike.geojson"
+    "url":"bike.geojson"
    },
    type:"Feature"
   },
