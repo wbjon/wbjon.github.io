@@ -142,20 +142,20 @@ _replaceMvtTileKey:function(e){if(e)for(var r=0,a=Object.values(e.sources);r<a.l
 createGeoJsonLayer:function(url,options){
  options.pointToLayer=function(feature,latlng){
   return L.marker(latlng,{
-                          icon: L.icon({
+                          icon:L.icon({
                           iconUrl:"/單車站2.png",
                           iconSize:[24,32],
                           iconAnchor:[12,16]
                           })
-                         })
+                         }).bindPopup(feature.properties.name)
  }
  var layer=L.geoJSON(null,options)
  fetch(url).then(res=>res.json()).then(data=>{
-  console.log("GeoJSON loaded",data)
   layer.addData(data)
  })
  return layer
 },
+
 
 
 createLayer:function(e){
