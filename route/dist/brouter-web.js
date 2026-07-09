@@ -141,7 +141,11 @@ function _slicedToArray(e,r){return _arrayWithHoles(e)||_iterableToArrayLimit(e,
 createLayer:function(e){
 var r=e.properties,a=r.url;
 var t={maxZoom:this._map.getMaxZoom(),bounds:e.geometry&&!r.worldTiles?L.geoJson(e.geometry).getBounds():null};r.mapUrl&&(t.mapLink='<a target="_blank" href="'+r.mapUrl+'">'+(r.nameShort||r.name)+"</a>"),r.attribution&&(t.attribution=r.attribution);var n,o,s,i,l,u,y,e=this.getKeyName(a);e&&BR.keys[e.name]&&(t[e.urlVar]=BR.keys[e.name]),"leaflet-providers"===r.dataSource?(o=L.tileLayer.provider(r.id),e=L.Util.extend(t,{maxNativeZoom:o.options.maxZoom}),L.setOptions(o,e)):"LayersCollection"===r.dataSource?(o=L.tileLayer(a,L.Util.extend(t,{minZoom:r.minZoom||0,maxNativeZoom:r.maxZoom})),r.subdomains&&(o.subdomains=r.subdomains)):
-o="OverpassAPI"===r.dataSource?this.createOverpassLayer(r.query,r.icon):"OpenStreetMapNotesAPI"===r.dataSource?this.createOpenStreetMapNotesLayer():"mvt"===r.type?this.createMvtLayer(r,t):(a=(n=a).replace(/{switch:[^}]*}/,"{s}").replace(/{zoom}/g,"{z}"),t=L.Util.extend(t,{minZoom:r.min_zoom||0,maxNativeZoom:r.max_zoom,subdomains:(y="abc",(u=(u=n).match(/{switch:([^}]*)}/))&&(y=u[1].split(",")),y),attribution:(i="",(l=(s=r).attribution)&&(l.html?i=l.html:l.url&&l.text?i='<a href="'+l.url+'" target="_blank" rel="noopener">'+l.text+"</a>":l.text&&(i=l.text)),i||console.warn("No attribution: "+s.id),i)}),
+o="OverpassAPI"===r.dataSource?this.createOverpassLayer(r.query,r.icon):
+"OpenStreetMapNotesAPI"===r.dataSource?this.createOpenStreetMapNotesLayer():
+"mvt"===r.type?this.createMvtLayer(r,t):
+"geojson"===r.type?this.createGeoJsonLayer(a,t):
+(a=(n=a).replace(/{switch:[^}]*}/,"{s}").replace(/{zoom}/g,"{z}"),t=L.Util.extend(t,{minZoom:r.min_zoom||0,maxNativeZoom:r.max_zoom,subdomains:(y="abc",(u=(u=n).match(/{switch:([^}]*)}/))&&(y=u[1].split(",")),y),attribution:(i="",(l=(s=r).attribution)&&(l.html?i=l.html:l.url&&l.text?i='<a href="'+l.url+'" target="_blank" rel="noopener">'+l.text+"</a>":l.text&&(i=l.text)),i||console.warn("No attribution: "+s.id),i)}),
 r.type==="geojson"?L.geoJSON(null):
 r.type&&"wms"===r.type?L.tileLayer.wms(a,L.Util.extend(t,{layers:r.layers,format:r.format})):L.tileLayer(a,t));
 return o.getAttribution=function(){return this.options.mapLink},o.id=r.id,console.log("layer object",o),o}}),
