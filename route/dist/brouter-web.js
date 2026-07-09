@@ -143,7 +143,7 @@ createGeoJsonLayer:function(url,options){
  options.pointToLayer=function(feature,latlng){
   return L.marker(latlng,{
                           icon: L.icon({
-                          iconUrl:"/單車站2.png",
+                          iconUrl:"單車站2.png",
                           iconSize:[28,28],
                           iconAnchor:[14,28]
                           })
