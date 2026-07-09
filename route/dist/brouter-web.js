@@ -155,7 +155,6 @@ o="OverpassAPI"===r.dataSource?this.createOverpassLayer(r.query,r.icon):
 "mvt"===r.type?this.createMvtLayer(r,t):
 "geojson"===r.type?this.createGeoJsonLayer(a,t):
 (a=(n=a).replace(/{switch:[^}]*}/,"{s}").replace(/{zoom}/g,"{z}"),t=L.Util.extend(t,{minZoom:r.min_zoom||0,maxNativeZoom:r.max_zoom,subdomains:(y="abc",(u=(u=n).match(/{switch:([^}]*)}/))&&(y=u[1].split(",")),y),attribution:(i="",(l=(s=r).attribution)&&(l.html?i=l.html:l.url&&l.text?i='<a href="'+l.url+'" target="_blank" rel="noopener">'+l.text+"</a>":l.text&&(i=l.text)),i||console.warn("No attribution: "+s.id),i)}),
-r.type==="geojson"?L.geoJSON(null):
 r.type&&"wms"===r.type?L.tileLayer.wms(a,L.Util.extend(t,{layers:r.layers,format:r.format})):L.tileLayer(a,t));
 return o.getAttribution=function(){return this.options.mapLink},o.id=r.id,o}}),
 BR.layersConfig=function(e){return new BR.LayersConfig(e)};
