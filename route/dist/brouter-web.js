@@ -148,6 +148,9 @@ createGeoJsonLayer:function(url,options){
                           iconAnchor:[12,16]
                           })
                          }).bindPopup(feature.properties.name)
+                           .on("popupopen",function(e){
+                                     e.popup.setContent(`Hello World`)
+                                    })
  }
  var layer=L.geoJSON(null,options)
  fetch(url).then(res=>res.json()).then(data=>{
