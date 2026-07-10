@@ -153,11 +153,22 @@ createGeoJsonLayer:function(url,options){
                                     })
  }
  var layer=L.geoJSON(null,options)
- fetch(url).then(res=>res.json()).then(data=>{
-  layer.addData(data)
+ fetch(url).then(res=>res.json()).then(obj=>{
+  const geojson={
+   type:"FeatureCollection",
+   features:obj.map(item=>({type:"Feature",
+                            properties:{id:item.StationUID,name:item.StationName.Zh_tw,des:item.StationAddress.Zh_tw},
+                            geometry:{type:"Point",coordinates:[item.StationPosition.PositionLon,item.StationPosition.PositionLat]}
+                           }))
+  }
+  layer.addData(geojson)
  })
  return layer
 },
+
+
+
+
 
 
 

@@ -23,7 +23,7 @@ BR.layerIndex = {
     "name":"YouBike",
     "id":"1004",
     "type":"geojson",
-    "url":"bike.json"
+    "url":"https://md-oa.onrender.com/2"
    },
    type:"Feature"
   },
