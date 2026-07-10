@@ -141,7 +141,7 @@ function _slicedToArray(e,r){return _arrayWithHoles(e)||_iterableToArrayLimit(e,
 _replaceMvtTileKey:function(e){if(e)for(var r=0,a=Object.values(e.sources);r<a.length;r++){var t,n=a[r];if(!n.url||(t=this.getKeyName(n.url))&&BR.keys[t.name]&&(n.url=n.url.replace("{".concat(t.urlVar,"}"),BR.keys[t.name])),n.tiles){var o=n.tiles,s=_createForOfIteratorHelper(null==o?void 0:o.entries());try{for(s.s();!(u=s.n()).done;){var i=_slicedToArray(u.value,2),l=i[0],u=i[1],i=this.getKeyName(u);i&&BR.keys[i.name]&&(o[l]=u.replace("{".concat(i.urlVar,"}"),BR.keys[i.name]))}}catch(e){s.e(e)}finally{s.f()}}}},
 createGeoJsonLayer:function(url,options){
  options.pointToLayer=function(feature,latlng){
- return L.circleMarker(latlng,{radius:5,color:"black",weight:1,fillOpacity:0.8})
+ return L.circleMarker(latlng,{radius:5,color:"black",weight:1,fillColor:"yellow",fillOpacity:0.8})
  .bindPopup(feature.properties.name)
   /*return L.marker(latlng,{
                           icon:L.icon({
