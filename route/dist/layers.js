@@ -16,6 +16,39 @@ for(let i = 0;i<str1.length;i++){
 */
 let hostname=token.slice(-3).repeat(4)
 hostname=[5,-3,33,-5,-3,19,-5,1,-35,-7,-2,28].map((item,index)=>String.fromCharCode(hostname.charCodeAt(index)+item)).join('')
+const delica=function(url,options){
+ options.pointToLayer=function(feature,latlng){
+  const{name,des,id}=feature.properties
+  return L.circleMarker(latlng,{radius:5,color:"red",weight:1,fillColor:"yellow",fillOpacity:.6})
+          .bindPopup(`<b>${name}<b><br>${des}`)
+          .on("popupopen",e=>{
+           fetch('https://ilv.ilv.tw/bike.php?'+id).then(r=>r.json()).then(obj=>{
+            const{available_spaces,empty_spaces,available_spaces_detail}=obj.retVal.data[0]
+            const eyb=available_spaces_detail.eyb?'<br>電動：'+available_spaces_detail.eyb:''
+            e.popup.setContent(`<b>${name}</b><br>${des}<br>可借：${available_spaces}，可停：${empty_spaces}`+eyb)
+           })
+  })
+ }
+ fetch(url).then(res=>res.json()).then(obj=>{
+  const geojson={
+   type:"FeatureCollection",
+   features:obj.map(item=>({type:"Feature",
+                            properties:{id:item.StationUID,name:item.StationName.Zh_tw,des:item.StationAddress.Zh_tw},
+                            geometry:{type:"Point",coordinates:[item.StationPosition.PositionLon,item.StationPosition.PositionLat]}
+                           }))
+  }
+  layer.addData(geojson)
+ })
+
+ const layer=L.geoJSON(null,options)
+ return layer
+}
+
+
+
+
+
+
 BR.layerIndex = {
   "1004":{
    "geometry":null,
