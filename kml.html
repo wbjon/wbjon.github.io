@@ -196,7 +196,7 @@ function makeKML4(n,str2)
    let Lon,Lat
    if(url[n].match(/LRT/)){var pointName=obj[i].StationName.Zh_tw;var pointDes=obj[i].StationAddress;Lon=obj[i].StationPosition.PositionLon;Lat=obj[i].StationPosition.PositionLat}//LRT:輕軌
    else{var pointName=obj[i].ExitName.Zh_tw;var pointDes=obj[i].LocationDescription;Lon=obj[i].ExitPosition.PositionLon;Lat=obj[i].ExitPosition.PositionLat}
-   if(url[n].match(/TYMC/)){pointName=obj[i].StationName.Zh_tw+pointName}//TYMC:桃捷
+   if(url[n].match(/TYMC/)||url[n].match(/KRTC/)){pointName=obj[i].StationName.Zh_tw+pointName}//TYMC:桃捷、KRTC:高捷
    pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
    str2+=
 '<Placemark>'+
