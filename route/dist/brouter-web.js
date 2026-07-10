@@ -141,18 +141,14 @@ function _slicedToArray(e,r){return _arrayWithHoles(e)||_iterableToArrayLimit(e,
 _replaceMvtTileKey:function(e){if(e)for(var r=0,a=Object.values(e.sources);r<a.length;r++){var t,n=a[r];if(!n.url||(t=this.getKeyName(n.url))&&BR.keys[t.name]&&(n.url=n.url.replace("{".concat(t.urlVar,"}"),BR.keys[t.name])),n.tiles){var o=n.tiles,s=_createForOfIteratorHelper(null==o?void 0:o.entries());try{for(s.s();!(u=s.n()).done;){var i=_slicedToArray(u.value,2),l=i[0],u=i[1],i=this.getKeyName(u);i&&BR.keys[i.name]&&(o[l]=u.replace("{".concat(i.urlVar,"}"),BR.keys[i.name]))}}catch(e){s.e(e)}finally{s.f()}}}},
 createGeoJsonLayer:function(url,options){
  options.pointToLayer=function(feature,latlng){
- return L.circleMarker(latlng,{radius:5,color:"red",weight:1,fillColor:"yellow",fillOpacity:.5})
- .bindPopup(feature.properties.name)
-  /*return L.marker(latlng,{
-                          icon:L.icon({
-                          iconUrl:"/單車站2.png",
-                          iconSize:[24,32],
-                          iconAnchor:[12,16]
-                          })
-                         }).bindPopup(feature.properties.name)*/
-                          //  .on("popupopen",function(e){
-                          //            e.popup.setContent(`Hello World`)
-                          //           })
+  const{name,des,id}=feature.properties
+  return L.circleMarker(latlng,{radius:5,color:"red",weight:1,fillColor:"yellow",fillOpacity:.6})
+          .bindPopup(`<b>${name}<b><br>${des}`)
+          .on("popupopen",e=>{
+           fetch('https://ilv.ilv.tw/bike.php?500605077').then(r=>r.json()).then(obj=>{
+            e.popup.setContent(`<b>${name}<b><br>${des}<br>${id}:${JSON.stringify(obj.retVal.data[0])}`)
+           })
+  })
  }
  var layer=L.geoJSON(null,options)
  fetch(url).then(res=>res.json()).then(obj=>{
