@@ -66,7 +66,7 @@ const createGeoJsonLayer=function(url,options){
      let Name,Des,Lon,Lat
      if(url.includes('LRT'))Name=item.StationName.Zh_tw,Des=item.StationAddress,Lon=item.StationPosition.PositionLon,Lat=item.StationPosition.PositionLat//LRT:輕軌
      else Name=item.ExitName.Zh_tw,Des=item.LocationDescription,Lon=item.ExitPosition.PositionLon,Lat=item.ExitPosition.PositionLat
-     if(url.includes('TYMC'))Name=item.StationName.Zh_tw+Name//TYMC:桃捷
+     if(url.includes('TYMC')||url.includes('KRTC'))Name=item.StationName.Zh_tw+Name//TYMC:桃捷、KRTC:高捷
      Name=Name.replace(/\s+/g,"");Des=Des?Des.replace(/\s+/g,""):'空'
      geojson.features.push(
       {
