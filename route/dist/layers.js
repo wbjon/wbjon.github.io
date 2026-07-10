@@ -35,7 +35,7 @@ const createGeoJsonLayer=function(url,options){
    const geojson={
     type:"FeatureCollection",
     features:obj.map(item=>({type:"Feature",
-                             properties:{id:item.StationUID,name:item.StationName.Zh_tw,des:item.StationAddress.Zh_tw},
+                             properties:{id:item.StationUID,name:item.StationName.Zh_tw.replace(/\s+/g,""),des:item.StationAddress.Zh_tw?item.StationAddress.Zh_tw.replace(/\s+/g,""):'空'},
                              geometry:{type:"Point",coordinates:[item.StationPosition.PositionLon,item.StationPosition.PositionLat]}
                             }))
    }
@@ -43,6 +43,11 @@ const createGeoJsonLayer=function(url,options){
   })
  }
  else if(url==='https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station'){
+  options.pointToLayer=function(feature,latlng){
+   const{name,des}=feature.properties
+   return L.circleMarker(latlng,{radius:5,color:"black",weight:1,fillColor:"magenta",fillOpacity:.6})
+           .bindPopup(`<b>${name}<b><br>${des}`)
+  }
   const urls=
   [`https://call-oa.onrender.com/${url}/NTALRT?$format=JSON`,//安坑輕軌站
    `https://call-oa.onrender.com/${url}/NTDLRT?$format=JSON`,//淡海輕軌站
@@ -55,9 +60,29 @@ const createGeoJsonLayer=function(url,options){
    `https://call-oa.onrender.com/${url}Exit/NTMC?$format=JSON`//新北捷運站
   ]
   for(const url of urls){
-   fetch(url).then(res=>res.json()).then(obj=>{console.log(obj)})
+   fetch(url).then(res=>res.json()).then(arr=>{
+    const geojson={type:"FeatureCollection",features:[]}
+    arr.forEach(item=>{
+     let Name,Des,Lon,Lat
+     if(url.includes('LRT'))Name=item.StationName.Zh_tw,Des=item.StationAddress,Lon=item.StationPosition.PositionLon,Lat=item.StationPosition.PositionLat//LRT:輕軌
+     else Name=item.ExitName.Zh_tw,Des=item.LocationDescription,Lon=item.ExitPosition.PositionLon,Lat=item.ExitPosition.PositionLat
+     if(url.includes('TYMC'))Name=item.StationName.Zh_tw+Name//TYMC:桃捷
+     Name=Name.replace(/\s+/g,"");Des=Des?Des.replace(/\s+/g,""):'空'
+     geojson.features.push(
+      {
+       type:"Feature",
+       properties:{name:Name,des:Des},
+       geometry:{type:"Point",coordinates:[Lon,Lat]}
+      }
+     )
+    })
+    layer.addData(geojson)
+   })
   }
  }
+
+
+
  const layer=L.geoJSON(null,options)
  return layer
 }
