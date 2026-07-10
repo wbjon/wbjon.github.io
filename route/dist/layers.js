@@ -16,7 +16,7 @@ for(let i = 0;i<str1.length;i++){
 */
 let hostname=token.slice(-3).repeat(4)
 hostname=[5,-3,33,-5,-3,19,-5,1,-35,-7,-2,28].map((item,index)=>String.fromCharCode(hostname.charCodeAt(index)+item)).join('')
-const delica=function(url,options){
+const createGeoJsonLayer=function(url,options){
  options.pointToLayer=function(feature,latlng){
   const{name,des,id}=feature.properties
   return L.circleMarker(latlng,{radius:5,color:"red",weight:1,fillColor:"yellow",fillOpacity:.6})
