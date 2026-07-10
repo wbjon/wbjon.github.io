@@ -54,7 +54,9 @@ const createGeoJsonLayer=function(url,options){
    `https://call-oa.onrender.com/${url}Exit/TMRT?$format=JSON`,//台中捷運站
    `https://call-oa.onrender.com/${url}Exit/NTMC?$format=JSON`//新北捷運站
   ]
-  for(const url of urls){console.log(url)}
+  for(const url of urls){
+   console.log(url)
+  }
  }
  const layer=L.geoJSON(null,options)
  return layer
