@@ -68,7 +68,7 @@ const createGeoJsonLayer=function(url,options){
      else Name=item.ExitName.Zh_tw,Des=item.LocationDescription,Lon=item.ExitPosition.PositionLon,Lat=item.ExitPosition.PositionLat
      if(url.includes('TYMC')||url.includes('KRTC'))Name=item.StationName.Zh_tw+Name//TYMC:桃捷、KRTC:高捷
      Name=Name.replace(/\s+/g,"");Des=Des?Des.replace(/\s+/g,""):'空'
-     if(Des.includes(';'))console.log(Name,Des)
+     Des.split(";")[0]//KLRT高雄輕軌站的Des會有; 需刪除後方的英文地址
      geojson.features.push(
       {
        type:"Feature",
