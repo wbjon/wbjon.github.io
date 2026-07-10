@@ -42,8 +42,19 @@ const createGeoJsonLayer=function(url,options){
    layer.addData(geojson)
   })
  }
- else if(url.includes('https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station')){
-
+ else if(url==='https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station'){
+  const urls=
+  [`https://call-oa.onrender.com/${url}/NTALRT?$format=JSON`,//安坑輕軌站
+   `https://call-oa.onrender.com/${url}/NTDLRT?$format=JSON`,//淡海輕軌站
+   `https://call-oa.onrender.com/${url}/KLRT?$format=JSON`,//高雄輕軌站
+   `https://call-oa.onrender.com/${url}Exit/TRTCMG?$format=JSON`,//貓空纜車
+   `https://call-oa.onrender.com/${url}Exit/TRTC?$format=JSON`,//台北捷運站
+   `https://call-oa.onrender.com/${url}Exit/TYMC?$format=JSON`,//桃園捷運站
+   `https://call-oa.onrender.com/${url}Exit/KRTC?$format=JSON`,//高雄捷運站
+   `https://call-oa.onrender.com/${url}Exit/TMRT?$format=JSON`,//台中捷運站
+   `https://call-oa.onrender.com/${url}Exit/NTMC?$format=JSON`//新北捷運站
+  ]
+  for(const url of urls){console.log(url)}
  }
  const layer=L.geoJSON(null,options)
  return layer
