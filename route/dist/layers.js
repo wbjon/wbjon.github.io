@@ -42,7 +42,9 @@ const createGeoJsonLayer=function(url,options){
    layer.addData(geojson)
   })
  }
+ else if(url.includes('https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station')){console.log('😊')
 
+ }
  const layer=L.geoJSON(null,options)
  return layer
 }
