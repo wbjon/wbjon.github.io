@@ -162,10 +162,10 @@ createGeoJsonLayer:function(url,options){
   }
   layer.addData(geojson)
  })
+
  const layer=L.geoJSON(null,options)
  return layer
 },
-
 
 
 
