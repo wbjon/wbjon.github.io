@@ -170,8 +170,6 @@ _replaceMvtTileKey:function(e){if(e)for(var r=0,a=Object.values(e.sources);r<a.l
 
 
 
-
-
 createLayer:function(e){
 var r=e.properties,a=r.url;
 var t={maxZoom:this._map.getMaxZoom(),bounds:e.geometry&&!r.worldTiles?L.geoJson(e.geometry).getBounds():null};r.mapUrl&&(t.mapLink='<a target="_blank" href="'+r.mapUrl+'">'+(r.nameShort||r.name)+"</a>"),r.attribution&&(t.attribution=r.attribution);var n,o,s,i,l,u,y,e=this.getKeyName(a);e&&BR.keys[e.name]&&(t[e.urlVar]=BR.keys[e.name]),"leaflet-providers"===r.dataSource?(o=L.tileLayer.provider(r.id),e=L.Util.extend(t,{maxNativeZoom:o.options.maxZoom}),L.setOptions(o,e)):"LayersCollection"===r.dataSource?(o=L.tileLayer(a,L.Util.extend(t,{minZoom:r.minZoom||0,maxNativeZoom:r.maxZoom})),r.subdomains&&(o.subdomains=r.subdomains)):

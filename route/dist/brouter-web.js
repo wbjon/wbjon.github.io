@@ -145,8 +145,10 @@ createGeoJsonLayer:function(url,options){
   return L.circleMarker(latlng,{radius:5,color:"red",weight:1,fillColor:"yellow",fillOpacity:.6})
           .bindPopup(`<b>${name}<b><br>${des}`)
           .on("popupopen",e=>{
-           fetch('https://ilv.ilv.tw/bike.php?500605077').then(r=>r.json()).then(obj=>{
-            e.popup.setContent(`<b>${name}<b><br>${des}<br>${id}:${JSON.stringify(obj.retVal.data[0])}`)
+           fetch('https://ilv.ilv.tw/bike.php?'+id).then(r=>r.json()).then(obj=>{
+            const{available_spaces,empty_spaces,available_spaces_detail}=obj.retVal.data[0]
+            const eyb=available_spaces_detail.eyb?'<br>電動：'+available_spaces_detail.eyb:''
+            e.popup.setContent(`<b>${name}</b><br>${des}<br>可借：${available_spaces}，可停：${empty_spaces}`+eyb)
            })
   })
  }
