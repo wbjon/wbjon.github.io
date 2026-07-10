@@ -55,7 +55,7 @@ const createGeoJsonLayer=function(url,options){
    `https://call-oa.onrender.com/${url}Exit/NTMC?$format=JSON`//新北捷運站
   ]
   for(const url of urls){
-   console.log(url)
+   fetch(url).then(res=>res.json()).then(obj=>{console.log(obj)})
   }
  }
  const layer=L.geoJSON(null,options)
