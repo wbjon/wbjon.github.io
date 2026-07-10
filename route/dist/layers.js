@@ -53,6 +53,16 @@ const createGeoJsonLayer=function(url,options){
 
 
 BR.layerIndex = {
+  "1003":{
+   "geometry":null,
+   "properties":{
+    "name":"Metro",
+    "id":"1003",
+    "type":"geojson",
+    "url":"https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station"
+   },
+   type:"Feature"
+  },
   "1004":{
    "geometry":null,
    "properties":{
