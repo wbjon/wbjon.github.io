@@ -152,7 +152,6 @@ createGeoJsonLayer:function(url,options){
            })
   })
  }
- var layer=L.geoJSON(null,options)
  fetch(url).then(res=>res.json()).then(obj=>{
   const geojson={
    type:"FeatureCollection",
@@ -163,6 +162,7 @@ createGeoJsonLayer:function(url,options){
   }
   layer.addData(geojson)
  })
+ const layer=L.geoJSON(null,options)
  return layer
 },
 
