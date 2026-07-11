@@ -122,13 +122,9 @@ const createGeoJsonLayer=function(url,options){
   }
  }
 
-
  const layer=L.geoJSON(null,options)
  return layer
 }
-
-
-
 
 BR.layerIndex = {
   "1002":{
