@@ -1495,10 +1495,11 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
   BR.debug.map.addLayer(BR.tracksLayers[0])
   BR.debug.map.removeLayer(BR.tracksLayers[0])*/
    const original=L.Control.Layers.prototype._addItem
-   alert(1)
+   alert(2)
    L.Control.Layers.prototype._addItem=function(obj){
     const label=original.call(this,obj)
     if(obj.overlay){
+     label.addEventListener('click',e=>{console.log('click',e)})
      label.addEventListener('contextmenu',e=>{
       e.preventDefault()
     //const name=obj.name,layer=obj.layer
