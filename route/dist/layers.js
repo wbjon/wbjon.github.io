@@ -111,10 +111,8 @@ const createGeoJsonLayer=function(url,options){
        Name=item.StationName.Zh_tw+Exit.ExitName.Zh_tw
        Des=Exit.LocationDescription
        Name=Name.replace(/\s+/g,"");Des=Des?Des.replace(/\s+/g,""):'空'
+       if(!Object.keys(Exit.ExitPosition).length)return//樹林調車場的Exit.ExitPosition為空物件{}
        Lat=Exit.ExitPosition.PositionLat;Lon=Exit.ExitPosition.PositionLon
-       if(!Lat||!Lon)console.log(item)
-
-
        geojson.features.push({type:"Feature",properties:{name:Name,des:Des},geometry:{type:"Point",coordinates:[Lon,Lat]}})
       })
      }
