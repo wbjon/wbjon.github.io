@@ -1281,9 +1281,11 @@
     this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
    })
    const nameSpan=label.querySelector('span')
-   //const input=label.querySelector('.leaflet-control-layers-selector')
    nameSpan.addEventListener('dblclick',e=>{
     console.log('dblclick',e)
+    e.preventDefault()
+    obj.layer._opacityLocked=!obj.layer._opacityLocked
+    nameSpan.textContent=obj.name+(obj.layer._opacityLocked?'🔒':'')
    })
   }
   return label
