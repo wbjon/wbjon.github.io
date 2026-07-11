@@ -1269,8 +1269,7 @@
 <script src="/leaflet-triangle-marker.js"></script>
 <script>
  const original=L.Control.Layers.prototype._addItem
- alert(1)
- L.Control.Layers.prototype._addItem=function(obj){console.log(obj)
+ L.Control.Layers.prototype._addItem=function(obj){
   const label=original.call(this,obj)
   if(obj.overlay){
    const nameSpan=label.querySelector('span')
