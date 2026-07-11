@@ -22,7 +22,7 @@ const createGeoJsonLayer=function(url,options){
   options.pointToLayer=function(feature,latlng){
    const{name,des,id}=feature.properties
    return L.circleMarker(latlng,{radius:5,color:"red",weight:1,fillColor:"yellow",fillOpacity:.6})
-           .bindPopup(`<b>${name}<b><br>${des}`)
+           .bindPopup(`<b>${name}</b><br>${des}`)
            .on("popupopen",e=>{
             fetch('https://ilv.ilv.tw/bike.php?'+id).then(r=>r.json()).then(obj=>{
              const{available_spaces,empty_spaces,available_spaces_detail}=obj.retVal.data[0]
@@ -46,7 +46,7 @@ const createGeoJsonLayer=function(url,options){
   options.pointToLayer=function(feature,latlng){
    const{name,des}=feature.properties
    return L.circleMarker(latlng,{radius:5,color:"black",weight:1,fillColor:"magenta",fillOpacity:.6})
-           .bindPopup(`<b>${name}<b><br>${des}`)
+           .bindPopup(`<b>${name}</b><br>${des}`)
   }
   const urls=
   [`https://call-oa.onrender.com/${url}/NTALRT?$format=JSON`,//安坑輕軌站
