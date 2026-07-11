@@ -1495,6 +1495,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
   BR.debug.map.addLayer(BR.tracksLayers[0])
   BR.debug.map.removeLayer(BR.tracksLayers[0])*/
    const original=L.Control.Layers.prototype._addItem
+   alert(1)
    L.Control.Layers.prototype._addItem=function(obj){
     const label=original.call(this,obj)
     if(obj.overlay){
