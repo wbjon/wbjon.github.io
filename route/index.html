@@ -1268,24 +1268,25 @@
         <!-- endinject -->
 <script src="/leaflet-triangle-marker.js"></script>
 <script>
-   const original=L.Control.Layers.prototype._addItem
-   alert(4)
-   L.Control.Layers.prototype._addItem=function(obj){
-    const label=original.call(this,obj)
-    if(obj.overlay){
-     label.addEventListener('contextmenu',e=>{
-      e.preventDefault()
-    //const name=obj.name,layer=obj.layer
-      const idx=BR.tracksLayers.indexOf(obj.layer)
-      if(idx!==-1)BR.tracksLayers.splice(idx,1)
-      this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
-     })
-     label.addEventListener('click',e=>{
-      console.log('click',e)
-     })
-    }
-    return label
-   }
+ const original=L.Control.Layers.prototype._addItem
+ alert(5)
+ L.Control.Layers.prototype._addItem=function(obj){
+  const label=original.call(this,obj)
+  if(obj.overlay){
+   label.addEventListener('contextmenu',e=>{
+    e.preventDefault()
+  //const name=obj.name,layer=obj.layer
+    const idx=BR.tracksLayers.indexOf(obj.layer)
+    if(idx!==-1)BR.tracksLayers.splice(idx,1)
+    this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
+   })
+   const input=label.querySelector('.leaflet-control-layers-selector')
+   input.addEventListener('click',e=>{
+    console.log('click',e)
+   })
+  }
+  return label
+ }
 
  const pushOsm=()=>{/*
   const Old=(window.routingPathQuality.segments||[]).map(item=>item._latlngs)
