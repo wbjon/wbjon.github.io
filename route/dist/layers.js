@@ -97,7 +97,7 @@ BR.layerIndex = {
   "1003":{
    "geometry":null,
    "properties":{
-    "name":"Metro",
+    "name":"捷運",
     "id":"1003",
     "type":"geojson",
     "url":"https://tdx.transportdata.tw/api/basic/v2/Rail/Metro/Station"
