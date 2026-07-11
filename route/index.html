@@ -1498,6 +1498,47 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    L.Control.Layers.prototype._addItem=function(obj){
     const label=original.call(this,obj)
     if(obj.overlay){
+     const input=label.querySelector('.leaflet-control-layers-selector')
+     const nameSpan=label.querySelector('span')
+     input.addEventListener('click',e=>{console.log(input.checked)
+      if(input.checked){
+
+                /*
+                if(!obj.layer._lockToggle){
+                    obj.layer._lockToggle = true;
+                }
+                else{
+                    obj.layer._opacityLocked =
+                        !obj.layer._opacityLocked;
+                }
+
+
+                if(obj.layer._opacityLocked){
+                    nameSpan.innerHTML =
+                        ' ' + obj.name + ' 🔒';
+                }
+                else{
+                    nameSpan.innerHTML =
+                        ' ' + obj.name;
+                }*/
+
+      }
+     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      label.addEventListener('contextmenu',e=>{
       e.preventDefault()
     //const name=obj.name,layer=obj.layer
