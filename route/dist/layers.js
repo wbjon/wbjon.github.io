@@ -49,7 +49,8 @@ const createGeoJsonLayer=function(url,options){
            .bindPopup(`<b>${name}</b><br>${des}`)
   }
   const urls=
-  [`https://call-oa.onrender.com/${url}/NTALRT?$format=JSON`,//安坑輕軌站
+  [
+   `https://call-oa.onrender.com/${url}/NTALRT?$format=JSON`,//安坑輕軌站
    `https://call-oa.onrender.com/${url}/NTDLRT?$format=JSON`,//淡海輕軌站
    `https://call-oa.onrender.com/${url}/KLRT?$format=JSON`,//高雄輕軌站
    `https://call-oa.onrender.com/${url}Exit/TRTCMG?$format=JSON`,//貓空纜車
@@ -81,7 +82,44 @@ const createGeoJsonLayer=function(url,options){
    })
   }
  }
-
+ else if(url==='https://tdx.transportdata.tw/api/basic/v3/Rail/'){
+  options.pointToLayer=function(feature,latlng){
+   const{name,des}=feature.properties
+   return L.circleMarker(latlng,{radius:5,color:"black",weight:1,fillColor:"aqua",fillOpacity:.6})
+           .bindPopup(`<b>${name}</b><br>${des}`)
+  }
+  const urls=
+  [
+   `https://call-oa.onrender.com/${url}TRA/StationExit?$format=JSON`,
+   `https://call-oa.onrender.com/${url}AFR/Station?$format=JSON`,//阿里山火車
+  ]
+  for(const url of urls){
+   fetch(url).then(res=>res.json()).then(arr=>{
+    arr=url.includes('AFR')?arr.Stations:arr.StationExits//AFR:阿里山火車
+    const geojson={type:"FeatureCollection",features:[]}
+    arr.forEach(item=>{
+     let Name,Des,Lon,Lat
+     if(url.includes('AFR')){
+      Name=item.StationName.Zh_tw
+      Des=item.StationAddress
+      Name=Name.replace(/\s+/g,"");Des=Des?Des.replace(/\s+/g,""):'空'
+      Lat=item.StationPosition.PositionLat;Lon=item.StationPosition.PositionLon
+      geojson.features.push({type:"Feature",properties:{name:Name,des:Des},geometry:{type:"Point",coordinates:[Lon,Lat]}})
+     }
+     else{
+      item.Exits.forEach(Exit=>{
+       Name=item.StationName.Zh_tw+Exit.ExitName.Zh_tw
+       Des=Exit.LocationDescription
+       Name=Name.replace(/\s+/g,"");Des=Des?Des.replace(/\s+/g,""):'空'
+       Lat=Exit.ExitPosition.PositionLat;Lon=Exit.ExitPosition.PositionLon
+       geojson.features.push({type:"Feature",properties:{name:Name,des:Des},geometry:{type:"Point",coordinates:[Lon,Lat]}})
+      })
+     }
+    })
+    layer.addData(geojson)
+   })
+  }
+ }
 
 
  const layer=L.geoJSON(null,options)
@@ -91,9 +129,17 @@ const createGeoJsonLayer=function(url,options){
 
 
 
-
-
 BR.layerIndex = {
+  "1002":{
+   "geometry":null,
+   "properties":{
+    "name":"火車",
+    "id":"1002",
+    "type":"geojson",
+    "url":"https://tdx.transportdata.tw/api/basic/v3/Rail/"
+   },
+   type:"Feature"
+  },
   "1003":{
    "geometry":null,
    "properties":{
