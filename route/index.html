@@ -1269,8 +1269,8 @@
 <script src="/leaflet-triangle-marker.js"></script>
 <script>
  const original=L.Control.Layers.prototype._addItem
- alert(8)
- L.Control.Layers.prototype._addItem=function(obj){
+ alert(9)
+ L.Control.Layers.prototype._addItem=function(obj){console.log(obj)
   const label=original.call(this,obj)
   if(obj.overlay){
    label.addEventListener('contextmenu',e=>{
@@ -1288,6 +1288,16 @@
    })
   }
   return label
+ }
+
+ function getOpacityLocked(id){
+  const states=JSON.parse(localStorage.getItem('layerState')??'{}')
+  return states[id]?.opacityLocked??false
+ }
+ function setOpacityLocked(id,locked) {
+  const states=JSON.parse(localStorage.getItem('layerState')??'{}')
+  (states[id]??={}).opacityLocked=locked
+  localStorage.setItem('layerState',JSON.stringify(states))
  }
 
  const pushOsm=()=>{/*
