@@ -1500,7 +1500,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
     if(obj.overlay){
      const input=label.querySelector('.leaflet-control-layers-selector')
      const nameSpan=label.querySelector('span')
-     input.addEventListener('click',e=>{console.log(input.checked)
+     input.addEventListener('click',e=>{console.log(e,input.checked)
       if(input.checked){
 
                 /*
