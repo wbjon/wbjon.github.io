@@ -91,7 +91,7 @@ const createGeoJsonLayer=function(url,options){
   const urls=
   [
    `https://call-oa.onrender.com/${url}TRA/StationExit?$format=JSON`,
-   //`https://call-oa.onrender.com/${url}AFR/Station?$format=JSON`,//阿里山火車
+   `https://call-oa.onrender.com/${url}AFR/Station?$format=JSON`,//阿里山火車
   ]
   for(const url of urls){
    fetch(url).then(res=>res.json()).then(arr=>{
