@@ -1269,7 +1269,7 @@
 <script src="/leaflet-triangle-marker.js"></script>
 <script>
    const original=L.Control.Layers.prototype._addItem
-   alert(3)
+   alert(4)
    L.Control.Layers.prototype._addItem=function(obj){
     const label=original.call(this,obj)
     if(obj.overlay){
@@ -1279,6 +1279,9 @@
       const idx=BR.tracksLayers.indexOf(obj.layer)
       if(idx!==-1)BR.tracksLayers.splice(idx,1)
       this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
+     })
+     label.addEventListener('click',e=>{
+      console.log('click',e)
      })
     }
     return label
@@ -1503,29 +1506,13 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
 //base layer 底圖(單選)
 //overlay 疊加圖層(多選)
 //按滑鼠右鍵可移除右方overlay的gpx<label>、其左方map圖層
-/*brouter-web.js多加入BR.tracksLayers陣列，可記錄每次加入的gpx檔，並操作顯示/隱藏，不過我已不使用了，改用最下面按滑鼠右鍵移除
+/*brouter-web.js多加入BR.tracksLayers陣列，可記錄每次加入的gpx檔，並操作顯示/隱藏，不過我已不使用了，改用最上面L.Control.Layers.prototype._addItem按滑鼠右鍵移除
   BR.tracksLayers=[];BR.layersControl=layersControl
   BR.tracksLayers.push(eventLayer)
   BR.layersControl.addOverlay(BR.tracksLayers[0],'gpx檔名')
   BR.layersControl.removeLayer(BR.tracksLayers[0])
   BR.debug.map.addLayer(BR.tracksLayers[0])
   BR.debug.map.removeLayer(BR.tracksLayers[0])*/
-
-   /*const original=L.Control.Layers.prototype._addItem
-   alert(2)
-   L.Control.Layers.prototype._addItem=function(obj){
-    const label=original.call(this,obj)
-    if(obj.overlay){
-     label.addEventListener('contextmenu',e=>{
-      e.preventDefault()
-    //const name=obj.name,layer=obj.layer
-      const idx=BR.tracksLayers.indexOf(obj.layer)
-      if(idx!==-1)BR.tracksLayers.splice(idx,1)
-      this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
-     })
-    }
-    return label
-   }*/
   }
  },1000)
  const handle=async()=>{
