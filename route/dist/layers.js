@@ -112,7 +112,7 @@ const createGeoJsonLayer=function(url,options){
        Des=Exit.LocationDescription
        Name=Name.replace(/\s+/g,"");Des=Des?Des.replace(/\s+/g,""):'空'
        Lat=Exit.ExitPosition.PositionLat;Lon=Exit.ExitPosition.PositionLon
-       if(!Lat||!Lon)console.log(Exit)
+       if(!Lat||!Lon)console.log(item)
 
 
        geojson.features.push({type:"Feature",properties:{name:Name,des:Des},geometry:{type:"Point",coordinates:[Lon,Lat]}})
