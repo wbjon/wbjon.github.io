@@ -1269,13 +1269,12 @@
 <script src="/leaflet-triangle-marker.js"></script>
 <script>
  const original=L.Control.Layers.prototype._addItem
- alert(0)
+ alert(1)
  L.Control.Layers.prototype._addItem=function(obj){console.log(obj)
   const label=original.call(this,obj)
   if(obj.overlay){
    const nameSpan=label.querySelector('span')
-   const state=getOpacityLocked(obj.layer.id)
-   obj.layer._opacityLocked=state.opacityLocked??false
+   obj.layer._opacityLocked=getOpacityLocked(obj.layer.id)
    nameSpan.textContent=obj.name+(obj.layer._opacityLocked?'🔒':'')
 
    label.addEventListener('contextmenu',e=>{
