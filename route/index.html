@@ -1498,12 +1498,13 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
    L.Control.Layers.prototype._addItem=function(obj){
     const label=original.call(this,obj)
     if(obj.overlay){
+/*
      const input=label.querySelector('.leaflet-control-layers-selector')
      const nameSpan=label.querySelector('span')
      input.addEventListener('click',e=>{console.log(e,input.checked)
       if(input.checked){
 
-                /*
+                //
                 if(!obj.layer._lockToggle){
                     obj.layer._lockToggle = true;
                 }
@@ -1520,23 +1521,10 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
                 else{
                     nameSpan.innerHTML =
                         ' ' + obj.name;
-                }*/
+                }//
 
       }
-     })
-
-
-
-
-
-
-
-
-
-
-
-
-
+     })*/
 
 
      label.addEventListener('contextmenu',e=>{
