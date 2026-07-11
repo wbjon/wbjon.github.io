@@ -1268,6 +1268,22 @@
         <!-- endinject -->
 <script src="/leaflet-triangle-marker.js"></script>
 <script>
+   const original=L.Control.Layers.prototype._addItem
+   alert(3)
+   L.Control.Layers.prototype._addItem=function(obj){
+    const label=original.call(this,obj)
+    if(obj.overlay){
+     label.addEventListener('contextmenu',e=>{
+      e.preventDefault()
+    //const name=obj.name,layer=obj.layer
+      const idx=BR.tracksLayers.indexOf(obj.layer)
+      if(idx!==-1)BR.tracksLayers.splice(idx,1)
+      this._map.removeLayer(obj.layer);this.removeLayer(obj.layer)
+     })
+    }
+    return label
+   }
+
  const pushOsm=()=>{/*
   const Old=(window.routingPathQuality.segments||[]).map(item=>item._latlngs)
   const New=[]
@@ -1494,12 +1510,12 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
   BR.layersControl.removeLayer(BR.tracksLayers[0])
   BR.debug.map.addLayer(BR.tracksLayers[0])
   BR.debug.map.removeLayer(BR.tracksLayers[0])*/
-   const original=L.Control.Layers.prototype._addItem
+
+   /*const original=L.Control.Layers.prototype._addItem
    alert(2)
    L.Control.Layers.prototype._addItem=function(obj){
     const label=original.call(this,obj)
     if(obj.overlay){
-     label.addEventListener('click',e=>{console.log('click',e)})
      label.addEventListener('contextmenu',e=>{
       e.preventDefault()
     //const name=obj.name,layer=obj.layer
@@ -1509,7 +1525,7 @@ Object.assign(document.getElementById("map").style,{zIndex:"99",position:"fixed"
      })
     }
     return label
-   }
+   }*/
   }
  },1000)
  const handle=async()=>{
