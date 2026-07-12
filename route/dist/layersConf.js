@@ -2,10 +2,9 @@ BR.confLayers = {};
 
 BR.confLayers.defaultBaseLayers = [
     'standard',
-    '1009','1007','1005','1012',
+    '1009','1007','1005','Esri.WorldImagery','1012',
     'OpenTopoMap',
-    'Stamen.Terrain',
-    'Esri.WorldImagery'
+    'Stamen.Terrain'
 ];
 
 // worldwide monolingual layers to add as default when browser language matches
@@ -16,7 +15,7 @@ BR.confLayers.languageDefaultLayers = [
 ];
 
 BR.confLayers.defaultOverlays =  [
-    '1012','1011','1008','1006','1004','1003','1002',
+    'Esri.WorldImagery','1012','1011','1008','1006','1004','1003','1002',
     'terrarium-hillshading',
     'Waymarked_Trails-Cycling',
     'Waymarked_Trails-Hiking'
