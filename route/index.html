@@ -1302,7 +1302,24 @@
  ;(states[id]??={}).opacityLocked=locked
   localStorage.setItem('layerState',JSON.stringify(states))
  }
-
+ const routing_latLngs=()=>{
+  const latLngs=[],routing=BR.debug.routing
+  let[start,end]=activeRange
+  start??=routing._waypoints._first;end??=routing._waypoints._last
+  let active=false
+  routing._eachSegment((m1,m2,line)=>{
+   if(m1===start)active=true
+   if(active&&line?.feature){
+    //latLngs.push(...line.getLatLngs())//會有位置重複點，故改以下
+    const points=line.getLatLngs()
+    const last=latLngs.at(-1)
+    const startIndex=last&&last.lat===points[0].lat&&last.lng===points[0].lng?1:0
+    for(let i=startIndex;i<points.length;i++)latLngs.push(points[i])
+   }
+   if(m2===end)active=false
+  })
+  return latLngs
+ }
  const pushOsm=()=>{/*
   const Old=(window.routingPathQuality.segments||[]).map(item=>item._latlngs)
   const New=[]
@@ -1315,24 +1332,7 @@
    }
    if(Old_length==Old.length){New.push(...Old[0]);Old.splice(0,1)}
   }*/
-  const New=(()=>{
-   const latLngs=[],routing=BR.debug.routing
-   let[start,end]=activeRange
-   start??=routing._waypoints._first;end??=routing._waypoints._last
-   let active=false
-   routing._eachSegment((m1,m2,line)=>{
-    if(m1===start)active=true
-    if(active&&line?.feature){
-     //latLngs.push(...line.getLatLngs())//會有位置重複點，故改以下
-     const points=line.getLatLngs()
-     const last=latLngs.at(-1)
-     const startIndex=last&&last.lat===points[0].lat&&last.lng===points[0].lng?1:0
-     for(let i=startIndex;i<points.length;i++)latLngs.push(points[i])
-    }
-    if(m2===end)active=false
-   })
-   return latLngs
-  })()
+  const New=routing_latLngs()
   let str1="<osm version='0.6'>",str2="<way id='-1'>"
   New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`).forEach((item,index)=>{
    str1+=item;str2+=`<nd ref='-${index+2}'/>`
