@@ -15,7 +15,7 @@ BR.confLayers.languageDefaultLayers = [
 ];
 
 BR.confLayers.defaultOverlays =  [
-    'Esri.WorldImagery','1012','1011','1008','1006','1004','1003','1002',
+    '1005','Esri.WorldImagery','1012','1011','1008','1006','1004','1003','1002',
     'terrarium-hillshading',
     'Waymarked_Trails-Cycling',
     'Waymarked_Trails-Hiking'
