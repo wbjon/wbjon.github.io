@@ -1401,6 +1401,12 @@
     let step=1
     if(mousedown===0){if(keyCode===49)keyCode=38;else if(keyCode===50)keyCode=40}
     switch(keyCode){
+     case 188://<鍵
+      BR.layersControl.setOverlayOpacity(0)//圖層透明度設0，自創的setOverlayOpacity(opacity)定義在brouter-web.js
+      break
+     case 190://>鍵
+      BR.layersControl.setOverlayOpacity(1)//圖層透明度設1，自創的setOverlayOpacity(opacity)定義在brouter-web.js
+      break
      case 38://向上鍵
       step=-1
       //刻意不加break，讓case 40一併執行(貫穿)
