@@ -121,12 +121,39 @@ const createGeoJsonLayer=function(url,options){
    })
   }
  }
+ else if(url==='https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/StationExit'){
+  options.pointToLayer=function(feature,latlng){
+   const{name,des}=feature.properties
+   return L.circleMarker(latlng,{radius:5,color:"black",weight:1,fillColor:"#FF8000",fillOpacity:.6})
+           .bindPopup(`<b>${name}</b><br>${des}`)
+  }
+  fetch(`https://call-oa.onrender.com/${url}?$format=JSON`).then(res=>res.json()).then(obj=>{
+   const geojson={
+    type:"FeatureCollection",
+    features:obj.map(item=>({type:"Feature",
+                             properties:{name:(item.StationName.Zh_tw+item.ExitName.Zh_tw).replace(/\s+/g,""),des:item.LocationDescription?item.LocationDescription.replace(/\s+/g,""):'空'},
+                             geometry:{type:"Point",coordinates:[item.ExitPosition.PositionLon,item.ExitPosition.PositionLat]}
+                            }))
+   }
+   layer.addData(geojson)
+  })
+ }
 
  const layer=L.geoJSON(null,options)
  return layer
 }
 
 BR.layerIndex = {
+  "1001":{
+   "geometry":null,
+   "properties":{
+    "name":"高鐵",
+    "id":"1001",
+    "type":"geojson",
+    "url":"https://tdx.transportdata.tw/api/basic/v2/Rail/THSR/StationExit"
+   },
+   type:"Feature"
+  },
   "1002":{
    "geometry":null,
    "properties":{
