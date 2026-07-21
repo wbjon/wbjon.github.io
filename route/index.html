@@ -1334,9 +1334,14 @@
   }*/
   const New=routing_latLngs()
   let osm1="<osm version='0.6'>",osm2="<way id='-1'>"
+  let gpx1='BRouter_gpx_format_source<?xml version="1.0" encoding="UTF-8" standalone="no"?><gpx xmlns="http://www.topografix.com/GPX/1/1" creator="" version="1.1">'
   New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`).forEach((item,index)=>{
    osm1+=item;osm2+=`<nd ref='-${index+2}'/>`
   });osm2+="</way>"
+
+
+
+
   const POIid=-New.length-2
   decodeURIComponent(window.params.pois).split('|').forEach((item,index)=>{
    if(item==='')return
