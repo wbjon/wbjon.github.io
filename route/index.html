@@ -1400,7 +1400,13 @@
     }
     if(keyCode>=37&&keyCode<=40){e.originalEvent.stopPropagation();}
     let step=1
-    if(mousedown===0){if(keyCode===49)keyCode=38;else if(keyCode===50)keyCode=40}
+    if(mousedown===0){
+     //if(keyCode===49)keyCode=38;else if(keyCode===50)keyCode=40
+     const inputs=document.querySelectorAll('.leaflet-control-layers-base input')
+     if(keyCode===49)return inputs[0].click()
+     if(keyCode===50)return inputs[1].click()
+     if(keyCode===51)return inputs[2].click()
+    }
     switch(keyCode){
      case 188://<鍵
       BR.layersControl.setOverlayOpacity(0)//圖層透明度設0，自創的setOverlayOpacity(opacity)定義在brouter-web.js
