@@ -1,8 +1,8 @@
 BR.confLayers = {};
 
 BR.confLayers.defaultBaseLayers = [
+    '1007','1009',
     'standard',
-    '1009','1007',
     'OpenTopoMap',
     'Stamen.Terrain'
 ];
