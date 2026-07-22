@@ -1345,7 +1345,7 @@
   New.forEach(item=>{
    gpx1+=`<trkpt lat="${item.lat}" lon="${item.lng}"/>`
   })
-  navigator.clipboard.writeText(gpx1+gpx2+'</gpx>')//會觸發Desktop的node_ip.bat(ip.js)
+  navigator.clipboard.writeText(gpx1+gpx2+'</gpx>')//2026.7.22會觸發Desktop的node_ip.bat(ip.js)
 
   New.map((item,index)=>`<node id='-${index+2}' lat='${item.lat}' lon='${item.lng}'/>`).forEach((item,index)=>{
    osm1+=item;osm2+=`<nd ref='-${index+2}'/>`
@@ -1355,6 +1355,7 @@
    item=item.split(',')
    osm2+=`<node id='${POIid-index}' lat='${item[1]}' lon='${item[0]}'><tag k='POI' v='${item[2]}'/></node>`
   })
+  const blob=new Blob([osm1+osm2+"</osm>"]),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="result.osm";a.click();URL.revokeObjectURL(a.href)//2026.7.23也下載一份result.osm至Desktop
   const apiUrl='https://api.github.com/repos/wbjon/wbjon.github.io/contents/route/route.osm'
   fetch(apiUrl).then(res=>res.json()).then(obj=>{
    const sha=obj.sha
