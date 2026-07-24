@@ -229,15 +229,16 @@ function handle(ele,flag){//^是XOR運算，原理：相同回傳0、相異回�
  }
 }
 
-var watchID,posLat,posLon,pos={coords:{latitude:25.1568,longitude:120.6628}}
+var watchID,posLat,posLon
 
 function centerGPS(){
 //navigator.geolocation.clearWatch(watchID)
  map.setView([posLat,posLon])
 }
 
-//navigator.geolocation.getCurrentPosition(async function(pos){},null,{enableHighAccuracy:true})//2026.7.24避免抓不到定位故移除
+//navigator.geolocation.getCurrentPosition(async function(pos){},null,{enableHighAccuracy:true})//2026.7.24避免抓不到定位故移除改為(async()=>{
 ;(async()=>{
+const pos=JSON.parse(localStorage.getItem("pos")||'{"coords":{"latitude":24.1072551,"longitude":120.6014181}}')//初始位置
 //gps=L.circleMarker([pos.coords.latitude,pos.coords.longitude],{radius:10,weight:2,color:'#ff0000',fillColor:'#00ff00'}).addTo(map)
 gps=L.triangleMarker([pos.coords.latitude,pos.coords.longitude],{
                                                                /*renderer:L.canvas(),*/ //your canvas renderer(default: L.canvas())
@@ -260,6 +261,7 @@ gps.setRotation(180-e.alpha)
 })
 
 watchID=navigator.geolocation.watchPosition(function(pos){
+ localStorage.setItem("pos",JSON.stringify(pos))//2026.7.25每讀到新位置即更新localStorage，供下次初始位置
  posLat=pos.coords.latitude;posLon=pos.coords.longitude
  gps.setLatLng([posLat,posLon])
 //map.setView([pos.coords.latitude,pos.coords.longitude])
