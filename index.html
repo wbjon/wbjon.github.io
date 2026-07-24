@@ -237,7 +237,7 @@ function centerGPS(){
 }
 
 //navigator.geolocation.getCurrentPosition(async function(pos){},null,{enableHighAccuracy:true})//2026.7.24避免抓不到定位故移除
-
+;(async()=>{
 //gps=L.circleMarker([pos.coords.latitude,pos.coords.longitude],{radius:10,weight:2,color:'#ff0000',fillColor:'#00ff00'}).addTo(map)
 gps=L.triangleMarker([pos.coords.latitude,pos.coords.longitude],{
                                                                /*renderer:L.canvas(),*/ //your canvas renderer(default: L.canvas())
@@ -404,6 +404,7 @@ var extend=L.TileLayer.extend({options:{/*minZoom:16,minNativeZoom:16,*/maxNativ
   svvLayer=L.tileLayer('https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i{z}!2i{x}!3i{y}!4i256!2m8!1e2!2ssvv!4m2!1scb_client!2sapiv3!4m2!1scc!2s*211m3*211e3*212b1*213e2*211m3*211e2*212b1*213e2!3m3!3sUS!12m1!1e68!4e0',{maxNativeZoom:22,maxZoom:30})//.addTo(map)//2023/9/8改新街景層
   makeKML4()
 //navigator.geolocation.getCurrentPosition(async function(pos){},null,{enableHighAccuracy:true})//2026.7.24避免抓不到定位故移除
+})()
 
 function showLine(RouteUID,n)
 {
