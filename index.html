@@ -547,7 +547,6 @@ function makeKML(url,name,index)
     pointName=obj[i].StationName.Zh_tw+obj[i].Exits[j].ExitName.Zh_tw
     pointDes=obj[i].Exits[j].LocationDescription
     pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
-    if(!pointLat||!pointLon)console.log(pointLat,pointLon,pointName,pointDes)
     if(!Object.keys(obj[i].Exits[j].ExitPosition).length)continue//2026.7.25樹林調車場ExitPosition為{}
     pointLat=obj[i].Exits[j].ExitPosition.PositionLat
     pointLon=obj[i].Exits[j].ExitPosition.PositionLon
