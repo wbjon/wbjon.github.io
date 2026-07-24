@@ -549,6 +549,9 @@ function makeKML(url,name,index)
     pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
     pointLat=obj[i].Exits[j].ExitPosition.PositionLat
     pointLon=obj[i].Exits[j].ExitPosition.PositionLon
+    if(!pointLat||!pointLon)console.log(pointLat,pointLon,pointName,pointDes)
+
+
     var oneMark=L.marker([pointLat,pointLon],{icon:icon})
                  .bindPopup('<b>'+pointName+'</b><br>'+pointDes,{autoPan:false})
     ciLayer.addMarker(oneMark)
