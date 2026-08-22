@@ -1,0 +1,15 @@
+{
+  "version": 8,
+  "name": "Contours",
+  "sources": {
+    "contours": {
+      "type": "vector",
+      "tiles": [
+        "https://wbjon.github.io/contours/{z}/{x}/{y}.txt"
+      ],
+      "minzoom": 9,
+      "maxzoom": 14
+    }
+  },
+  "layers": []
+}
