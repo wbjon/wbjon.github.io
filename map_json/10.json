@@ -20,7 +20,7 @@
       "source": "contours",
       "source-layer": "contour",
       "paint": {
-        "line-color": "Red",
+        "line-color": "Maroon",
         "line-opacity": 0.5,
         "line-width": [
           "match",
