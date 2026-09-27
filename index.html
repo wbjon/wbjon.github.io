@@ -446,7 +446,7 @@ setInterval(()=>{//2022/10/23加入，每分鐘更新YouBike 2.0圖示(電動 �
 },60000)
 document.onvisibilitychange=function(){if(document.visibilityState=='visible'){update()}}//頁面從隱藏變可見，立即update()
 
-function update(){
+function update(){return//2026.9.27電動車不再更新
  let xhr=new XMLHttpRequest();xhr.responseType="json"
  //xhr.open('GET','https://call'+encode+'er.com/E',true)//預設就是true(異步)，https://call'+encode+'er.com/E 呈現有電動車的站點名稱陣列資料
  xhr.open('GET','https://md'+encode+'er.com/E',true)//預設就是true(異步)，https://md'+encode+'er.com/E 呈現有電動車的站點名稱陣列資料
