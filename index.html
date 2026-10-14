@@ -564,7 +564,7 @@ function makeKML(url,name,index)
     if(url.includes('THSR')){kind='高鐵站.png'}else{kind='捷運站.png'}//THSR：高鐵
     var icon=L.icon({iconUrl:kind,iconSize:[20,20],iconAnchor:[10,10]})
     pointName=obj[i].ExitName.Zh_tw
-    if(url.match(/TYMC|THSR/)){pointName=obj[i].StationName.Zh_tw+pointName}//TYMC:桃捷、THSR：高鐵
+    if(url.match(/TYMC|THSR|KRTC/)){pointName=obj[i].StationName.Zh_tw+pointName}//TYMC:桃捷、KRTC:高捷、THSR：高鐵
     pointDes=obj[i].LocationDescription
     pointName=pointName.replace(/\s+/g,"");if(pointDes){pointDes=pointDes.replace(/\s+/g,"")}else{pointDes='空'}//去除所有空白
     pointLat=obj[i].ExitPosition.PositionLat
@@ -585,7 +585,7 @@ function makeKML(url,name,index)
     pointLat=obj[i].StationPosition.PositionLat
     pointLon=obj[i].StationPosition.PositionLon
     var oneMark=L.marker([pointLat,pointLon],{icon:icon})
-                 .bindPopup('<b>'+pointName+'</b><br>'+pointDes,{autoPan:false})
+                 .bindPopup('<b>'+pointName+'</b><br>'+pointDes.split(";")[0],{autoPan:false})//KLRT高雄輕軌站的Des會有; 需刪除後方的英文地址
     ciLayer.addMarker(oneMark)
     arr[index].push(oneMark)//arr.push(oneMark)
    }
